@@ -235,7 +235,7 @@
       <p>Nc includes following scenario of data entered by users</p>
       <ul>
         <li>Cases with Preop, Procedure, PACU, Followup and Feedback</li>
-        <li>RAD Version – any updated data</li>
+        <!-- <li>RAD Version – any updated data</li> -->
       </ul>
     </div>
 </div>
