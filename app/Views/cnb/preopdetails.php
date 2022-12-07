@@ -1,0 +1,809 @@
+<?php
+    echo view('includes/header',$patient, $pre, $precheck, $preo, $posto, $follo, $proccheck, $feedcheck, $ecocheck, $focus, $allcheck, $old_check, $old_check);    
+?>
+
+<!--  <script type="text/javascript" src="<?php echo base_url('public/assets/js/bootstrap.bundle.min.js'); ?>"></script> -->
+
+<section class="pre-op-details"><br>
+    <div class="row">
+        <div class="col-sm-7"></div>
+        <div class="col-sm-5" style="text-align:end;">
+            <button type="button" class="btn-edit" id="edit" data-toggle="modal">Edit</button>
+            <!-- <button type="button" class="btn-delete">Delete</button> -->
+        </div>
+    </div><!--row-->
+    <div class="preop-table">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th id="pre-op-head">Speciality</th>
+                        <th id="pre-op-head">Surgical Location</th>
+                        <th id="pre-op-head">Surgery</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+						<?php if($info['speciality'] == 'Other'){ ?>
+							<td><?php echo $info['speciality']; ?> - <?php echo $info['speciality_other']; ?></td>
+						<?php }else{ ?>
+							<td><?php echo $info['speciality']; ?></td>
+						<?php } ?>
+                        
+                        <td><?php echo $info['surgery_location']; ?></td>
+                        <td><?php echo $info['surgery']; ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><!--table-responsive-->
+    </div><!--preop-table-->
+    <div class="preop-table">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th id="pre-op-head">Minimally invasive</th>
+                        <th id="pre-op-head">Operation/Procedure Category</th>
+                        <th id="pre-op-head">ASA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?php echo $info['minimally_invasive']; ?></td>
+                        <td><?php echo $info['category']; ?></td>
+                        <td><?php echo $info['asa']; ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><!--table-responsive-->
+    </div><!--preop-table-->
+    <h5><b>Co-morbid Conditions</b></h5>
+    <div class="preop-table2">
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td class="bg-pat2">Diabetes Mellitus</td>
+                        <td><?php echo $info['diabetes_mellitus']; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-pat2">CVS disease</td>
+                        <td><?php echo $info['cvs_disease']; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-pat2">Respiratory disease</td>
+                        <td><?php echo $info['respiratory_disease']; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-pat2">Neurological disorders</td>
+                        <td><?php echo $info['neurological_disorder']; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-pat2">Renal Disorders</td>
+                        <td><?php echo $info['renal_disorder']; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-pat2">Spine/back deformities</td>
+                        <td><?php echo $info['spin_back_problem']; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-pat2">Fever/Infection</td>
+                        <td><?php echo $info['fever_infection']; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-pat2">Bleeding disorder</td>
+                        <td><?php echo $info['bleeding_disorder']; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-pat2">Anaemia</td>
+                        <td><?php echo $info['anaemia']; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-pat2">Malignancy</td>
+                        <td><?php echo $info['malignancy']; ?></td>
+                    </tr>
+					<?php if($info['other'] != ''){ ?>
+						<tr>
+							<td class="bg-pat2">Other - Yes</td>
+							<td><?php echo $info['other']; ?></td>
+						</tr>
+					<?php }else{ ?>
+
+						<tr>
+							<td class="bg-pat2">Other</td>
+							<td>No</td>
+						</tr>
+
+					<?php } ?>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div><!--preop-table2-->
+    <div class="preop-table">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th id="">Purpose of CNB</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?php echo $info['purpose']; ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><!--table-responsive-->
+    </div><!--preop-table-->
+    <h5><b>Clinical Standards</b></h5>
+    <div class="preop-table2">
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td class="bg-pat2">Basic Monitoring (ECG, BP or Pulse Oximetry)</td>
+                        <td><?php echo $info['basic_monitering']; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-pat2">Resuscitation Equipment Available</td>
+                        <td><?php echo $info['resuscitation_eq']; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-pat2">Lipid Rescue Available</td>
+                        <td><?php echo $info['lipid_rescue']; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-pat2">Time Out / Correct Side Check Done</td>
+                        <td><?php echo $info['timeout']; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-pat2">Consent Taken</td>
+                        <td><?php echo $info['consent_taken']; ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div><!--preop-table2-->
+</section><!--pre-op-details-->
+<section class="edit-preop">
+    <div class="modal fade" id="myModal3">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+        
+        <!-- Modal Header -->
+                <div class="modal-header" id="add-header">
+                    <h4 class="modal-title">Edit Preop</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+        
+        <!-- Modal body -->
+                <div class="modal-body">
+                	<form id="edit-preop">
+					<input type="hidden" class="form-control" name="id" value="<?php echo $info['id']; ?>" required>
+						<div class="row">
+							<div class="col-sm-2"><label>Speciality<span class="mandat">*</span></label></div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<select class="form-control" id="speciality" name="speciality" onchange="checkspl()">
+										<option value=''>Select</option>
+										<option>General Surgery</option>
+										<option>Gynaecology</option>
+										<option>Orthopaedics</option>
+										<option>Plastic surgery</option>
+										<option>Cardiothoracic surgery</option>
+										<option>Vascular Surgery</option>
+										<option>Neuro-spine</option>
+										<option>Urology</option>
+										<option>Other</option>
+									</select>
+									<input type="text" class="form-control mt-3 speciality_other" name="speciality_other" style="display:none;">
+									<small class="spl" style="color:red; display:none;">Please enter speciality</small>
+								</div>
+							</div>
+							<div class="col-sm-4"></div>
+						</div><!--row-->
+						<div class="row">
+							<div class="col-sm-2"><label>Surgical Location<span class="mandat">*</span></label></div>
+							<div class="col-sm-6">
+							<!-- <input type="text" class="form-control" name="sur_location" id="sur_location" value="<?php echo $info['surgery_location']; ?>" list="sur_location_datalist" placeholder="--Select--"  onfocusout="checksul()"> -->
+								<select class="form-control" name="sur_location" id="sur_location" value="<?php echo $info['surgery_location']; ?>" onchange="checksul()">		
+									<option value=''>select</option>				
+									<?php
+										foreach($master_type as $key=>$master){
+									?>
+										
+										<option><?php echo $master['master_type']; ?></option>
+										
+									<?php
+										}
+									?>
+								</select>
+								<small class="sul" style="color:red; display:none;">Please enter surgery location</small>
+							</div>
+							<div class="col-sm-4"></div>
+						</div><!--row-->
+						<div class="row mb-3">
+							<div class="col-sm-2"><label>Surgery<span class="mandat">*</span></label></div>
+							<div class="col-sm-6">
+								<input type="text" list="surgery_option" class="form-control" id="surgery_option_input" value="<?php echo $info['surgery']; ?>" name="surgery" style="width:550px;" onchange="checksur()">
+									<!-- <input list="browsers" class="form-control" name="browser" id="browser" style="margin:15px 0;"> -->
+								<datalist id="surgery_option">
+									
+								
+								</datalist>
+								<textarea class="form-control" id="xyz" cols="80" rows="3" readonly style="margin-top:10px;"> </textarea>
+
+							</div>
+							<div class="col-sm-4">
+								<span><i onclick="clean()" class="fa fa-times" id="clear" title="clear" aria-hidden="true" style="color:#1974A7;cursor: pointer; position: relative; left: 167px;top: 5px;"></i></span>
+							</div>
+						</div><!--row-->
+						<div class="row pt">
+							<div class="col-sm-2">
+								<!-- <label>Minimally invasive<span class="mandat">*</span><a href="#" class="tip" data-toggle="tooltip" data-placement="bottom"  title="Thoracoscopic, laparoscopic, arthroscopic with or without semi-open"><i class="fa fa-info-circle" aria-hidden="true"></i></a></label> -->
+								<label>Minimally invasive
+		         					<div class="tooltip-2">
+									   <i class="fa fa-info-circle" aria-hidden="true"></i>
+									    <div class="right-2">
+									        <div class="text-content-2">
+									            <h6>Thoroscopic&nbsp;,&nbsp;laproscopic&nbsp;,&nbsp;arthoscopic with or without semi-open.</h6>
+									            <i></i>
+									        </div>
+									    </div>
+									</div>
+		         				</label>
+							</div>
+							<div class="col-sm-4" id="add-minimal">
+								<div class= "box_1">
+									<input type="hidden" class="switch_1" value="No" name="min_invas">
+									<input type="checkbox" class="switch_1" id="min_invas" value="Yes" name="min_invas">
+								</div>
+							</div>
+							<div class="col-sm-6"></div>
+						</div><!--row-->
+						<div class="row pt">
+							<div class="col-sm-3">
+								<label>Operation/Procedure Category<span class="mandat">*</span></label>
+							</div>
+							<div class="col-sm-4">
+								<div class="form-check-inline">
+									<label class="form-check-label">
+									<input type="radio" class="form-check-input" value="Emergency" id="option-1" name="optradio">Emergency
+									</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+									<input type="radio" class="form-check-input" value="Elective" id="option-2" name="optradio">Elective
+									</label>
+								</div>
+							</div>
+							<div class="col-sm-5"></div>
+						</div><!--row-->
+						<div class="row pt">
+							<div class="col-sm-2"><label>ASA<span class="mandat">*</span></label></div>
+							<div class="col-sm-4">
+								<div class="form-group">
+									<select class="form-control" id="asa" name="asa" onchange="checkasa()">
+										<option value=''>Select</option>
+										<option>ASA 1</option>
+										<option>ASA 2</option>
+										<option>ASA 3</option>
+										<option>ASA 4</option>
+									</select>
+									<small class="asa_msg" style="color:red; display:none;">Please select ASA option</small>
+								</div>
+							</div>
+						</div><!--row-->
+						<div class="row pt">
+							<div class="col-sm-2"><label>Co-morbid Conditions</label></div>
+							<div class="col-sm-10">
+								<div class="t-switch">
+									<ul>
+										<li>
+											<div class="togle">
+												<label>Diabetes Mellitus</label>
+												<div class= "box_1">
+													<input type="hidden" class="switch_1" value="No" name="Mellitus">
+													<input type="checkbox" class="switch_1" id="Mellitus" value="Yes" name="Mellitus">
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="togle">
+												<label>CVS disease</label>
+												<div class= "box_1">
+													<input type="hidden" class="switch_1" value="No" name="CVS">
+													<input type="checkbox" class="switch_1" id="CVS" value="Yes" name="CVS">
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="togle">
+												<label>Respiratory disease</label>
+												<div class= "box_1">
+													<input type="hidden" class="switch_1" value="No" name="Respi">
+													<input type="checkbox" class="switch_1" id="Respi" value="Yes" name="Respi">
+												</div>
+											</div>
+										</li>
+									</ul><!-------------------->
+									<ul>
+										<li>
+											<div class="togle">
+												<label>Neurological disorders</label>
+												<div class= "box_1">
+													<input type="hidden" class="switch_1" value="No" name="Neuro">
+													<input type="checkbox" class="switch_1" id="Neuro" value="Yes" name="Neuro">
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="togle">
+												<label>Renal Disorders</label>
+												<div class= "box_1">
+													<input type="hidden" class="switch_1" value="No" name="Renal">
+													<input type="checkbox" class="switch_1" id="Renal" value="Yes" name="Renal">
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="togle">
+												<label id="">Spine/back deformities</label>
+												<div class= "box_1">
+													<input type="hidden" class="switch_1" value="No" name="Spine">
+													<input type="checkbox" class="switch_1" id="Spine" value="Yes" name="Spine">
+												</div>
+											</div>
+										</li>
+									</ul><!------------->
+									<ul>	
+										<li>
+											<div class="togle">
+												<label>Fever / Infection</label>
+												<div class= "box_1">
+													<input type="hidden" class="switch_1" value="No" name="Fever">
+													<input type="checkbox" class="switch_1" id="Fever" value="Yes" name="Fever">
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="togle">
+												<!-- <label>Bleeding disorder<a href="#" class="tip" data-toggle="tooltip" data-placement="bottom"  title="For Bleeding disorder includes but not limited to Anti-Coagulation/Coagulopathy, Anti-platelet agent/platelet disorder, Vascular disorder"><i class="fa fa-info-circle" aria-hidden="true"></i></a></label> -->
+												<label>Bleeding disorder
+					         					<div class="tooltip-3">
+												   <i class="fa fa-info-circle" aria-hidden="true"></i>
+												    <div class="right-3">
+												        <div class="text-content-3">
+												            <h6>For Bleeding disorder includes but not limited to Anti-Coagulation/Coagulopathy, Anti-platelet agent/platelet disorder, Vascular disorder.</h6>
+												            <i></i>
+												        </div>
+												    </div>
+												</div>
+					         				</label>
+												<div class= "box_1">
+													<input type="hidden" class="switch_1" value="No" name="Bleed">
+													<input type="checkbox" class="switch_1" id="Bleed" value="Yes" name="Bleed">
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="togle">
+												<label>Anaemia</label>
+												<div class= "box_1">
+													<input type="hidden" class="switch_1" value="No" name="Anaemia">
+													<input type="checkbox" class="switch_1" id="Anaemia" value="Yes" name="Anaemia">
+												</div>
+											</div>
+										</li>
+									</ul><!-------------------->
+									<ul class="mb-0">
+										<li>
+											<div class="togle">
+												<label>Malignancy</label>
+												<div class= "box_1">
+													<input type="hidden" class="switch_1" value="No" name="Malignancy">
+													<input type="checkbox" class="switch_1" id="Malignancy" value="Yes" name="Malignancy">
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="togle">
+												<label>Other</label>
+												<div class= "box_1">
+													<input type="text"  name="other" value="<?php echo $info['other']; ?>" style="border-radius: 20px;" >
+												</div>
+											</div>
+										</li>
+									</ul><!-------------------->
+								</div>
+							</div>
+						</div><!--row-->
+						<div class="row pt">
+							<div class="col-sm-2"><label>Purpose of CNB<span class="mandat">*</span></label></div>
+							<div class="col-sm-4">
+								<select class="form-control" id="Purpose" name="Purpose" style="width:206px">
+									<option value=''>Select</option>
+									<option>Sole/Primary Anaesthetic</option>
+									<option>For Analgesia only</option>
+								</select>
+								<small class="prs" style="color:red; display:none;">Please enter purpose</small>
+							</div>
+						</div><!--row-->
+						<div class="row pt">
+							<div class="col-sm-2"><label>Clinical Standards<span class="mandat">*</span></label><small class="clinic" style="color:red; display:none;">please select clinical standard</small></div>
+							<div class="col-sm-8">
+								<div class="t-switch">
+									<ul>
+										<li style="width:50%;">
+											<div class="togle">
+												<label>Basic Monitoring (ECG, BP or Pulse Oximetry)</label>
+												<div class= "box_1">
+													<input type="hidden" class="switch_1" value="No" name="Monitoring">
+													<input type="checkbox" class="switch_1" value="Yes" id="Monitoring" name="Monitoring" onclick="checkclinic()">
+												</div>
+											</div>
+										</li>
+									</ul><!-------------------->
+									<ul>
+										<li style="width:44%;">
+											<div class="togle">
+												<label style="width:initial">Resuscitation Equipment Available</label>
+												<div class= "box_1">
+													<input type="hidden" class="switch_1" value="No" name="Resusci">
+													<input type="checkbox" class="switch_1" value="Yes" id="Resusci" name="Resusci">
+												</div>
+											</div>
+										</li>
+									</ul><!-------------------->
+									<ul>
+										<li style="width:50%;">
+											<div class="togle">
+												<label>Lipid Rescue Available</label>
+												<div class= "box_1">
+													<input type="hidden" class="switch_1" value="No" name="Lipid">
+													<input type="checkbox" class="switch_1" value="Yes" id="Lipid" name="Lipid">
+												</div>
+											</div>
+										</li>
+									</ul>
+									<ul>
+										<li style="width:50%;">
+											<div class="togle">
+												<label>Time Out / Correct Side Check Done</label>
+												<div class= "box_1">
+													<input type="hidden" class="switch_1" value="No" name="Timeout">
+													<input type="checkbox" class="switch_1" value="Yes" id="Timeout" name="Timeout">
+												</div>
+											</div>
+										</li>
+									</ul>
+									<ul class="mb-0">
+										<li style="width:50%;">
+											<div class="togle">
+												<label style="">Consent Taken</label>
+												<div class="box_1">
+													<input type="hidden" class="switch_1" value="No" name="Consent">
+													<input type="checkbox" class="switch_1" value="Yes" id="Consent" name="Consent">
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-sm-2"></div>
+						</div><!--row-->
+						<div class="row">
+							<div class="col-sm-7"></div>
+							<div class="col-sm-5">
+								<button type="submit" class="btn-save update">Update</button>
+								<button type="button" class="btn-close" id="cls">Close</button>
+							</div>
+						</div><!--row-->
+					</form>
+                </div><!--modal-body-->
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+
+	function checkclinic(){
+        var Monitoring = $('#Monitoring').is(':checked');
+
+		// alert(Monitoring);
+        var Resusci = $('#Resusci').is(':checked');
+        var Lipid = $('#Lipid').is(':checked');
+        var Timeout = $('#Timeout').is(':checked');
+		var Consent = $('#Consent').is(':checked');
+        if(Monitoring == true || Resusci == true || Lipid == true || Timeout == true || Consent == true){
+            $('.clinic').hide();
+        }
+	}
+
+	function checkasa(){
+		var asa1 = $('.asa').val();
+		if(asa1 != ''){
+			$('.asa_msg').hide();
+		}
+	}
+
+	$('#xyz').val("<?php echo $info['surgery']; ?>");
+
+	// $('#clear').hide();
+	function clean(){
+
+		
+		$('#xyz').val('');
+		$('#xyz').hide();
+		$('#surgery_option_input').val('');
+		$('#clear').hide();
+	}
+	function checksur(){
+		
+		var sur = $('#surgery_option_input').val();
+		$('#xyz').val(sur);
+		$('#xyz').show();
+		$('#clear').show();		
+	}
+
+// $(document).ready(function(){
+	$('#edit-preop').submit(function(e){
+		e.preventDefault();
+		var aa = '', bb = '', cc = '', dd = '', ee = '',gg = '',ff ='';
+		var spl = $('#speciality').val();
+		var sul = $('#sur_location').val();
+		var sur = $('#surgery_option_input').val();
+		var prs = $('#Purpose').val();
+		var asa = $('#asa').val();
+		if(asa != '')
+			gg = true;
+		else{
+			$('.asa_msg').show();
+			toastr.error('please select ASA option');
+		}
+		if((spl != ''))
+			aa = true;
+		else{
+			$('.spl').show();
+			toastr.error('please select speciality');
+		}
+		if((sul != ''))
+			bb = true;
+		else{
+			$('.sul').show();
+			toastr.error('please select surgery location');
+		}
+		if((sur != ''))
+			cc = true;
+		else{
+			$('.sur').show();
+			toastr.error('please enter surgery');
+		}
+		if(!document.getElementById('option-1').checked && !document.getElementById('option-2').checked){ 
+			$('.opc').show();
+			toastr.error('please enter operation/procedure category'); 
+		}
+		else
+			dd = true;
+		if((prs != ''))
+			ee = true;
+		else{
+			$('.prs').show();
+			toastr.error('please enter purpose');
+		}
+		var Monitoring = $('#Monitoring').is(':checked');
+        var Resusci = $('#Resusci').is(':checked');
+        var Lipid = $('#Lipid').is(':checked');
+        var Timeout = $('#Timeout').is(':checked');
+		var Consent = $('#Consent').is(':checked');
+        if(!Monitoring && !Resusci && !Lipid && !Timeout && !Consent){
+            $('.clinic').show();
+			toastr.error('please select clinical standard');
+        }
+        else{
+            ff = true;
+        }
+		if((aa) && (bb) && (cc) && (dd) && (ee) && gg && ff){
+			var formData = new FormData(this);
+			$(".update").text("Updating...");
+			$(".update").attr("disabled", true);
+			$.ajax({
+				type : "POST",
+				url : '<?php  echo base_url("editPreop")?>',
+				data : formData,
+				contentType: false,
+				processData: false,
+				success:function(response){
+					response = jQuery.parseJSON(response);
+					if(response.result==1){
+						toastr["success"](response.message);
+						$("#myModal3").modal("hide");
+						$('.update').removeAttr("disabled");
+						$(".update").text("Save");
+						history.go(0); 
+					}
+					else{
+						toastr["error"](response.message);
+						$('.update').removeAttr("disabled");
+						$(".update").text("Update");
+					}
+				}
+			});
+		}
+	});
+// });
+</script>
+<script>
+    var w = "<?php echo $info['speciality']; ?>";
+    var w120 = "<?php echo $info['speciality_other']; ?>";
+
+	if(w == 'Other'){
+		$('#speciality').val(w);
+		$('.speciality_other').val(w120);
+		$('.speciality_other').show();
+
+	}else{
+		$('#speciality').val(w);
+	}
+
+    // $('#speciality').val(w);
+
+
+
+
+    var x = "<?php echo $info['surgery_location']; ?>";
+    $('#sur_location').val(x);
+    var y = "<?php echo $info['asa']; ?>";
+    $('#asa').val(y);
+    var z = "<?php echo $info['purpose']; ?>";
+    $('#Purpose').val(z);
+
+    var v = "<?php echo $info['category']; ?>";
+    if(v=="Emergency"){
+        $('#option-1')[0].checked = true;
+    }else{
+        $('#option-2')[0].checked = true;
+    }
+
+    var a = "<?php echo $info['minimally_invasive']; ?>";
+	var b = "<?php echo $info['diabetes_mellitus']; ?>";
+	var c = "<?php echo $info['cvs_disease']; ?>";
+	var d = "<?php echo $info['respiratory_disease']; ?>";
+	var e = "<?php echo $info['neurological_disorder']; ?>";
+	var f = "<?php echo $info['renal_disorder']; ?>";
+	var g = "<?php echo $info['spin_back_problem']; ?>";
+	var h = "<?php echo $info['fever_infection']; ?>";
+	var i = "<?php echo $info['bleeding_disorder']; ?>";
+	var j = "<?php echo $info['anaemia']; ?>";
+	var k = "<?php echo $info['malignancy']; ?>";
+
+	var l = "<?php echo $info['basic_monitering']; ?>";
+	var m = "<?php echo $info['resuscitation_eq']; ?>";
+	var n = "<?php echo $info['lipid_rescue']; ?>";
+	var o = "<?php echo $info['timeout']; ?>";
+	var p = "<?php echo $info['consent_taken']; ?>";
+
+    if(a=="Yes"){
+        $('#min_invas').attr("checked",true);
+    }
+	if(b=="Yes"){
+        $('#Mellitus').attr("checked",true);
+    }
+	if(c=="Yes"){
+        $('#CVS').attr("checked",true);
+    }
+	if(d=="Yes"){
+        $('#Respi').attr("checked",true);
+    }
+	if(e=="Yes"){
+        $('#Neuro').attr("checked",true);
+    }
+	if(f=="Yes"){
+        $('#Renal').attr("checked",true);
+    }
+	if(g=="Yes"){
+        $('#Spine').attr("checked",true);
+    }
+	if(h=="Yes"){
+        $('#Fever').attr("checked",true);
+    }
+	if(i=="Yes"){
+        $('#Bleed').attr("checked",true);
+    }
+	if(j=="Yes"){
+        $('#Anaemia').attr("checked",true);
+    }
+	if(k=="Yes"){
+        $('#Malignancy').attr("checked",true);
+    }
+	if(l=="Yes"){
+        $('#Monitoring').attr("checked",true);
+    }
+	if(m=="Yes"){
+        $('#Resusci').attr("checked",true);
+    }
+	if(n=="Yes"){
+        $('#Lipid').attr("checked",true);
+    }
+	if(o=="Yes"){
+        $('#Timeout').attr("checked",true);
+    }
+	if(p=="Yes"){
+        $('#Consent').attr("checked",true);
+    }
+	$('#cls').click(function(){
+        $("#myModal3").modal("hide");
+    });
+    $('#edit').click(function(){
+        $("#myModal3").modal("show");
+    });
+	function checkspl(){
+		var spl = $('#speciality').val();
+		if((spl != '')){
+			$('.spl').hide();
+		}
+
+		if(spl == 'Other'){
+			$('.speciality_other').show();
+		}else{
+			$('.speciality_other').hide();
+			$('.speciality_other').val('');
+		}
+
+	}
+	function checksul(){
+		var sul = $('#sur_location').val();
+		// alert(sul);
+		if((sul != '')){
+			$('.sul').hide();
+		}
+
+		$.ajax({
+			type : 'POST',
+			url : '<?php  echo site_url("search-option")?>',
+			data : {sul:sul},
+			success:function(response){
+				// console.log(response);
+				response=jQuery.parseJSON(response);
+
+				console.log(response);
+				if(response.result== 1){  
+					
+					$('#surgery_option').empty();
+					$('#surgery_option_input').val('');
+
+					for(var i=0; i<response.message.length; i++){
+						var mode = '';
+						mode +='<option>'+response.message[i].name+'</option>';
+
+						$('#surgery_option').append(mode);
+					}				
+				}
+				else 
+				{
+					// toastr["error"](response.message);
+				}
+			}
+
+		});
+	}
+	// function checksur(){
+	// 	var sur = $('#surgery').val();
+	// 	if((sur != '')){
+	// 		$('.sur').hide();
+	// 	}
+	// }
+	function checkprs(){
+		var prs = $('#Purpose').val();
+		if((prs != '')){
+			$('.prs').hide();
+		}
+	}
+	$("input[name='optradio']").change(function(){
+		$('.opc').hide();
+	});
+</script>
+<?php
+    echo view('includes/footer');    
+?>

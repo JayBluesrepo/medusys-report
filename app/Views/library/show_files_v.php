@@ -1,0 +1,1 @@
+<iframe src="{{ <?php echo base_url('').'/public/uploads/'.'Perioperative-management-of-adult-diabetic-Preoperative%20period.pdf' ?> }}#toolbar=0&navpanes=0&scrollbar=0" title="PDF in an i-Frame" frameborder="0" scrolling="auto" style="width:100%; height:100%;"></iframe>

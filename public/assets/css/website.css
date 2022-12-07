@@ -1,0 +1,207 @@
+html, body{
+    margin: 0 !important;
+    padding: 0 !important; 
+    font-size:14px !important;
+    font-family: 'Jost', sans-serif!important;
+    overflow-x: hidden !important; 
+}
+/*--------------------------------Head-----------------------------*/
+.head-1{
+    padding: 1.5% 0;
+    border: 1px solid #fff;
+    box-shadow: 0px 0px 10px lightgrey!important;
+    margin-bottom: 20px;
+}
+.head-1 ul{
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.head-1 li{
+    display: inline-block;
+    color: #00336F;
+    font-weight: 600;
+    font-size: 15px;
+    padding-right: 10px;
+}
+.head-1 a{
+    color: #00336F;
+    text-decoration: none;
+}
+.head-1 a:hover{
+    color: #00336F;
+    text-decoration: none;
+}
+.head-1 span{
+    padding-right: 15px;
+}
+.social-icons{
+    text-align: end;
+}
+.act a {
+    color:#00336F!important;
+}
+/*.nav-header{
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    background-color: #fff;
+    top: 0;
+    box-shadow: 0px 0px 5px gainsboro;
+}*/
+/*--------------------------------Head-----------------------------*/
+
+/*---------------------------------Head-nav------------------------*/
+.head-nav{
+    padding: 12px;
+}
+.head-nav-right{
+    padding-top:22px;
+}
+.head-nav-right img{
+    padding-right: 5px;
+}
+.head-nav-right p{
+    color: #00336F;
+    font-weight: 600;
+}
+.head-nav-right span{
+    color: #007EB1;
+    font-weight:600;
+    padding-left: 13px;
+}
+.navigation nav ul li a{
+    font-size: 18px;
+}
+.contact-tag{
+    padding-top: 12px;
+}
+.contact-tag a{
+    background-color:#00336F;
+    color: #fff;
+    border-radius:25px;
+    padding: 15px 25px;
+     font-size: 18px;
+}
+.contact-tag a:hover{
+    color: #fff;
+    text-decoration: none;
+}
+.slider{
+    padding-top:18px;
+}
+
+@media only screen and (min-width:320px) and (max-width:640px){
+    .head li{
+        padding:8px;
+    }
+    .social-icons{
+        text-align: left;
+    }
+    .mobimenu{
+        background-color: #00336F!important;
+    }
+    .smobitrigger{
+           /* position: relative;
+            top: -375px;*/
+            color: #fff!important;
+            font-size: 25px;
+            line-height: 12px;
+            padding: 5px;
+            position: fixed;
+            display: block;
+            left: 320px;
+            right: 0px;
+            top: 10px;
+            z-index: 999;
+            background-color: #00336F;
+            width: 30px;
+            height: 35px;
+            padding: 5px!important;
+            font-size: 24px!important;
+    }
+    .slider{
+        padding-top: 30px;
+    }
+    .navigation nav ul li a{
+        color:#fff;
+    }
+    .act a{
+        color:#00E0ED!important;
+    }
+    .nav-header{
+        position: initial;
+    }
+    .coming-soon h2{
+        font-size: 70px!important;
+    }
+}
+
+/*--------------------------------Head-nav-------------------------*/
+
+
+/*---------------------------Footer------------------------------------*/
+footer{
+    background-color:#F6F6F6;
+    padding: 3% 2%;
+}
+footer a{
+    color:#000000;
+    font-size: 16px;
+    font-weight:400;
+}
+footer a:hover{
+    color: #000;
+    text-decoration: none;
+}
+/*---------------------------Footer-------------------------------------*/
+/*------------------------------Copy------------------------------------*/
+.copy{
+    padding: 12px;
+}
+.policies{
+    text-align: center;
+}
+.policies ul{
+    list-style-type: none;
+}
+.policies li{
+    display: inline-block;
+    padding-right: 8px;
+}
+.policies a{
+    color: #000;
+    font-size: 16px;
+}
+.policies a:hover{
+    color: #000;
+    text-decoration:none;
+}
+.social-icons-2 ul{
+    list-style-type: none;
+    padding-left:0;
+}
+.social-icons-2 li{
+    display: inline-block;
+    padding-right: 10px;
+}
+.copy a {
+    color: #000;
+}
+.copy a:hover{
+    text-decoration: none;
+    color: #000;
+}
+.comp{
+    text-align: right;
+}
+@media only screen and (min-width:320px) and (max-width:640px){
+    .comp{
+        text-align: initial;
+    }
+    .policies ul{
+        padding-left: 0;
+    }
+}
+/*------------------------------Copy------------------------------------*/
