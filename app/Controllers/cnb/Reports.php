@@ -695,7 +695,7 @@ public function late_complication() {
 			$total = session()->get('n');
 
 			$products = [];
-		
+		    $none = 0;
 			$postdural_puncture = 0;
 			$backache_epidural = 0;
 
@@ -722,6 +722,9 @@ public function late_complication() {
 
 			if($record){
 				foreach($record as $row) {
+					if($row->postdural_puncture != 'Yes' && $row->backache_epidural != 'Yes' && $row->perst_sensory != 'Yes' && $row->perst_motor != 'Yes' && $row->asep_meningi != 'Yes' && $row->bacterial_meningi != 'Yes' && $row->epidural_abs != 'Yes' && $row->perm_neuro_compli != 'Yes' && $row->catheter != 'Yes' && $row->epidural_haema != 'Yes' && $row->others != 'Yes'){
+						$none = $none + 1;
+				}
 					if($row->postdural_puncture == 'Yes'){
 							$postdural_puncture = $postdural_puncture + 1;
 					}
@@ -760,7 +763,10 @@ public function late_complication() {
 			}
 
 			
-
+			$products[] = array(
+				'day'   => 'none',
+				'sell' => $none
+			);
 			$products[] = array(
 				'day'   => 'Post-Dural Puncture Headachedural',
 				'sell' => $postdural_puncture
@@ -4659,7 +4665,7 @@ public function n_report() {
 			$products = [];
 			
 
-
+            $none = 0;
 			$intravenous_opioids = 0;
 			$oral_opioids = 0;
 			$tramadol = 0;
@@ -4681,7 +4687,10 @@ public function n_report() {
 
 			if($record){
 				foreach($record as $row) {
-					if($row->intravenous_opioids == 'Yes'){
+					if($row->intravenous_opioids != 'yes' && $row->oral_opioids != 'yes' && $row->tramadol != 'yes' && $row->nsaid != 'yes' && $row->paracetamol != 'yes' && $row->la_regimen != 'yes' && $row->other != 'yes' && $row->repeat != 'yes'){
+						$none = $none + 1;
+				}
+					if($row->intravenous_opioids == 'yes'){
 							$intravenous_opioids = $intravenous_opioids + 1;
 					}
 					if($row->oral_opioids == 'Yes'){
@@ -4709,7 +4718,10 @@ public function n_report() {
 				}
 			}
 
-			
+			$products[] = array(
+				'day'   => 'none',
+				'sell' => $none
+			);
 
 			$products[] = array(
 				'day'   => 'Intravenous Opioids',
@@ -4747,8 +4759,16 @@ public function n_report() {
 			
 			$data['products'] = ($products); 
 	        
-	        $data['total'] = $intravenous_opioids +$oral_opioids +$tramadol +$nsaid +$paracetamol +$la_regimen +$other + $repeat; 
-	        $data['total_n'] = $intravenous_opioids +$oral_opioids +$tramadol +$nsaid +$paracetamol +$la_regimen +$other + $repeat; 
+	        $data['total'] = $none +$intravenous_opioids +$oral_opioids +$tramadol +$nsaid +$paracetamol +$la_regimen +$other + $repeat; 
+	        $data['total_n'] = $none +$intravenous_opioids +$oral_opioids +$tramadol +$nsaid +$paracetamol +$la_regimen +$other + $repeat; 
+			// print_r($intravenous_opioids);
+			// print_r($oral_opioids);
+			// print_r($tramadol);
+			// print_r($nsaid);
+			// print_r($paracetamol);
+			// print_r($la_regimen);
+			// print_r($other);
+			// print_r($repeat);die();
 
 			return view('cnb/reports/Analgesia_v', $data);              
 			
@@ -7822,6 +7842,7 @@ public function median_sensory() {
 
 		if($from_date && $to_date){
 		
+		$none = 0;
 		$opioid = 0;
 		$clonidine = 0;
 		$dexmeditomidine = 0;
@@ -7846,7 +7867,9 @@ public function median_sensory() {
 
 		if($record){
 			foreach($record as $row) {
-					
+				    if($row->opioid_name == '' && $row->clonidina_dose == '' && $row->dexmeditomidine_dose == ''&& $row->dexamephasone_dose == '' && $row->trmadol_dose == '' && $row->kepamine_dose == '' && $row->midazolam_dose == '' && $row->adrenaline_dose == ''){
+					$none = $none + 1;
+					}
 					if($row->opioid_name != ''){
 					$opioid = $opioid + 1;
 					}
@@ -7931,6 +7954,9 @@ public function median_sensory() {
 	
 			if($record){
 				foreach($record as $row) {
+					if($row->opioid_name == '' && $row->clonidina_dose == '' && $row->dexmeditomidine_dose == '' && $row->dexamephasone_dose == '' && $row->tramadol_dose == '' && $row->kepamine_dose == '' && $row->midazolam_dose == ''){
+						$none = $none + 1;
+						}
 						
 						if($row->opioid_name != ''){
 						$opioid = $opioid + 1;
@@ -7972,7 +7998,9 @@ public function median_sensory() {
 
 				if($record){
 					foreach($record as $row) {
-							
+						if($row->opioid_name == '' && $row->clonidina_dose == '' && $row->dexmeditomidine_dose == '' && $row->dexamephasone_dose == '' && $row->tramadol_dose == '' && $row->ketamine_dose == ''&& $row->midazolam_dose == '' && $row->adrenaline_dose == ''){
+							$none = $none + 1;
+							}
 							if($row->opioid_name != ''){
 							$opioid = $opioid + 1;
 							}
@@ -8016,11 +8044,13 @@ public function median_sensory() {
 		
 				if($record){
 					foreach($record as $row) {
-							
+						if($row->opioid_name == '' &&  $row->opioid_aj == 'Yes' && $row->clonidne_aj == '' && $row->dexmeditomidine_aj == '' && $row->dexamethasone_aj == '' && $row->tramadol_aj == '' && $row->ketamine_aj == '' && $row->midazolam_aj == '' && $row->adrenaline_aj == ''){
+							$none = $none + 1;
+							}
 							if($row->opioid_aj == 'Yes'){
 							$opioid = $opioid + 1;
 							}
-							if($row->clonidne_aj != ''){
+							if($row->clonidne_aj != '' ){
 							$clonidine = $clonidine + 1;
 							}
 							if($row->dexmeditomidine_aj != ''){
@@ -8061,6 +8091,11 @@ public function median_sensory() {
 
 				//$n = 0;
 				//$n = $total - $opioid + $clonidine + $dexmeditomidine +  $dexamethasone + 
+				$products[] = array(
+					'day'   => 'none',
+					'sell' => $none,
+					'perc' => number_format((float)(($none/$total)*100), 1, '.', '')."%",
+				);
 				$products[] = array(
 					'day'   => 'Opioid',
 					'sell' => $opioid,

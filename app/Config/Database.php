@@ -35,7 +35,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'medusys',
+        'database' => 'medusys_project',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
