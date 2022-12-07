@@ -1,0 +1,170 @@
+html, body{
+    margin: 0 !important;
+    padding: 0 !important; 
+    font-size:14px !important;
+    font-family: Verdana,sans-serif!important;
+    overflow-x: hidden !important; 
+}
+/*--------------------------------header-------------------------------*/
+.header{
+    padding: 10px 15px;
+    border-bottom: 2px solid #000;
+}
+#logo{
+    width: 70%;
+}
+.right-menu{
+    text-align:end;
+    padding-top: 20px;
+}
+.right-menu ul{
+    list-style-type: none;
+    padding-left: 0;
+    padding-top: 15px;
+}
+.right-menu li{
+    display: inline-block;
+    padding-right: 5%;
+    color: #000;
+    font-weight: 600;
+    cursor: pointer;
+}
+.right-menu i{
+    padding-left: 10px;
+}
+.w3-dropdown-content {
+    margin-left: 60px!important;
+    padding: 10px!important;
+    background-color: #EFF3FC!important;
+    position: fixed!important;
+    right: 10px;
+}
+.w3-dropdown-content a{
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 5px;
+}
+.w3-dropdown-hover{
+    display: contents!important;
+}
+
+/*---------------------------------------SIDBAR_MENU--------------------------------------*/
+.left-side-menu{
+  /* padding: 20px;*/
+
+}
+.main-tag{
+    padding: 10px;
+}
+.main-tag a{
+    background-color:#1E5B92;
+    color: #fff;
+    padding: 8px 40px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+.main-tag a:hover{
+    color: #fff;
+}
+.main-tag-sub{
+    padding-left: 10px;
+    margin-top: 12px;
+}
+.main-tag-sub p{
+    background-color:#bbdff3;
+    padding: 10px 20px;
+    color: #000;
+    border-radius: 12px;
+    font-size: 14px;
+    width: 75%;
+}
+.list-a li{
+    padding: 3px 0;
+}
+.list-a a{
+    color: #1E5B92;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/*==========================================*/
+.reports-right h3 {
+    color: #1E5B92;
+    font-weight: 600;
+}
+#demo-table h4{
+    background-color:#080094;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+#demo-table thead{
+    background-color:#080094;
+}
+#demo-table thead th{
+    color: #fff;
+}
+#report-td-bg{
+    background-color:#DDDDDD;
+}
+#report-td-bg p{
+    color: #000;
+    font-weight: 600;
+}
+/*===========================================CONSOLIDATED RESULTS===========================*/
+.consolidated-results{
+    padding: 5% 0 0 0;
+}
+.consolidated-results h3{
+    color: #1E5B92;
+    font-weight: 600;
+    font-size: 25px;
+    position: relative;
+}
+.consolidated-results h3::after{
+    position: absolute;
+    content: '';
+    border:1px solid #000;
+    width:32%;
+    left: 0;
+    top: 35px;
+    margin: 0 auto;
+}
+.cons-p{
+    
+    margin-top: 30px;
+    font-size: 16px;
+}
+.table-1 thead{
+    background-color:#4F81BD;
+    color: #fff;
+}
+.table-1 p{
+    color: #000;
+    font-weight: 600;
+}
+.table-cont span{
+    color: red;
+}
+
+/*-----------------NEW_CHANGES-----------------------*/
+.report-detail-tag{
+    box-shadow: 0px 0px 5px lightgrey;
+    padding: 20px;
+    /* margin: 0px; */
+    margin-bottom: 20px;
+}
+.report-detail-tag h4{
+    color: #080093;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #1E5B92!important;
+}
+.report-detail-tag h5{
+    margin-bottom: 15px;
+}
+/*.report-detail-tag h5{
+    color:#080093;
+}
+.report-detail-tag h5 span{
+    color: initial;
+}*/

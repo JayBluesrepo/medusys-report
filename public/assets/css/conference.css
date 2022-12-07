@@ -1,0 +1,528 @@
+html, body{
+	 margin: 0 !important;
+	 padding: 0 !important; 
+	 font-size:14px !important;
+     overflow-x: hidden !important;
+   /* font-family: 'Roboto', sans-serif!important;*/
+}
+.con-head{
+    padding: 3% 5% 0 0;
+}
+.conference-left{
+	background-color: #1E5B92;
+    height: 920px;
+    width: 270px;
+    padding: 25px 0 25px 25px;
+}
+.conference-left ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.conference-left li {
+    padding-bottom: 15px;
+}
+.conference-left a {
+    color: #fff;
+    font-weight:500;
+    font-size: 16px;
+    padding-bottom: 10px;
+    position: relative;
+}
+.conference-left a:hover{
+    color: #fff;
+}
+.conference-left a:after {
+    content: '';
+    position: absolute;
+    border-bottom: 2px solid #fff;
+    width: 185px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 30px;
+}
+.go-back {
+    margin-top: 60%;
+    float: right;
+    padding: 10px;
+}
+.go-back a {
+    background-color: #00AEFF;
+    color: #fff;
+    padding: 10px 13px;
+    border-radius: 15px;
+}
+.go-back a:after{
+	border-bottom: 0;
+}
+.conference-right ul{
+	list-style-type: none;
+}
+.conference-right li{
+	display: inline-block;
+}    
+
+
+
+/*=========================================SUPER_ADMIN ABOUT_CONFERENCE================================*/
+.about-conf label{
+    color: #A6A6A6;
+}
+.about-conf button{
+    background-color:#0065A3;
+    color: #fff;
+}
+
+/*=====================================PROGRAM_SCHEDULE=================================*/
+.prog-schedule label{
+    color: #A6A6A6;
+}
+.prog-schedule h3{
+    margin: -5px;
+    color: #0065A3;
+    font-weight:600;
+}
+.prog-schedule input{
+    border-radius: 8px;
+}
+.prog-schedule select{
+    border-radius: 8px;
+}
+.prog-schedule table thead{
+    background-color:#EDEDED;
+}
+.prog-schedule button{
+    background-color: #1E5B92;
+    border-radius: 8px;
+    outline: 0;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    padding: 8px 20px;
+}
+.timepicker_wrap {
+    width: 270px;
+}
+
+/*========================================FACULTY==================================*/
+.faculty-conf label{
+    color: #A6A6A6;
+}
+.faculty-conf h3{
+    margin:-5px;
+    color: #0065A3;
+    font-weight:600;
+}
+.vertical-tabs{
+    font-size:15px;
+    padding:10px;
+    color:#000
+}
+ .vertical-tabs .nav-tabs .nav-link{
+    border-radius: 0;
+    background:#1E5B92;
+    text-align:center;
+    font-size: 16px;
+    border:1px solid #fff;
+    color:#fff;
+    height:40px;
+    width: 250px;
+}
+ .vertical-tabs .nav-tabs .nav-link.active{
+    background-color:#8eb9df!important;
+    color:#000!important;
+}
+ .vertical-tabs .tab-content>.active{
+   /* background:#fff;*/
+    display:block;
+}
+ .vertical-tabs .nav.nav-tabs{
+    border-bottom:0;
+    border-right:3px solid #000;
+    display:block;
+    float:left;
+    margin-right:20px;
+    padding-right:15px;
+}
+ .vertical-tabs .sv-tab-panel{
+    background:#fff;
+   /* height:274px;*/
+    padding-top:10px;
+}
+.vertical-tabs h4{
+    color: #1E5B92;
+    font-size: 16px;
+}
+.sv-tab-panel .table td{
+    color: #000;
+}
+.sv-tab-panel p{
+    color:darkgrey;
+}
+.profile-pic{
+    width: 150px;
+    height: 150px;
+    border: 2px solid #000;
+    margin: 10px;
+}
+@media only screen and (max-width: 420px){
+  .titulo{font-size: 22px}
+}
+@media only screen and (max-width: 325px){
+  .vertical-tabs{ padding:8px;}
+}
+
+
+
+/*======================================REGISTRATION==================================*/
+.regis label{
+    color: #A6A6A6;
+}
+.regis h3{
+    margin: -5px;
+    color: #0065A3;
+    font-weight:600;
+}
+
+  .btn-reg{
+          background-color: #0065A3;
+            color: #fff;
+         border: none;
+         padding: 8px 20px;
+         margin-bottom: 20px;
+         border-radius: 8px;
+         cursor: pointer;
+    }
+
+
+/*======================================ATTEND==================================*/
+.attend-conf label{
+    color: #A6A6A6;
+}
+.attend-conf h3{
+    margin:-5px;
+    color: #0065A3;
+    font-weight:600;
+}
+.attend-conf h4{
+    color: #000;
+}
+.attend-conf table thead{
+    color: #000;
+}
+.attend-conf table tbody{
+    color: #000;
+}
+.link-tabs .tab-content{
+   /* background-color: lightgrey;*/
+}
+.link-tabs button{
+    background-color: #0065A3;
+    color: #fff;
+}
+.link-tabs .tab-content{
+    padding: 0;
+    box-shadow: none;
+}
+.link-tabs .tab-content input{
+    border: 2px solid lightgrey;
+    height: 50px;
+    border-radius: 8px;
+}
+.project-tab {
+    padding: 10%;
+    margin-top: -8%;
+}
+.project-tab #tabs{
+    background: #007b5e;
+    color: #eee;
+}
+.project-tab #tabs h6.section-title{
+    color: #eee;
+}
+.project-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color:#1974A7!important;
+    background-color: transparent;
+    border-color: transparent transparent #1974A7!important;
+    border-bottom: 3px solid !important;
+    font-size: 16px;
+    font-weight: bold;
+}
+.project-tab .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #0062cc;
+    font-size: 16px;
+    font-weight: 600;
+}
+.project-tab .nav-link:hover {
+    border: none;
+}
+/*.project-tab thead{
+    background: #f3f3f3;
+    color: #333;
+}*/
+.project-tab a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+#edit-faculty h3{
+     margin:-5px;
+    color: #0065A3;
+    font-weight:600;
+}
+#edit-faculty label{
+    color: #A6A6A6;
+}
+#youtube a{
+    color:#1D588D;
+    font-weight: 600;
+}
+
+
+/*============================================CERTIFICATE===================================*/
+.certificate-new label{
+    color: #A6A6A6;
+}
+.certificate-new h3{
+    margin:-5px;
+    color: #0065A3;
+    font-weight:600;
+}
+.certificate-new input{
+    border: 2px solid lightgrey;
+    height: 50px;
+    border-radius: 8px;
+}
+
+.btn-certify{
+    background-color: #0065A3;
+    color: #fff;
+     border: none;
+     padding: 5px 20px;
+     margin-bottom: 20px;
+     border-radius: 8px;
+}
+
+#upload-certify-btn{
+     background-color: #0065A3;
+    color: #fff;
+     border: none;
+     padding: 8px 20px;
+     margin-bottom: 20px;
+     border-radius: 8px;
+     cursor: pointer;
+}
+
+#up-btn{
+background-color: #1E5B92!important;
+    color: #fff;
+     border: none;
+     padding: 5px 20px;
+     margin-bottom: 20px;
+     border-radius: 8px;
+}
+/*============================================FACULTY_GAS===================================*/
+.faculty-gas label{
+    color: #A6A6A6;
+}
+.faculty-gas h3{
+    margin: 0;
+    color: #0065A3;
+    font-weight:600;
+}
+.profile-pic-1{
+    width:150px;
+    height:150px;
+    border:2px solid #000;
+    margin:10px;
+}
+
+/*============================================FACULTY_GAS===================================*/
+.program-gas label{
+    color: #A6A6A6;
+}
+.program-gas h3{
+    margin: 0;
+    color: #0065A3;
+    font-weight:600;
+}
+.program-gas button{
+    background-color: #0065A3;
+    color: #fff;
+}
+.program-gas table thead{
+    background-color:#EDEDED;
+}
+
+@media only screen and (min-width:320px) and (max-width:640px){
+    .navigation{
+        background-color: #0065A3;
+        width: 12%;
+        margin: 20px 0 0 20px;
+    }
+    .conference-left{
+        width: auto;
+        height: auto;
+    }
+    #mobile-tag-confer{
+        display: none;
+    }
+}
+
+
+/*===========================================================================================================*/
+
+    /*===================================About========================================*/
+     .about-confer{
+        font-family: 'Roboto', sans-serif;
+     }
+    .about-confer label{
+        color: #A6A6A6;
+    }
+    .about-confer button{
+        background-color:#0065A3;
+        color: #fff;
+    }
+    .about-confer h3{
+        margin: 0;
+        color: #0065A3;
+    }
+    .about-confer p{
+        font-size:16px;
+        color:#000;
+        text-align: justify;
+    }
+    /*===================================Program-schedule-flow========================================*/
+    .program-sch-flow{
+        font-family: 'Roboto', sans-serif;
+     }
+    .program-sch-flow label{
+        color: #A6A6A6;
+    }
+    .program-sch-flow h3{
+        margin: 0;
+        color: #0065A3;
+        font-weight:600;
+    }
+    .program-sch-flow input{
+        border-radius: 8px;
+    }
+    .program-sch-flow select{
+        border-radius: 8px;
+    }
+    .program-sch-flow table thead{
+        background-color:#EDEDED;
+    }
+    .program-sch-flow button{
+        background-color: #1E5B92;
+        border-radius: 8px;
+        outline: 0;
+        border: 0;
+        color: #fff;
+        cursor: pointer;
+        padding: 8px 20px;
+    }
+
+    /*===============================Faculty-flow===========================================*/
+    .faculty-flow{
+        font-family: 'Roboto', sans-serif;
+     }
+    .faculty-flow .table p{
+        color: #000;
+        margin-bottom: 0;
+    }
+    .faculty-flow label{
+        color: #A6A6A6;
+    }
+    .faculty-flow h3{
+        margin: 0;
+        color: #0065A3;
+        font-weight:600;
+    }
+
+     /*===============================Registration-flow===========================================*/
+    .registration-flow{
+        font-family: 'Roboto', sans-serif;
+    }
+    .ft{
+        font-size: 18px;
+    }
+    .registration-flow button{
+        background-color: #1E5B92;
+        border-radius: 8px;
+        outline: 0;
+        border: 0;
+        color: #fff;
+        cursor: pointer;
+        padding: 8px 20px;
+    }
+    .registration-flow button:hover{
+        background-color:#E44620;
+    }
+
+    /*=================================Attend-Flow=============================================*/
+    .attend-flow{
+         font-family: 'Roboto', sans-serif;
+    }
+    /*.attend-flow table thead{
+        background-color:#EDEDED;
+    }*/
+
+     /*=================================Feedback-Flow=============================================*/
+    .feedback-flow{
+         font-family: 'Roboto', sans-serif;
+    }
+    #feed-input .form-check-input{
+        margin-top: -15px;
+    }
+    .feedback-flow button{
+        background-color: #1E5B92;
+        border-radius: 8px;
+        outline: 0;
+        border: 0;
+        color: #fff;
+        cursor: pointer;
+        padding: 8px 20px;
+    }
+
+    /*=============================Certificate-FLow==============================================*/
+    .certificate-flow{
+         font-family: 'Roboto', sans-serif;
+    }
+    #certificate-view-button a{
+        background-color: #1E5B92;
+        border-radius: 8px;
+        outline: 0;
+        border: 0;
+        color: #fff;
+        cursor: pointer;
+        padding: 8px 20px;
+    }
+    #certificate-view-button a:hover{
+        text-decoration: none;
+        background-color:#E44620;
+    }
+    .conf-act a{
+         background-color:#ED7D31!important;
+    }
+
+
+    /*==========================NEW-Changes==============================================*/
+    .conf-tag{
+        text-align: center;
+        margin-top: 20px;
+        color:#1E5B92;
+        font-weight: 600;
+    }
+    #next{
+        background-color:#1E5B92;
+        border: 0;
+        padding: 8px 15px;
+        border-radius: 12px;
+        color: #fff;
+        margin-bottom: 20px;
+        cursor: pointer;
+    }
