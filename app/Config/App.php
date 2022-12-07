@@ -26,7 +26,7 @@ class App extends BaseConfig
       // public $baseURL = 'http://localhost:8080/';
       // public $baseURL = 'https://staging.medusys.in/public/';
  	    // public $baseURL = 'https://medusys.in/';
-         public $baseURL = 'http://localhost/medusys/public';
+         public $baseURL = 'http://localhost/medusys-report';
 
 
     /**
