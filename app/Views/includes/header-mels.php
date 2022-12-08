@@ -127,7 +127,7 @@
 		<div class="container">
 			<div class="row" id="mobile-reg-head">
 				<div class="col-sm-6">
-					<a href="http://localhost/medusys/index.html"><img src="<?php echo base_url('public/assets/images/web-logo.png'); ?>"></a>
+					<a href="http://localhost/medusys-report/index.html"><img src="<?php echo base_url('public/assets/images/web-logo.png'); ?>"></a>
 				</div>
 				<div class="col-sm-2">
 					<div class="head-nav-right">
@@ -154,20 +154,20 @@
 									<a href="javascript:void(0)" class="smobitrigger ion-navicon-round"><span>Menu</span></a>
 									<ul class="mobimenu nav-sidebar">
 										<li><a href="index.html" class="active">Home</a></li>
-										<li><a href="http://localhost/medusys/about-us.html">About Us</a></li>
-										<li><a href="http://localhost/medusys/approach.html">Our Approach</a></li>
+										<li><a href="http://localhost/medusys-report/about-us.html">About Us</a></li>
+										<li><a href="http://localhost/medusys-report/approach.html">Our Approach</a></li>
 										<li><a href="">Client Case studies</a></li>
-					                    <li><a href="http://localhost/medusys/products.html">Our Products</a></li>
+					                    <li><a href="http://localhost/medusys-report/products.html">Our Products</a></li>
 					                  <!--   <li><a href="<?php echo base_url('Registration'); ?>">Registration</a></li> -->
 					                  <!--   <li><a href="<?php echo base_url('login'); ?>">Members Login</a></li> -->
 					                 	<li class="dropdown" id="new-drop"> 
 											<a href="" class="dropdown-toggle" data-toggle="dropdown">Login &nbsp; <span class="glyphicon glyphicon-chevron-down"></span> </a>
 											<ul class="dropdown-menu" id="drop">
-												<li><a href="http://localhost/medusys/login">Member Login</a></li>
-												<li><a href="http://localhost/medusys/admin/login">Admin Login</a></li>
+												<li><a href="http://localhost/medusys-report/login">Member Login</a></li>
+												<li><a href="http://localhost/medusys-report/admin/login">Admin Login</a></li>
 											</ul>
 										</li>
-					                    <!-- <li><a href="http://localhost/medusys/contact-us.html">Contact</a></li> -->
+					                    <!-- <li><a href="http://localhost/medusys-report/contact-us.html">Contact</a></li> -->
 					                      <li class="dropdown" id="new-drop"> 
 											<a  class="dropdown-toggle click_help" data-toggle="dropdown">Help Center &nbsp; <span class="glyphicon glyphicon-chevron-down"></span> </a>
 											<ul class="dropdown-menu" id="drop">
