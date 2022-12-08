@@ -92,6 +92,7 @@
 														 
 														echo number_format((float)$number, 1, '.', '')."%";?></p></td>
                       </tr>
+					
                       <tr>
                         <td id="report-td-bg"><p>Class II obese(BMI 35-39.99)</p></td>
                         <td><p><?php echo $bmi2;?></p></td>
