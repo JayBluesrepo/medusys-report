@@ -43,8 +43,9 @@
 			        				<thead>
 			        					<tr>
 			        						<th>Characteristics</th>
-			        						<th>n</th>
-			        						<th>Percentage</th>
+											<th>Stats</th>
+			        						<!-- <th>n</th> -->
+			        						<!-- <th>Percentage</th> -->
 			        					</tr>
 			        				</thead>
 			        				<tbody>
@@ -55,14 +56,12 @@
 											<td id="report-td-bg"><p>
 												<?php echo $row['day']; ?></p>
 											</td>
-											<td><p>
-												<?php echo $row['sell']; ?></p>
-											</td>
+											
 											<td><p>
 												<?php
-												 $number = (($row['sell']/$total)*100);
+												 echo $row['sell'];
 												 
-												echo number_format((float)$number, 1, '.', '')."%";?>
+												?>
 												
 												</p></td>
 											</tr>
