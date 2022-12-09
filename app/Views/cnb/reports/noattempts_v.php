@@ -43,8 +43,8 @@
 			        				<thead>
 			        					<tr>
 			        						<th>Characteristics</th>
-			        						<th>n</th>
-			        						<th>Percentage</th>
+			        						<th>Stats</th>
+			        						<!-- <th></th> -->
 			        					</tr>
 			        				</thead>
 			        				<tbody>
@@ -58,13 +58,7 @@
 											<td><p>
 												<?php echo $row['sell']; ?></p>
 											</td>
-											<td><p>
-												<?php
-												 $number = (($row['sell']/$total)*100);
-												 
-												echo number_format((float)$number, 1, '.', '')."%";?>
-												
-												</p></td>
+											
 											</tr>
 										<?php
 										}
