@@ -54,7 +54,10 @@
 							?>
 								<tr>
 								<td id="report-td-bg"><p>
-									<?php echo $row['name']; ?></p>
+									
+								<?php echo $row['name']; ?></p>
+								
+								</p>
 								</td>
 								<td><p>
 									<?php echo $row['cse']; ?></p>

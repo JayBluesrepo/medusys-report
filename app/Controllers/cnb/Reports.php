@@ -525,6 +525,7 @@ public function procedure_success() {
 
 			$builder = $db->table('cnb_postop');
 		    $query = $builder->select("AVG(cnb_patient_details.age) as average, STDDEV(cnb_patient_details.age) as std, MAX(cnb_patient_details.age) as maxage,MIN(cnb_patient_details.age) as minage,MAX(cnb_patient_details.weight_kg) as maxweight,MIN(cnb_patient_details.weight_kg) as minweight,AVG(cnb_patient_details.weight_kg) as weight_average, STDDEV(cnb_patient_details.weight_kg) as weight_std");
+			// print_r($query);die();
 
 		    $builder->join('cnb_patient_details', 'cnb_patient_details.id = cnb_postop.patient_id');
 		    $query = $builder->where('cnb_postop.procedure_date >=',date('Y-m-d',strtotime($from_date)));
@@ -1968,7 +1969,7 @@ public function n_report() {
 			$products = [];
 			$other = [];
 
-
+			$complete_aspesis = 0;	
 			$wearing_mask = 0;
 			$hand_washing = 0;
 
@@ -1993,6 +1994,10 @@ public function n_report() {
 
 			if($record){
 				foreach($record as $row) {
+					if($row->wearing_mask == 'Yes'&&$row->hand_washing == 'Yes' && $row->sterile_gown == 'Yes'&& $row->sterile_draping == 'Yes'){
+						$complete_aspesis = $complete_aspesis + 1;
+				}
+
 					if($row->wearing_mask == 'Yes'){
 							$wearing_mask = $wearing_mask + 1;
 					}
@@ -2034,6 +2039,10 @@ public function n_report() {
 
 			if($record){
 				foreach($record as $row) {
+					if($row->wearing_mask == 'Yes' &&$row->hand_washing == 'Yes' &&$row->sterile_gown == 'Yes' &&$row->sterile_draping == 'Yes'){
+						$complete_aspesis = $complete_aspesis + 1;
+				}
+
 					if($row->wearing_mask == 'Yes'){
 							$wearing_mask = $wearing_mask + 1;
 					}
@@ -2065,7 +2074,10 @@ public function n_report() {
 				}
 			}
 
-
+			$products[] = array(
+				'day'   => 'Complete Aspesis',
+				'sell' => $complete_aspesis
+			);
 			$products[] = array(
 				'day'   => 'Wearing Cap & Mask',
 				'sell' => $wearing_mask
@@ -3949,9 +3961,15 @@ public function n_report() {
 						$csa_timing=number_format((float)$row->csa_timing, 2, '.', '');
 						$csa_duration=number_format((float)$row->csa_duration, 2, '.', '');
 						$csa_blood=number_format((float)$row->csa_blood, 2, '.', '');
+<<<<<<< HEAD
 						// $csa_vasopressor=number_format((float)$row->csa_vasopressor, 2, '.', '');
 						$csa_vasopressor=number_format((float)(($cse_vasopressor/$total)*100), 1, '.', '')."%";
 
+=======
+						$csa_vasopressor=number_format((float)$row->csa_vasopressor, 2, '.', '');
+					
+						
+>>>>>>> 5713fa5e7035f572fd24a29a7a543674a2d64346
 
 						$csa_timing_avg=number_format((float)$row->csa_timing_avg, 2, '.', '');
 						$csa_duration_avg=number_format((float)$row->csa_duration_avg, 2, '.', '');
@@ -3984,8 +4002,13 @@ public function n_report() {
 						$s_timing=number_format((float)$row->s_timing, 2, '.', '');
 						$s_duration=number_format((float)$row->s_duration, 2, '.', '');
 						$s_blood=number_format((float)$row->s_blood, 2, '.', '');
+<<<<<<< HEAD
 						// $s_vasopressor=number_format((float)$row->s_vasopressor, 2, '.', '');
 						$s_vasopressor=number_format((float)(($s_vasopressor/$total)*100), 1, '.', '')."%";
+=======
+						$s_vasopressor=number_format((float)$row->s_vasopressor, 2, '.', '');
+					
+>>>>>>> 5713fa5e7035f572fd24a29a7a543674a2d64346
 
 
 						$s_timing_avg=number_format((float)$row->s_timing_avg, 2, '.', '');
@@ -4010,8 +4033,13 @@ public function n_report() {
 						$e_timing=number_format((float)$row->e_timing, 2, '.', '');
 						$e_duration=number_format((float)$row->e_duration, 2, '.', '');
 						$e_blood=number_format((float)$row->e_blood, 2, '.', '');
+<<<<<<< HEAD
 						// $e_vasopressor=number_format((float)$row->e_vasopressor, 2, '.', '');
 						$e_vasopressor=number_format((float)(($e_vasopressor/$total)*100), 1, '.', '')."%";
+=======
+						$e_vasopressor=number_format((float)$row->e_vasopressor, 2, '.', '');
+						
+>>>>>>> 5713fa5e7035f572fd24a29a7a543674a2d64346
 
 
 						$e_timing_avg=number_format((float)$row->e_timing_avg, 2, '.', '');
@@ -4058,6 +4086,17 @@ public function n_report() {
 					'spinal' => number_format((float)(($s_vasopressor/$total)*100), 1, '.', '')."%",
 					'csa' => number_format((float)(($csa_vasopressor/$total)*100), 1, '.', '')."%",
 				);
+
+
+				// $products[] = array( 
+				// 	'name'   => 'Vasopressor use',
+				// 	'cse' => "(".$cse_vasopressor.")",
+				// 	'epidural' => "(".$e_vasopressor.")",
+				// 	'spinal' => "(".$s_vasopressor.")",
+				// 	'csa' => "(".$csa_vasopressor.")",
+				// );
+
+
 				// print_r($products);die();
 			$data['products'] = $products;
 			$data['total'] = session()->get('n');
@@ -5778,6 +5817,7 @@ public function n_report() {
 				$avg_spinal= 0;
 				$avg_epidural = 0;
 
+<<<<<<< HEAD
 				$std_csa = 0;
 				$std_cse = 0;
 				$std_spinal = 0;
@@ -5794,6 +5834,23 @@ public function n_report() {
 
 			    $query = $builder->join('procedure_csa', 'procedure_csa.patient_id = cnb_postop.patient_id');
 				
+=======
+
+				$std_csa = 0;
+				$std_cse = 0;
+				$std_spianl = 0;
+				$total_epidural = 0;
+
+
+				$total_csa = 0;
+				$total_cse = 0;
+				$total_spianl = 0;
+				$total_epidural = 0;
+
+				$builder = $db->table('cnb_postop');
+			    $query = $builder->select("AVG(procedure_csa.no_attempts)as csa_average, STDDEV(procedure_csa.no_attempts) as csa_std, cnb_postop.id as count, procedure_csa.anatomical_landmark,procedure_csa.approach,procedure_csa.no_attempts");
+			    $builder->join('procedure_csa', 'procedure_csa.patient_id = cnb_postop.patient_id');
+>>>>>>> 5713fa5e7035f572fd24a29a7a543674a2d64346
 			    $query = $builder->where('cnb_postop.procedure_date >=',date('Y-m-d',strtotime($from_date)));
 			    $query = $builder->where('cnb_postop.procedure_date <=',date('Y-m-d',strtotime($to_date)));
                 $query = $builder->where('cnb_postop.dr_id ',$dr_id);
@@ -5821,17 +5878,34 @@ public function n_report() {
 							$approach2 = $approach2 + 1;
 						}
 
+<<<<<<< HEAD
 						$total_csa +=  $row->no_attempts;
 						$avg_csa +=  $row->csaaverage;
 						$std_csa +=  $row->csastd;
+=======
+						$avg_csa +=  $row->csa_average;
+						$std_csa +=  $row->csa_std;
+						$total_csa +=  $row->no_attempts;
+
+
+
+>>>>>>> 5713fa5e7035f572fd24a29a7a543674a2d64346
 
 					}
 				}
 
 				$builder = $db->table('cnb_postop');
+<<<<<<< HEAD
 			    // $query = $builder->select("AVG(procedure_cse.no_attempts) as average, STDDEV(procedure_cse.no_attempts) as std");
 			    
 				$query = $builder->select("AVG(procedure_cse.no_attempts) as cseaverage, STDDEV(procedure_cse.no_attempts) as csestd,cnb_postop.id as count, procedure_cse.anatomical_landmark,procedure_cse.approach,procedure_cse.no_attempts");
+=======
+
+			    // $query = $builder->select("AVG(procedure_csa.no_attempts)as cseAverage, STDDEV(procedure_csa.no_attempts) as cseStd, cnb_postop.id as count, procedure_csa.anatomical_landmark,procedure_csa.approach,procedure_csa.no_attempts");
+
+
+			    $query = $builder->select("AVG(procedure_cse.no_attempts)as cse_Average, STDDEV(procedure_cse.no_attempts) as cse_Std,cnb_postop.id as count, procedure_cse.anatomical_landmark,procedure_cse.approach,procedure_cse.no_attempts");
+>>>>>>> 5713fa5e7035f572fd24a29a7a543674a2d64346
 			    $builder->join('procedure_cse', 'procedure_cse.patient_id = cnb_postop.patient_id');
 			    $query = $builder->where('cnb_postop.procedure_date >=',date('Y-m-d',strtotime($from_date)));
 			    $query = $builder->where('cnb_postop.procedure_date <=',date('Y-m-d',strtotime($to_date)));
@@ -5858,16 +5932,28 @@ public function n_report() {
 							$approach2 = $approach2 + 1;
 						}
 
+<<<<<<< HEAD
 						$total_cse +=  $row->no_attempts;
 						$avg_cse +=  $row->cseaverage;
 						$std_cse +=  $row->csestd;
+=======
+						$avg_cse +=  $row->cse_Average;
+						$total_cse +=  $row->no_attempts;
+						$std_cse +=  $row->cse_Std;
+
+
+>>>>>>> 5713fa5e7035f572fd24a29a7a543674a2d64346
 					}
 				}
 
 				$builder = $db->table('cnb_postop');
+<<<<<<< HEAD
 			    // $query = $builder->select("AVG(procedure_spinal.no_attempts) as average, STDDEV(procedure_spinal.no_attempts) as std");
 			    
 				$query = $builder->select("AVG(procedure_spinal.no_attempts) as spinalaverage, STDDEV(procedure_spinal.no_attempts) as spinalstd,cnb_postop.id as count, procedure_spinal.anatomical_landmark,procedure_spinal.approach,procedure_spinal.no_attempts");
+=======
+			    $query = $builder->select("AVG(procedure_spinal.no_attempts)as spinal_Average, STDDEV(procedure_spinal.no_attempts) as spinal_Std,cnb_postop.id as count, procedure_spinal.anatomical_landmark,procedure_spinal.approach,procedure_spinal.no_attempts");
+>>>>>>> 5713fa5e7035f572fd24a29a7a543674a2d64346
 			    $builder->join('procedure_spinal', 'procedure_spinal.patient_id = cnb_postop.patient_id');
 			    $query = $builder->where('cnb_postop.procedure_date >=',date('Y-m-d',strtotime($from_date)));
 			    $query = $builder->where('cnb_postop.procedure_date <=',date('Y-m-d',strtotime($to_date)));
@@ -5894,9 +5980,15 @@ public function n_report() {
 							$approach2 = $approach2 + 1;
 						}
 
+<<<<<<< HEAD
 						$total_spinal +=  $row->no_attempts;
 						$avg_spinal +=  $row->spinalaverage;
 						$std_spinal +=  $row->spinalstd;
+=======
+						$avg_spinal +=  $row->spinal_Average;
+						$total_spinal +=  $row->no_attempts;
+						$std_spinal +=  $row->spinal_Std;
+>>>>>>> 5713fa5e7035f572fd24a29a7a543674a2d64346
 					}
 				}
 
@@ -5909,9 +6001,13 @@ public function n_report() {
 
 
 				$builder = $db->table('cnb_postop');
+<<<<<<< HEAD
 			    // $query = $builder->select("AVG(procedure_spinal.no_attempts) as average, STDDEV(procedure_spinal.no_attempts) as std");
 			    
 				$query = $builder->select("AVG(procedure_epidural.no_attempts) as epiduralaverage, STDDEV(procedure_epidural.no_attempts) as epiduralstd, cnb_postop.id as count, procedure_epidural.anatomical_landmark,procedure_epidural.approach,procedure_epidural.no_attempts");
+=======
+			    $query = $builder->select("AVG(procedure_epidural.no_attempts)as epidural_Average, STDDEV(procedure_epidural.no_attempts) as epidural_Std,cnb_postop.id as count, procedure_epidural.anatomical_landmark,procedure_epidural.approach,procedure_epidural.no_attempts");
+>>>>>>> 5713fa5e7035f572fd24a29a7a543674a2d64346
 			    $builder->join('procedure_epidural', 'procedure_epidural.patient_id = cnb_postop.patient_id');
 			    $query = $builder->where('cnb_postop.procedure_date >=',date('Y-m-d',strtotime($from_date)));
 			    $query = $builder->where('cnb_postop.procedure_date <=',date('Y-m-d',strtotime($to_date)));
@@ -5937,9 +6033,15 @@ public function n_report() {
 						else if($row->approach == 'Paramedian'){
 							$approach2 = $approach2 + 1;
 						}
+<<<<<<< HEAD
 						$total_epidural +=  $row->no_attempts;
 						$avg_epidural +=  $row->epiduralaverage;
 						$std_epidural +=  $row->epiduralstd;
+=======
+						$avg_epidural +=  $row->epidural_Average;
+						$total_epidural +=  $row->no_attempts;
+						$std_epidural +=  $row->epidural_Std;
+>>>>>>> 5713fa5e7035f572fd24a29a7a543674a2d64346
 					}
 				}
 
@@ -5965,8 +6067,12 @@ public function n_report() {
 				'sell' => $approach2
 			);
 
+
+			
+
 			$attempts[] = array(
 				'day'   => 'Combined Spinal Epidural',
+<<<<<<< HEAD
 				'sell' => number_format((float)$avg_cse, 2, '.','')."/".number_format((float)$std_cse, 2, '.','')
 			);
 			$attempts[] = array(
@@ -5980,6 +6086,22 @@ public function n_report() {
 			$attempts[] = array(
 				'day'   => 'CSA - Continuous SpinalAnaesthesia',
 				'sell' => number_format((float)$avg_csa, 2, '.','')."/".number_format((float)$std_csa, 2, '.','')
+=======
+				
+				'sell' =>number_format((float)$avg_cse, 2, '.', '')."/".number_format((float)$std_cse, 2, '.', '')
+			);
+			$attempts[] = array(
+				'day'   => 'Epidural alone',
+				'sell' => number_format((float)$avg_epidural, 2, '.', '')."/".number_format((float)$std_epidural, 2, '.', '')
+			);
+			$attempts[] = array(
+				'day'   => 'Spinal alone',
+				'sell' => number_format((float)$avg_spinal, 2, '.', '')."/".number_format((float)$std_spinal, 2, '.', '')
+			);
+			$attempts[] = array(
+				'day'   => 'CSA - Continuous SpinalAnaesthesia',
+				'sell' => number_format((float)$avg_csa, 2, '.', '')."/".number_format((float)$std_csa, 2, '.', '')
+>>>>>>> 5713fa5e7035f572fd24a29a7a543674a2d64346
 			);
 
 
@@ -5993,7 +6115,11 @@ public function n_report() {
 		$data['no_attempts'] = ($attempts);
 
 		$data['total'] = $total_cse + $total_csa + $total_spinal + $total_csa; 
+<<<<<<< HEAD
 		$data['total_n'] = $avg_cse + $avg_csa + $avg_spinal + $avg_csa;      
+=======
+		$data['total_n'] = $total_cse + $total_csa + $total_spinal + $total_csa;      
+>>>>>>> 5713fa5e7035f572fd24a29a7a543674a2d64346
 			return view('cnb/reports/noattempts_v', $data);      
 			
 		}else{
