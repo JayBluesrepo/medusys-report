@@ -67,6 +67,39 @@
 						</tbody>
 						</table>
 					</div>
+
+					<div class="table-responsive" id="demo-table">
+						<h4>Total cases recorded = <?php echo $total;?></h4>
+						<table class="table table-bordered" id="mytable">
+						<thead>
+						<tr>
+						<th>Characteristics</th>
+						<th>n</th>
+						<th>Percentage</th>
+						</tr>
+						</thead>
+						<tbody>
+
+						<?php foreach($products1 as $row){
+						?>
+						<tr>
+						<td id="report-td-bg"><p>
+						<?php echo $row['day']; ?></p>
+						</td> 
+						<td><p>
+						<?php echo $row['sell']; ?></p>
+						</td>
+						<td><p>
+						<?php echo $row['perc']; ?></p>
+						</p></td>
+						</tr>
+						<?php
+						}
+						?>
+
+						</tbody>
+						</table>
+					</div>
 				</div>
 
 				</div>

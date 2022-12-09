@@ -3812,30 +3812,31 @@ public function n_report() {
 						'sell' => $IV,
 						'perc' => number_format((float)(($IV/$total)*100), 1, '.', '')."%",
 					);
-					$products[] = array(
+					
+	                $products1[] = array(
 						'day'   => 'Opioids',
 						'sell' => $opioids, 
 						'perc' => number_format((float)(($opioids/$total)*100), 1, '.', '')."%",
 					);
-					$products[] = array(
+					$products1[] = array(
 						'day'   => 'Paracetamol / Anti-Inflammatories',
 						'sell' => $paracetamol,
 						'perc' => number_format((float)(($paracetamol/$total)*100), 1, '.', '')."%",
 					);
-					$products[] = array(
+					$products1[] = array(
 						'day'   => 'Ketamine',
 						'sell' => $ketamine,
 						'perc' => number_format((float)(($ketamine/$total)*100), 1, '.', '')."%",
 					);
-					$products[] = array(
+					$products1[] = array(
 						'day'   => 'Others',
 						'sell' => $others,
 						'perc' => number_format((float)(($others/$total)*100), 1, '.', '')."%",
 					);
 	
 					$data['products'] = $products;
-					$data['total'] = $total;
-	
+					$data['products1'] = $products1;
+                    $data['total'] = $total;
 			return view('cnb/reports/OP_Analgesia_v', $data);        
 		
 	}else{
