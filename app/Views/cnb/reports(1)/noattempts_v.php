@@ -37,8 +37,8 @@
         				<thead>
         					<tr>
         						<th>Characteristics</th>
-        						<th>n</th>
-        						<th>percentage</th>
+        						<th>Stats</th>
+        						<!-- <th>percentage</th> -->
         					</tr>
         				</thead>
         				<tbody>
