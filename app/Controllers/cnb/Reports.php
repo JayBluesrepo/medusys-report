@@ -1969,7 +1969,7 @@ public function n_report() {
 			$products = [];
 			$other = [];
 
-
+			$complete_aspesis = 0;	
 			$wearing_mask = 0;
 			$hand_washing = 0;
 
@@ -1994,6 +1994,10 @@ public function n_report() {
 
 			if($record){
 				foreach($record as $row) {
+					if($row->wearing_mask == 'Yes'&&$row->hand_washing == 'Yes' && $row->sterile_gown == 'Yes'&& $row->sterile_draping == 'Yes'){
+						$complete_aspesis = $complete_aspesis + 1;
+				}
+
 					if($row->wearing_mask == 'Yes'){
 							$wearing_mask = $wearing_mask + 1;
 					}
@@ -2035,6 +2039,10 @@ public function n_report() {
 
 			if($record){
 				foreach($record as $row) {
+					if($row->wearing_mask == 'Yes' &&$row->hand_washing == 'Yes' &&$row->sterile_gown == 'Yes' &&$row->sterile_draping == 'Yes'){
+						$complete_aspesis = $complete_aspesis + 1;
+				}
+
 					if($row->wearing_mask == 'Yes'){
 							$wearing_mask = $wearing_mask + 1;
 					}
@@ -2066,7 +2074,10 @@ public function n_report() {
 				}
 			}
 
-
+			$products[] = array(
+				'day'   => 'Complete Aspesis',
+				'sell' => $complete_aspesis
+			);
 			$products[] = array(
 				'day'   => 'Wearing Cap & Mask',
 				'sell' => $wearing_mask
@@ -3947,6 +3958,8 @@ public function n_report() {
 						$csa_duration=number_format((float)$row->csa_duration, 2, '.', '');
 						$csa_blood=number_format((float)$row->csa_blood, 2, '.', '');
 						$csa_vasopressor=number_format((float)$row->csa_vasopressor, 2, '.', '');
+					
+						
 
 						$csa_timing_avg=number_format((float)$row->csa_timing_avg, 2, '.', '');
 						$csa_duration_avg=number_format((float)$row->csa_duration_avg, 2, '.', '');
@@ -3979,6 +3992,8 @@ public function n_report() {
 						$s_duration=number_format((float)$row->s_duration, 2, '.', '');
 						$s_blood=number_format((float)$row->s_blood, 2, '.', '');
 						$s_vasopressor=number_format((float)$row->s_vasopressor, 2, '.', '');
+					
+
 
 						$s_timing_avg=number_format((float)$row->s_timing_avg, 2, '.', '');
 						$s_duration_avg=number_format((float)$row->s_duration_avg, 2, '.', '');
@@ -4002,6 +4017,8 @@ public function n_report() {
 						$e_duration=number_format((float)$row->e_duration, 2, '.', '');
 						$e_blood=number_format((float)$row->e_blood, 2, '.', '');
 						$e_vasopressor=number_format((float)$row->e_vasopressor, 2, '.', '');
+						
+
 
 						$e_timing_avg=number_format((float)$row->e_timing_avg, 2, '.', '');
 						$e_duration_avg=number_format((float)$row->e_duration_avg, 2, '.', '');
@@ -4041,6 +4058,17 @@ public function n_report() {
 					'spinal' => "(".$s_vasopressor_avg."±".$s_vasopressor.")",
 					'csa' => "(".$csa_vasopressor_avg."±".$csa_vasopressor.")",
 				);
+
+
+				// $products[] = array( 
+				// 	'name'   => 'Vasopressor use',
+				// 	'cse' => "(".$cse_vasopressor.")",
+				// 	'epidural' => "(".$e_vasopressor.")",
+				// 	'spinal' => "(".$s_vasopressor.")",
+				// 	'csa' => "(".$csa_vasopressor.")",
+				// );
+
+
 				// print_r($products);die();
 			$data['products'] = $products;
 			$data['total'] = session()->get('n');
