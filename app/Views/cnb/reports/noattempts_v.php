@@ -43,9 +43,14 @@
 			        				<thead>
 			        					<tr>
 			        						<th>Characteristics</th>
+<<<<<<< HEAD
+			        						<th>Stats</th>
+			        						<!-- <th></th> -->
+=======
 											<th>Stats</th>
 			        						<!-- <th>n</th> -->
 			        						<!-- <th>Percentage</th> -->
+>>>>>>> 5713fa5e7035f572fd24a29a7a543674a2d64346
 			        					</tr>
 			        				</thead>
 			        				<tbody>
@@ -56,6 +61,12 @@
 											<td id="report-td-bg"><p>
 												<?php echo $row['day']; ?></p>
 											</td>
+<<<<<<< HEAD
+											<td><p>
+												<?php echo $row['sell']; ?></p>
+											</td>
+											
+=======
 											
 											<td><p>
 												<?php
@@ -64,6 +75,7 @@
 												?>
 												
 												</p></td>
+>>>>>>> 5713fa5e7035f572fd24a29a7a543674a2d64346
 											</tr>
 										<?php
 										}
