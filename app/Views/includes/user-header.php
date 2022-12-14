@@ -1,10 +1,3 @@
-<?php 
-	$name = session()->get('name');
-	$email = session()->get('email');
-	$gamer_id = session()->get('gamer_id');
-
-?>	
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,10 +13,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"> -->
 	<script type="text/javascript" src="<?php echo base_url('public/assets/js/jquery-3.6.0.min.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('public/assets/js/bootstrap.min.js'); ?>"></script>
-
 </head>
 <body>
-	
 	<section class="header">
 		<div class="row">
 			<div class="col-sm-3">
@@ -57,13 +48,13 @@
 			<div class="col-sm-3">
 				<div class="left-side-menu">
 					<div class="main-tag">
-						<a href="">User Reports</a>
+						<a href="">Consolidated Reports</a>
 					</div>
 					<div class="main-tag-sub">
 						<p>Audit Reports</p>
 					</div>
 					<ul class="list-a">
-						<li><a href="<?php echo base_url('user-n-report');?>">Audit Results</a></li>
+						<li><a href="<?php echo base_url('user-n_report');?>">Audit Results</a></li>
 					</ul>
 					<div class="main-tag-sub">
 						<p>Patient Characteristics</p>
@@ -79,11 +70,9 @@
 					<ul class="list-a">
 						<li><a href="<?php echo base_url('user-safety');?>">Clinical Safety Standards</a></li>
 						<!-- <li><a href="https://medusys.in/safety');?>">Clinical Safety Standards</a></li> -->
-						<li><a >Surgery Details</a></li>
+						<li>Surgery Details</li>
 						<ul class="list-a">
-							<li><a href="<?php echo base_url('user-surgery');?>">Surgery Details</a></li>
-							<!-- <li><a href="https://medusys.in/speciality">Surgical Specialty</a></li> -->
-							<!-- <li><a href="https://medusys.in/location">Surgical Location</a></li> -->
+							<li><a href="<?php echo base_url('user-surgery');?>">Surgery Details</a></li>							
 							<li><a href="<?php echo base_url('user-speciality');?>">Surgical Specialty</a></li>
 							<li><a href="<?php echo base_url('user-location');?>">Surgical Location</a></li>
 							<li><a href="<?php echo base_url('user-purpose');?>">Purpose of CNB</a></li>
@@ -93,12 +82,12 @@
 							<li><a href="<?php echo base_url('user-sedation');?>">Sedation Score</a></li>
 							<li><a href="<?php echo base_url('user-Patientpositon');?>">Patient Position During CNB</a></li>
 						</ul>
-						<li><a >Techniques</a></li>
+						<li>Techniques</li>
 						<ul>
 							<li><a href="<?php echo base_url('user-cse-technique');?>">CSE Technique</a></li>
 							<li><a href="<?php echo base_url('user-csa-technique');?>">CSA Technique</a></li>
 						</ul>
-						<li><a >Other Procedure Characteristics</a></li>
+						<li>Other Procedure Characteristics</li>
 						<ul>
 							<li><a href="<?php echo base_url('user-sterility_features');?>">Sterility Features & Skin Prep</a></li>
 							<li><a href="<?php echo base_url('user-ultra_sound');?>">Ultrasound Use & Image Quality</a></li>
@@ -107,20 +96,20 @@
 							<li><a href="<?php echo base_url('user-approach');?>">Approach</a></li>
 							<li><a href="<?php echo base_url('user-no-attempts');?>">Number of Attempts</a></li>
 						</ul>
-						<!-- <li><a href="<?php echo base_url('technique');?>">Epidural Technique</a></li> -->
-						<li><a >Needle Details</a></li>
+						<!-- <li><a href="<?php echo base_url('user-technique');?>">Epidural Technique</a></li> -->
+						<li>Needle Details</li>
 						<ul>
-							<!-- <li><a href="<?php echo base_url('epidural-needle');?>">Needle Details Type & Size</a></li> -->
-							<!-- <li><a href="<?php echo base_url('spinal-needle');?>">Spinal Needle Details Type & size</a></li>
-							<li><a href="<?php echo base_url('csa-needle');?>">CSA Needle Details Type & size</a></li> -->
+							<!-- <li><a href="<?php echo base_url('user-epidural-needle');?>">Needle Details Type & Size</a></li> -->
+							<!-- <li><a href="<?php echo base_url('user-spinal-needle');?>">Spinal Needle Details Type & size</a></li>
+							<li><a href="<?php echo base_url('user-csa-needle');?>">CSA Needle Details Type & size</a></li> -->
 							<li><a href="<?php echo base_url('user-needle_brand');?>">Needle Brand</a></li>
 						</ul>
-						<li><a >LA Utilisation</a></li>
+						<li>LA Utilisation</li>
 						<ul>
 							<li><a href="<?php echo base_url('user-epiduralLA');?>">Epidural Space LA</a></li>
 							<li><a href="<?php echo base_url('user-csaLA');?>">Spinal Space LA</a></li>
 						</ul>
-						<li><a >Total Intra Operative LA Dosage</a></li>
+						<li>Total Intra Operative LA Dosage</li>
 						<ul>
 							<li><a href="<?php echo base_url('user-epidural-component-single-dose');?>">Epidural Component Single Dose</a></li>
 							<li><a href="<?php echo base_url('user-epidural-component-sala-dose');?>">Epidural Component  SALA Combo Dose</a></li>
@@ -132,7 +121,7 @@
 							<li><a href="<?php echo base_url('user-spinal-combo-dose');?>">Spinal Component Combo Dose</a></li>
 							<li><a href="<?php echo base_url('user-csa-component-single-dose');?>">CSA Component Single Dose</a></li>
 						</ul>
-						<li><a >Adjuvant Usage</a></li>
+						<li>Adjuvant Usage</li>
 						<ul>
 							<li><a href="<?php echo base_url('user-component-adjuvant');?>">Component Adjuvant</a></li>
 							<!-- <li><a href="<?php echo base_url('user-spinal-component-adjuvant');?>">Spinal Component Adjuvant</a></li>
@@ -150,7 +139,7 @@
 						<p>Outcomes</p>
 					</div>
 					<ul class="list-a">
-						<li><a >Procedure Outcomes</a></li>
+						<li>Procedure Outcomes</li>
 						<ul>
 							<li><a href="<?php echo base_url('user-procedure-success');?>">Procedure Success</a></li>
 							<li><a href="<?php echo base_url('user-technical-problems');?>">Technical Problems</a></li>
@@ -159,7 +148,7 @@
 							<li><a href="<?php echo base_url('user-IV-Supplements');?>">IV Supplementation</a></li> 
 							<li><a href="<?php echo base_url('user-Outcome-characteristics');?>">Other Outcome Characteristics</a></li>
 						</ul>
-						<li><a >PACU Outcomes</a></li>
+						<li>PACU Outcomes</li>
 						<ul>
 							<li><a href="<?php echo base_url('user-Pain-Score');?>">Pain Scores</a></li>
 							<li><a href="<?php echo base_url('user-Nausea');?>">Nausea and Vomiting Scores</a></li>
