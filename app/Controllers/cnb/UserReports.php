@@ -351,10 +351,10 @@ public function user_procedure_success() {
 		$from_date = session()->get('from_date');
 		$to_date = session()->get('to_date');
         $dr_id = session()->get('dr_id');
-		$n = session()->get('n');
-    	$n_type = gettype($n);
+		// $n = session()->get('n');
+    	// $n_type = gettype($n);
 
-		if($from_date && $to_date  && $n_type != 'NULL'){
+		if($from_date && $to_date){
 			$total = session()->get('n');
 			if(session()->get('e_total') > 1){
 				$e_total = session()->get('e_total');
@@ -3104,10 +3104,10 @@ public function user_late_complication() {
 		$from_date = session()->get('from_date');
 		$to_date = session()->get('to_date');
         $dr_id = session()->get('dr_id');
-		$n = session()->get('n');
-    	$n_type = gettype($n);
+		// $n = session()->get('n');
+    	// $n_type = gettype($n);
 
-		if($from_date && $to_date  && $n_type != 'NULL'){
+		if($from_date && $to_date){
 
 			$none = 0;
 			$equipment = 0;
@@ -3264,9 +3264,11 @@ public function user_late_complication() {
 			}
 
 			$total = session()->get('n');
+			$no = 0;
+			$no = $total - $equipment + $multipal + $second  +$technique +$catheter + $failure + $others;
 			$products[] = array(
 				'day'   => 'None',
-				'sell' => $none,
+				'sell' => $no,
 				'perc' => number_format((float)(($none/$total)*100), 1, '.', '')."%",
 			);
 			$products[] = array(
@@ -3346,10 +3348,10 @@ public function user_late_complication() {
 		$from_date = session()->get('from_date');
 		$to_date = session()->get('to_date');
         $dr_id = session()->get('dr_id');
-		$n = session()->get('n');
-    	$n_type = gettype($n);
+		// $n = session()->get('n');
+    	// $n_type = gettype($n);
 
-		if($from_date && $to_date  && $n_type != 'NULL'){
+		if($from_date && $to_date){
 
 			$none = 0;
 			$epidural = 0;
@@ -3612,6 +3614,15 @@ public function user_late_complication() {
 				}
 
 				$total = session()->get('n');
+				$no =0;
+				$no = $total - $epidural + $last +$respiratory + $cardiac + $radicular + $paresthesia + $bloody + $wettap  + $hypotension  + $nausea  + $vomiting + $subdural  + $high +
+					$intrathecal  + $totalSpinal  +$accidental + $others;
+				$products[] = array(
+					'day'   => 'None',
+					'sell' => $no,
+					'perc' => number_format((float)(($no/$total)*100), 1, '.', '')."%",
+				);
+
 				$products[] = array(
 					'day'   => 'Epidural re-sited',
 					'sell' => $epidural,
@@ -3716,11 +3727,11 @@ public function user_late_complication() {
 		$from_date = session()->get('from_date');
 		$to_date = session()->get('to_date');
         $dr_id = session()->get('dr_id');
-		$n = session()->get('n');
-    	$n_type = gettype($n);
+		// $n = session()->get('n');
+    	// $n_type = gettype($n);
 
 
-		if($from_date && $to_date  && $n_type != 'NULL'){
+		if($from_date && $to_date){
 			$none = 0;
 			$inhalation = 0;
 			$IV = 0;
@@ -3887,6 +3898,14 @@ public function user_late_complication() {
 					}
 	
 					$total = session()->get('n');
+					$no =0;
+					$no = $total - ($inhalation + $IV);
+					$products[] = array(
+						'day'   => 'None',
+						'sell' => $no,
+						'perc' => number_format((float)(($no/$total)*100), 1, '.', '')."%",
+					);
+
 					$products[] = array(
 						'day'   => 'Inhalation Analgesia',
 						'sell' => $inhalation,
@@ -3897,28 +3916,54 @@ public function user_late_complication() {
 						'sell' => $IV,
 						'perc' => number_format((float)(($IV/$total)*100), 1, '.', '')."%",
 					);
-					$products[] = array(
+
+					$products1[] = array(
 						'day'   => 'Opioids',
-						'sell' => $opioids,
+						'sell' => $opioids, 
 						'perc' => number_format((float)(($opioids/$total)*100), 1, '.', '')."%",
 					);
-					$products[] = array(
+
+
+					$products1[] = array(
 						'day'   => 'Paracetamol / Anti-Inflammatories',
 						'sell' => $paracetamol,
 						'perc' => number_format((float)(($paracetamol/$total)*100), 1, '.', '')."%",
 					);
-					$products[] = array(
+					$products1[] = array(
 						'day'   => 'Ketamine',
 						'sell' => $ketamine,
 						'perc' => number_format((float)(($ketamine/$total)*100), 1, '.', '')."%",
 					);
-					$products[] = array(
+					$products1[] = array(
 						'day'   => 'Others',
 						'sell' => $others,
 						'perc' => number_format((float)(($others/$total)*100), 1, '.', '')."%",
 					);
+
+					// $products[] = array(
+					// 	'day'   => 'Opioids',
+					// 	'sell' => $opioids,
+					// 	'perc' => number_format((float)(($opioids/$total)*100), 1, '.', '')."%",
+					// );
+					// $products[] = array(
+					// 	'day'   => 'Paracetamol / Anti-Inflammatories',
+					// 	'sell' => $paracetamol,
+					// 	'perc' => number_format((float)(($paracetamol/$total)*100), 1, '.', '')."%",
+					// );
+					// $products[] = array(
+					// 	'day'   => 'Ketamine',
+					// 	'sell' => $ketamine,
+					// 	'perc' => number_format((float)(($ketamine/$total)*100), 1, '.', '')."%",
+					// );
+					// $products[] = array(
+					// 	'day'   => 'Others',
+					// 	'sell' => $others,
+					// 	'perc' => number_format((float)(($others/$total)*100), 1, '.', '')."%",
+					// );
 	
 					$data['products'] = $products;
+					$data['products1'] = $products1;
+
 					$data['total'] = $total;
 	
 			return view('cnb/userReports/user_OP_Analgesia_v', $data);        
@@ -3935,11 +3980,11 @@ public function user_late_complication() {
 		$from_date = session()->get('from_date');
 		$to_date = session()->get('to_date');
         $dr_id = session()->get('dr_id');
-		$n = session()->get('n');
-    	$n_type = gettype($n);
+		// $n = session()->get('n');
+    	// $n_type = gettype($n);
 
 
-		if($from_date && $to_date  && $n_type != 'NULL'){
+		if($from_date && $to_date){
 
 		$builder = $db->table('procedure_epidural');
 		$query = $builder->select("COUNT(id) as count, la_regimen as s");
@@ -3981,10 +4026,10 @@ public function user_late_complication() {
 		$from_date = session()->get('from_date');
 		$to_date = session()->get('to_date');
         $dr_id = session()->get('dr_id');
-		$n = session()->get('n');
-    	$n_type = gettype($n);
+		// $n = session()->get('n');
+    	// $n_type = gettype($n);
 
-		if($from_date && $to_date  && $n_type != 'NULL'){
+		if($from_date && $to_date){
 			$timing = 0;
 			$duration = 0;
 			$bloodLose = 0;
@@ -7815,11 +7860,12 @@ public function user_median_sensory() {
 		$from_date = session()->get('from_date');
 		$to_date = session()->get('to_date');
         $dr_id = session()->get('dr_id');
-		$n = session()->get('n');
-    	$n_type = gettype($n);
+		// $n = session()->get('n');
+    	// $n_type = gettype($n);
 
-		if($from_date && $to_date  && $n_type != 'NULL'){
+		if($from_date && $to_date){
 		
+		$none = 0;
 		$opioid = 0;
 		$clonidine = 0;
 		$dexmeditomidine = 0;
@@ -7846,6 +7892,11 @@ public function user_median_sensory() {
 		if($record){
 			foreach($record as $row) {
 					
+
+					if($row->opioid_name == '' && $row->clonidina_dose == '' && $row->dexmeditomidine_dose == ''&& $row->dexamephasone_dose == '' && $row->trmadol_dose == '' && $row->kepamine_dose == '' && $row->midazolam_dose == '' && $row->adrenaline_dose == ''){
+					$none = $none + 1;
+					}
+
 					if($row->opioid_name != ''){
 					$opioid = $opioid + 1;
 					}
@@ -7932,6 +7983,11 @@ public function user_median_sensory() {
 			if($record){
 				foreach($record as $row) {
 						
+
+						if($row->opioid_name == '' && $row->clonidina_dose == '' && $row->dexmeditomidine_dose == '' && $row->dexamephasone_dose == '' && $row->tramadol_dose == '' && $row->kepamine_dose == '' && $row->midazolam_dose == ''){
+						$none = $none + 1;
+						}
+
 						if($row->opioid_name != ''){
 						$opioid = $opioid + 1;
 						}
@@ -7974,6 +8030,11 @@ public function user_median_sensory() {
 				if($record){
 					foreach($record as $row) {
 							
+
+							if($row->opioid_name == '' &&  $row->opioid_aj == 'Yes' && $row->clonidne_aj == '' && $row->dexmeditomidine_aj == '' && $row->dexamethasone_aj == '' && $row->tramadol_aj == '' && $row->ketamine_aj == '' && $row->midazolam_aj == '' && $row->adrenaline_aj == ''){
+							$none = $none + 1;
+							}
+
 							if($row->opioid_name != ''){
 							$opioid = $opioid + 1;
 							}
@@ -8019,6 +8080,10 @@ public function user_median_sensory() {
 				if($record){
 					foreach($record as $row) {
 							
+
+							if($row->opioid_name == '' &&  $row->opioid_aj == 'Yes' && $row->clonidne_aj == '' && $row->dexmeditomidine_aj == '' && $row->dexamethasone_aj == '' && $row->tramadol_aj == '' && $row->ketamine_aj == '' && $row->midazolam_aj == '' && $row->adrenaline_aj == ''){
+							$none = $none + 1;
+							}
 							if($row->opioid_aj == 'Yes'){
 							$opioid = $opioid + 1;
 							}
@@ -8060,6 +8125,13 @@ public function user_median_sensory() {
 				}
 		
 				$total = session()->get('n');
+
+				$products[] = array(
+					'day'   => 'none',
+					'sell' => $none,
+					'perc' => number_format((float)(($none/$total)*100), 1, '.', '')."%",
+				);
+				
 				$products[] = array(
 					'day'   => 'Opioid',
 					'sell' => $opioid,
