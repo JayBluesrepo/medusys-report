@@ -6,7 +6,7 @@ use CodeIgniter\API\ResponseTrait;
 use App\Models\ApiModel;
  
 
-// report
+
 class Reports extends ResourceController
 {
 
@@ -704,6 +704,7 @@ public function late_complication() {
 			$perst_motor = 0;
 
 
+			$none = 0;
 			$asep_meningi = 0;
 			$bacterial_meningi = 0;
 			$epidural_abs = 0;
