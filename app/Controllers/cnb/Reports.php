@@ -6,7 +6,7 @@ use CodeIgniter\API\ResponseTrait;
 use App\Models\ApiModel;
  
 
-// report
+
 class Reports extends ResourceController
 {
 

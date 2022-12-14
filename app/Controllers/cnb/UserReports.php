@@ -4172,22 +4172,39 @@ public function user_late_complication() {
 			$from_date = session()->get('from_date');
 			$to_date = session()->get('to_date');
             $dr_id = session()->get('dr_id');
-			$n = session()->get('n');
-    	$n_type = gettype($n);
+			// $n = session()->get('n');
+    	// $n_type = gettype($n);
 
 // print_r($from_date);	
 // print_r($to_date);die();		
 
 			$total = session()->get('n');
 // print_r($total);die();
-if($from_date && $to_date  && $n_type != 'NULL'){
+if($from_date && $to_date){
 			$products = [];
 			$products1 = [];
 			$products2 = [];
+
+			$a1 = 0;
+			$a2 = 0;
+			$a3 = 0;
+			$a4 = 0;
 			
-			$ps_postproc = 0;
-			$ps_30mins = 0;
-			$ps_1hr = 0;
+			$ps_30mins1 = 0;
+			$ps_30mins2 = 0;
+			$ps_30mins3 = 0;
+			$ps_30mins4 = 0;
+
+
+			$ps_1hr1 = 0;
+			$ps_1hr2 = 0;
+			$ps_1hr3 = 0;
+			$ps_1hr4 = 0;
+
+
+			// $ps_postproc = 0;
+			// $ps_30mins = 0;
+			// $ps_1hr = 0;
 		
 			$builder = $db->table('cnb_postop');
 		    $query = $builder->select("cnb_postop.id as count,cnb_postop.ps_postproc");
@@ -4198,17 +4215,37 @@ if($from_date && $to_date  && $n_type != 'NULL'){
 		    $query = $builder->get();
 		    $record = $query->getResult();
 
+			// if($record){
+			// 	foreach($record as $row) {
+			// 		if($row->Mild >= 0 && $row->ps_postproc  <=4){
+			// 				// $ps_postproc = $ps_postproc + 1;
+			// 				$a1 = $a1 + 1;
+			// 		}
+				
+			// 		else if($row->Moderator >= 5 && $row->ps_postproc <=7){
+			// 				$ps_postproc = $ps_postproc + 1;
+			// 		}
+			// 		else if($row->Severe >=8 && $row->ps_postproc <=10){
+			// 				$ps_postproc = $ps_postproc + 1;
+			// 		}
+			// 	}
+			// }
+
+
 			if($record){
 				foreach($record as $row) {
-					if($row->Mild >= 0 && $row->ps_postproc  <=4){
-							$ps_postproc = $ps_postproc + 1;
+					if($row->ps_postproc >= 0 && $row->ps_postproc  <=4){
+							$a1 = $a1 + 1;
 					}
 				
-					else if($row->Moderator >= 5 && $row->ps_postproc <=7){
-							$ps_postproc = $ps_postproc + 1;
+					else if($row->ps_postproc >= 5 && $row->ps_postproc <=7){
+							$a2 = $a2 + 1;
 					}
-					else if($row->Severe >=8 && $row->ps_postproc <=10){
-							$ps_postproc = $ps_postproc + 1;
+					else if($row->ps_postproc >=8 && $row->ps_postproc <=10){
+							$a3 = $a3 + 1;
+					}
+					else if($row->ps_postproc == 'Unable to score'){
+							$a4 = $a4 + 1;
 					}
 				}
 			}
@@ -4227,20 +4264,41 @@ if($from_date && $to_date  && $n_type != 'NULL'){
 		    $query = $builder->get();
 		    $record = $query->getResult();
 
+			// if($record){
+			// 	foreach($record as $row) {
+			// 		if($row->Mild >= 0 && $row->ps_30mins  <=4){
+			// 				$ps_30mins = $ps_30mins + 1;
+			// 		}
+				
+			// 		else if($row->Moderator >= 5 && $row->ps_30mins <=7){
+			// 				$ps_30mins = $ps_30mins + 1;
+			// 		}
+			// 		else if($row->Severe >=8 && $row->ps_30mins <=10){
+			// 				$ps_30mins = $ps_30mins + 1;
+			// 		}
+					
+			// 	}	
+			// }
+
+
 			if($record){
 				foreach($record as $row) {
-					if($row->Mild >= 0 && $row->ps_30mins  <=4){
-							$ps_30mins = $ps_30mins + 1;
+					if($row->ps_30mins >= 0 && $row->ps_30mins  <=4){
+							$ps_30mins1 = $ps_30mins1 + 1;
 					}
 				
-					else if($row->Moderator >= 5 && $row->ps_30mins <=7){
-							$ps_30mins = $ps_30mins + 1;
+					else if($row->ps_30mins >= 5 && $row->ps_30mins <=7){
+							$ps_30mins2 = $ps_30mins2 + 1;
 					}
-					else if($row->Severe >=8 && $row->ps_30mins <=10){
-							$ps_30mins = $ps_30mins + 1;
+					else if($row->ps_30mins >=8 && $row->ps_30mins <=10){
+							$ps_30mins3 = $ps_30mins3 + 1;
+					}
+					else if($row->ps_30mins == 'Unable to score'){
+							$ps_30mins4 = $ps_30mins4 + 1;
 					}
 				}	
 			}
+
 
 			
 
@@ -4253,69 +4311,130 @@ if($from_date && $to_date  && $n_type != 'NULL'){
 		    $query = $builder->get();
 		    $record = $query->getResult();
 
+			// if($record){
+			// 	foreach($record as $row) {
+			// 		if($row->Mild >= 0 && $row->ps_1hr  <=4){
+			// 				$ps_1hr = $ps_1hr + 1;
+			// 		}
+				
+			// 		else if($row->Moderator >= 5 && $row->ps_1hrs <=7){
+			// 				$ps_1hr = $ps_1hr + 1;
+			// 		}
+			// 		else if($row->Severe >=8 && $row->ps_30mins <=10){
+			// 				$ps_1hr = $ps_1hr + 1;
+			// 		}
+			// 	}	
+			// }
+
+
 			if($record){
 				foreach($record as $row) {
-					if($row->Mild >= 0 && $row->ps_1hr  <=4){
-							$ps_1hr = $ps_1hr + 1;
+					if($row->ps_1hr >= 0 && $row->ps_1hr  <= 4){
+							$ps_1hr1 = $ps_1hr1 + 1;
 					}
-				
-					else if($row->Moderator >= 5 && $row->ps_1hrs <=7){
-							$ps_1hr = $ps_1hr + 1;
+					else if($row->ps_1hr >= 5 && $row->ps_1hrs <= 7){
+							$ps_1hr2 = $ps_1hr2 + 1;
 					}
-					else if($row->Severe >=8 && $row->ps_30mins <=10){
-							$ps_1hr = $ps_1hr + 1;
+					else if($row->ps_1hr >= 8 && $row->ps_1hr <= 10){
+							$ps_1hr3 = $ps_1hr3 + 1;
+					}
+					else if($row->ps_1hr == 'Unable to score'){
+							$ps_1hr4 = $ps_1hr4 + 1;
 					}
 				}	
 			}
 
 			
+			// $products[] = array(
+			// 	'day'   => 'Mild(0-4)',
+			// 	'sell' => $ps_postproc
+			//     'sell1' =>$ps_30mins
+			//  	'sell2' =>$ps_1hr
+
+
+			// );
+			// $products[] = array(
+			// 	'day'   => 'Moderate(5-6)',
+			// 	'sell' => $ps_postproc
+			// 	'sell1' =>$ps_30mins
+			//  	'sell2' =>$ps_1hr
+
+			// );
+			// $products[] = array(
+			// 	'day'   => 'Severe(8-10)',
+			// 	'sell' => $ps_postproc
+			// 	'sell1' =>$ps_30mins
+			//  	'sell2' =>$ps_1hr
+
+			// );
+
+			// $products[] = array(
+			// 	'day'   => 'unable to score',
+			// 	'sell' => $ps_postproc
+			// 	'sell1' =>$ps_30mins
+			//  	'sell2' =>$ps_1hr
+
+			// );
+
+			// $products1[] = array(
+			// 	'day'   => 'Mild(0-4)',
+			// 	'sell' => $ps_30mins
+			// );
+			// $products1[] = array(
+			// 	'day'   => 'Moderate(5-6)',
+			// 	'sell' => $ps_30mins
+			// );
+			// $products1[] = array(
+			// 	'day'   => 'Severe(8-10)',
+			// 	'sell' => $ps_30mins
+			// );
+			
+			
+
+			// $products2[] = array(
+			// 	'day'   => 'Mild(0-4)',
+			// 	'sell' => $ps_1hr
+			// );
+			// $products2[] = array(
+			// 	'day'   => 'Moderate(5-6)',
+			// 	'sell' => $ps_1hr
+			// );
+			// $products2[] = array(
+			// 	'day'   => 'Severe(8-10)',
+			// 	'sell' => $ps_1hr
+			// );
+			
+			
+
 			$products[] = array(
 				'day'   => 'Mild(0-4)',
-				'sell' => $ps_postproc
+				'sell' => $a1,
+				'sell1' => $ps_30mins1,
+				'sell2' => $ps_1hr1,
 			);
 			$products[] = array(
 				'day'   => 'Moderate(5-6)',
-				'sell' => $ps_postproc
+				'sell' => $a2,
+				'sell1' => $ps_30mins2,
+				'sell2' => $ps_1hr2,
 			);
 			$products[] = array(
 				'day'   => 'Severe(8-10)',
-				'sell' => $ps_postproc
+				'sell' => $a3,
+				'sell1' => $ps_30mins3,
+				'sell2' => $ps_1hr3, 
+			);
+			$products[] = array(
+				'day'   => 'Unable to score',
+				'sell' => $a4,
+				'sell1' => $ps_30mins4,
+				'sell2' => $ps_1hr4,  
 			);
 
-			$products1[] = array(
-				'day'   => 'Mild(0-4)',
-				'sell' => $ps_30mins
-			);
-			$products1[] = array(
-				'day'   => 'Moderate(5-6)',
-				'sell' => $ps_30mins
-			);
-			$products1[] = array(
-				'day'   => 'Severe(8-10)',
-				'sell' => $ps_30mins
-			);
-			
-
-			$products2[] = array(
-				'day'   => 'Mild(0-4)',
-				'sell' => $ps_1hr
-			);
-			$products2[] = array(
-				'day'   => 'Moderate(5-6)',
-				'sell' => $ps_1hr
-			);
-			$products2[] = array(
-				'day'   => 'Severe(8-10)',
-				'sell' => $ps_1hr
-			);
-			
-			
-
-						
 		
 		$data['products'] = ($products); 
-		$data['products1'] = ($products1);
-		$data['products2'] = ($products2);
+		// $data['products1'] = ($products1);
+		// $data['products2'] = ($products2);
 	        // $data['other'] = ($other); 
 	       
 	        $data['total_n'] = $total; 
@@ -4344,7 +4463,7 @@ if($from_date && $to_date  && $n_type != 'NULL'){
             $dr_id = session()->get('dr_id');
 			$n = session()->get('n');
     	$n_type = gettype($n);
-		if($from_date && $to_date  && $n_type != 'NULL'){
+		// if($from_date && $to_date  && $n_type != 'NULL'){
 // print_r($from_date);	
 // print_r($to_date);die();		
 
@@ -4354,9 +4473,22 @@ if($from_date && $to_date  && $n_type != 'NULL'){
 			$products1 = [];
 			$products2 = [];
 			
-			$nvs_postproc = 0;
-			$nvs_30mins = 0;
-			$nvs_1hr = 0;
+			$nvs_postproc1 = 0;
+			$nvs_postproc2 = 0;
+			$nvs_postproc3 = 0;
+			$nvs_postproc4 = 0;
+
+
+			$nvs_30mins1 = 0;
+			$nvs_30mins2= 0;
+			$nvs_30mins3 = 0;
+			$nvs_30mins4 = 0;
+
+			$nvs_1hr1 = 0;
+			$nvs_1hr2 = 0;
+			$nvs_1hr3 = 0;
+			$nvs_1hr4 = 0;
+
 		
 			$builder = $db->table('cnb_postop');
 		    $query = $builder->select("cnb_postop.id as count,cnb_postop.nvs_postproc");
@@ -4369,16 +4501,19 @@ if($from_date && $to_date  && $n_type != 'NULL'){
 
 			if($record){
 				foreach($record as $row) {
-					if($row->Mild >= 0 && $row->nvs_postproc  <=4){
+					if($row->$nvs_postproc1 >= 0 && $row->nvs_postproc  <=4){
 							$nvs_postproc = $nvs_postproc + 1;
 					}
 				
-					else if($row->Moderator >= 5 && $row->nvs_postproc <=7){
+					else if($row->$nvs_postproc2 >= 5 && $row->nvs_postproc <=7){
 							$nvs_postproc = $nvs_postproc + 1;
 					}
-					else if($row->Severe >=8 && $row->nvs_postproc <=10){
+					else if($row->$nvs_postproc3 >=8 && $row->nvs_postproc <=10){
 							$nvs_postproc = $nvs_postproc + 1;
 					}
+					else if($row->unable == 'Unable to score'){
+						$nvs_postproc = $nvs_postproc + 1;
+				}
 				}
 			}
 
@@ -4398,16 +4533,19 @@ if($from_date && $to_date  && $n_type != 'NULL'){
 
 			if($record){
 				foreach($record as $row) {
-					if($row->Mild >= 0 && $row->nvs_30mins  <=4){
-							$nvs_30mins = $nvs_30mins + 1;
+					if($row->$nvs_30mins1 >= 0 && $row->nvs_30mins  <=4){
+							$nvs_30mins1 = $nvs_30mins1 + 1;
 					}
 				
-					else if($row->Moderator >= 5 && $row->nvs_30mins <=7){
-							$nvs_30mins = $nvs_30mins + 1;
+					else if($row->$nvs_30mins2 >= 5 && $row->nvs_30mins <=7){
+							$nvs_30mins2 = $nvs_30mins2 + 1;
 					}
-					else if($row->Severe >=8 && $row->nvs_30mins <=10){
-							$nvs_30mins = $nvs_30mins + 1;
+					else if($row->$nvs_30mins3 >=8 && $row->nvs_30mins <=10){
+							$nvs_30mins3 = $nvs_30mins3 + 1;
 					}
+					else if($row->$nvs_30mins4 == 'Unable to Score'){
+						$nvs_30mins4 = $nvs_30mins4 + 1;
+				}
 				}	
 			}
 
@@ -4424,77 +4562,96 @@ if($from_date && $to_date  && $n_type != 'NULL'){
 
 			if($record){
 				foreach($record as $row) {
-					if($row->Mild >= 0 && $row->nvs_1hr  <=4){
-							$nvs_1hr = $nvs_1hr + 1;
+					if($row->$nvs_1hr1>= 0 && $row->nvs_1hr1  <=4){
+							$nvs_1hr1 = $nvs_1hr + 1;
 					}
 				
-					else if($row->Moderator >= 5 && $row->nvs_1hr <=7){
-							$nvs_1hr = $nvs_1hr + 1;
+					else if($row->$nvs_1hr2 >= 5 && $row->nvs_1hr2 <=7){
+							$nvs_1hr2 = $nvs_1hr2 + 1;
 					}
-					else if($row->Severe >=8 && $row->nvs_1hr <=10){
-							$nvs_1hr = $nvs_1hr + 1;
+					else if($row->$nvs_1hr3 >=8 && $row->nvs_1hr3 <=10){
+							$nvs_1hr3 = $nvs_1hr3 + 1;
 					}
+					else if($row->$nvs_1hr4 =='unable to score'){
+						$nvs_1hr4 = $nvs_1hr4 + 1;
+				}
 				}	
 			}
 
 			
 			$products[] = array(
 				'day'   => 'Mild(0-4)',
-				'sell' => $nvs_postproc
+				'sell' => $nvs_postproc1,
+				'sell1' => $nvs_30mins1, 
+				'sell2' => $nvs_1hr1
 			);
 			$products[] = array(
 				'day'   => 'Moderate(5-6)',
-				'sell' => $nvs_postproc
+				'sell' => $nvs_postproc2,
+				'sell1' => $nvs_30mins2, 
+				'sell2' => $nvs_1hr2
+
 			);
 			$products[] = array(
 				'day'   => 'Severe(8-10)',
-				'sell' => $nvs_postproc
+				'sell' => $nvs_postproc3,
+				'sell1' => $nvs_30mins3, 
+				'sell2' => $nvs_1hr3
 			);
 
-			$products1[] = array(
-				'day'   => 'Mild(0-4)',
-				'sell' => $nvs_30mins
+			$products[] = array(
+				'day'   => 'Unable to Score',
+				'sell' => $nvs_postproc4,
+				'sell1' => $nvs_30mins4, 
+				'sell2' => $nvs_1hr4
 			);
-			$products1[] = array(
-				'day'   => 'Moderate(5-6)',
-				'sell' => $nvs_30mins
-			);
-			$products1[] = array(
-				'day'   => 'Severe(8-10)',
-				'sell' => $nvs_30mins
-			);
+
+			// $products1[] = array(
+			// 	'day'   => 'Mild(0-4)',
+			// 	'sell' => $nvs_30mins
+			// );
+			// $products1[] = array(
+			// 	'day'   => 'Moderate(5-6)',
+			// 	'sell' => $nvs_30mins
+			// );
+			// $products1[] = array(
+			// 	'day'   => 'Severe(8-10)',
+			// 	'sell' => $nvs_30mins
+			// );
 			
 
-			$products2[] = array(
-				'day'   => 'Mild(0-4)',
-				'sell' => $nvs_1hr
-			);
-			$products2[] = array(
-				'day'   => 'Moderate(5-6)',
-				'sell' => $nvs_1hr
-			);
-			$products2[] = array(
-				'day'   => 'Severe(8-10)',
-				'sell' => $nvs_1hr
-			);
+			// $products2[] = array(
+			// 	'day'   => 'Mild(0-4)',
+			// 	'sell' => $nvs_1hr
+			// );
+			// $products2[] = array(
+			// 	'day'   => 'Moderate(5-6)',
+			// 	'sell' => $nvs_1hr
+			// );
+			// $products2[] = array(
+			// 	'day'   => 'Severe(8-10)',
+			// 	'sell' => $nvs_1hr
+			// );
 			
 			
 
 						
 		
 		$data['products'] = ($products); 
-		$data['products1'] = ($products1);
-		$data['products2'] = ($products2);
+		// $data['products1'] = ($products1);
+		// $data['products2'] = ($products2);
 	        // $data['other'] = ($other); 
 	       
 	        $data['total_n'] = $total; 
+	        $data['product'] = $product; 
+
 
 			return view('cnb/userReports/user_Nausea_v', $data);       
 			
 			
-		}else{
-			return redirect()->route("user-n-report");
-		}
+		// } else{
+		// 	return redirect()->route("user-n-report");
+		// }
 		
  
 }
@@ -4507,11 +4664,31 @@ if($from_date && $to_date  && $n_type != 'NULL'){
 		$from_date = session()->get('from_date');
 		$to_date = session()->get('to_date');
         $dr_id = session()->get('dr_id');
-		$n = session()->get('n');
-    	$n_type = gettype($n);
+		// $n = session()->get('n');
+    	// $n_type = gettype($n);
 
 
-		if($from_date && $to_date   && $n_type != 'NULL'){
+		if($from_date && $to_date){
+
+			$a1 = 0;
+			$a2 = 0;
+			$a3 = 0;
+			$a4 = 0;
+			$a5 = 0;
+
+
+			$b1 = 0;
+			$b2 = 0;
+			$b3 = 0;
+			$b4 = 0;
+			$b5 = 0;
+
+			$c1 = 0;
+			$c2 = 0;
+			$c3 = 0;
+			$c4 = 0;
+			$c5 = 0;
+
 
 			$total = session()->get('n');
 			$products = [];
@@ -4529,97 +4706,207 @@ if($from_date && $to_date  && $n_type != 'NULL'){
 
 			if($record){
 				foreach($record as $row) { 
-					$products[] = array(
-						'day'   => '0-Awake',
-						'sell' => floatval($row->count)
-					);
-					$total_entered += floatval($row->count);
+					// $products[] = array(
+					// 	'day'   => '0-Awake',
+					// 	'sell' => floatval($row->count)
+					// );
+
+					if($row->ss_postproc == '0-Awake'){
+						$a1 = $a1 + 1;
+						
+					}
+
+					else if($row->ss_postproc == '1-Mild, easy to rouse'){
+						$a2 = $a2 + 1;
+						
+					}
+					else if($row->ss_postproc == '2-Moderate, easy to rouse, unable to remain'){
+						$a3 = $a3 + 1;
+						
+					}
+					else if($row->ss_postproc == '3-Difficult to rouse'){
+						$a4 = $a4 + 1;
+						
+					}
+					else if($row->ss_postproc == 'Unable to score'){
+						$a5 = $a5 + 1;
+					}
+
+
+					if($row->ss_30mins == '0-Awake'){
+						$b1 = $b1 + 1;
+						
+					}
+					else if($row->ss_30mins == '1-Mild, easy to rouse'){
+						$b2 = $b2 + 1;
+						
+					}
+					else if($row->ss_30mins == '2-Moderate, easy to rouse, unable to remain'){
+						$b3 = $b3 + 1;
+						
+					}
+					else if($row->ss_30mins == '3-Difficult to rouse'){
+						$b4 = $b4 + 1;
+						
+					}
+					else if($row->ss_30mins == 'Unable to score'){
+						$b5 = $b5 + 1;
+						
+					}
+
+					if($row->ss_1hr == '0-Awake'){
+						$c1 = $c1 + 1;
+						
+					}
+					else if($row->ss_1hr == '1-Mild, easy to rouse'){
+						$c2 = $c2 + 1;
+						
+					}
+					else if($row->ss_1hr == '2-Moderate, easy to rouse, unable to remain'){
+						$c3 = $c3 + 1;
+						
+					}
+					else if($row->ss_1hr == '3-Difficult to rouse'){
+						$c4 = $c4 + 1;
+						
+					}
+					else if($row->ss_1hr == 'Unable to score'){
+						$c5 = $c5 + 1;
+						
+					}
 				}
-			}
-			else{
-				$products[] = array(
-						'day'   => '0-Awake',
-						'sell' => 0
-					);
+
+
+			// 		$total_entered += floatval($row->count);
+			// 	}
+			// }
+			// else{
+			// 	$products[] = array(
+			// 			'day'   => '0-Awake',
+			// 			'sell' => 0
+			// 		);
 			}
 
-			$builder = $db->table('cnb_postop');
-			$query = $builder->select("COUNT(cnb_postop.id) as count");
-			$query = $builder->where('cnb_postop.procedure_date >=',date('Y-m-d',strtotime($from_date)));
-			$query = $builder->where('cnb_postop.procedure_date <=',date('Y-m-d',strtotime($to_date)));
-			$query = $builder->where('cnb_postop.ss_postproc','1-Mild, easy to rouse'); 
-            $query = $builder->where('cnb_postop.dr_id ',$dr_id);
-			$query = $builder->get();
-			$record = $query->getResult();
+			// $builder = $db->table('cnb_postop');
+			// $query = $builder->select("COUNT(cnb_postop.id) as count");
+			// $query = $builder->where('cnb_postop.procedure_date >=',date('Y-m-d',strtotime($from_date)));
+			// $query = $builder->where('cnb_postop.procedure_date <=',date('Y-m-d',strtotime($to_date)));
+			// $query = $builder->where('cnb_postop.ss_postproc','1-Mild, easy to rouse'); 
+            // $query = $builder->where('cnb_postop.dr_id ',$dr_id);
+			// $query = $builder->get();
+			// $record = $query->getResult();
 
-			if($record){
-				foreach($record as $row) {
-					$products[] = array(
-						'day'   => 'Mild (score=1)',
-						'sell' => floatval($row->count)
-					);
-					$total_entered += floatval($row->count);
-				}
-			}
-			else{
-				$products[] = array(
-						'day'   => 'Mild (score=1)',
-						'sell' => 0
-					);
-			}
+			// if($record){
+			// 	foreach($record as $row) {
+			// 		$products[] = array(
+			// 			'day'   => 'Mild (score=1)',
+			// 			'sell' => floatval($row->count)
+			// 		);
+			// 		$total_entered += floatval($row->count);
+			// 	}
+			// }
+			// else{
+			// 	$products[] = array(
+			// 			'day'   => 'Mild (score=1)',
+			// 			'sell' => 0
+			// 		);
+			// }
 
-			$builder = $db->table('cnb_postop');
-			$query = $builder->select("COUNT(cnb_postop.id) as count");
-			$query = $builder->where('cnb_postop.procedure_date >=',date('Y-m-d',strtotime($from_date)));
-			$query = $builder->where('cnb_postop.procedure_date <=',date('Y-m-d',strtotime($to_date)));
-			$query = $builder->where('cnb_postop.ss_postproc','2-Moderate, easy to rouse, unable to remain'); 
-            $query = $builder->where('cnb_postop.dr_id ',$dr_id);
-			$query = $builder->get();
-			$record = $query->getResult();
+			// $builder = $db->table('cnb_postop');
+			// $query = $builder->select("COUNT(cnb_postop.id) as count");
+			// $query = $builder->where('cnb_postop.procedure_date >=',date('Y-m-d',strtotime($from_date)));
+			// $query = $builder->where('cnb_postop.procedure_date <=',date('Y-m-d',strtotime($to_date)));
+			// $query = $builder->where('cnb_postop.ss_postproc','2-Moderate, easy to rouse, unable to remain'); 
+            // $query = $builder->where('cnb_postop.dr_id ',$dr_id);
+			// $query = $builder->get();
+			// $record = $query->getResult();
 
-			if($record){
-				foreach($record as $row) {
-					$products[] = array(
-						'day'   => 'Moderate (score=2)',
-						'sell' => floatval($row->count)
-					);
-					$total_entered += floatval($row->count);
-				}
-			}
-			else{
-				$products[] = array(
-						'day'   => 'Moderate (score=2)',
-						'sell' => 0
-					);
-			}
+			// if($record){
+			// 	foreach($record as $row) {
+			// 		$products[] = array(
+			// 			'day'   => 'Moderate (score=2)',
+			// 			'sell' => floatval($row->count)
+			// 		);
+			// 		$total_entered += floatval($row->count);
+			// 	}
+			// }
+			// else{
+			// 	$products[] = array(
+			// 			'day'   => 'Moderate (score=2)',
+			// 			'sell' => 0
+			// 		);
+			// }
 
-			$builder = $db->table('cnb_postop');
-			$query = $builder->select("COUNT(cnb_postop.id) as count");
-			$query = $builder->where('cnb_postop.procedure_date >=',date('Y-m-d',strtotime($from_date)));
-			$query = $builder->where('cnb_postop.procedure_date <=',date('Y-m-d',strtotime($to_date)));
-			$query = $builder->where('cnb_postop.ss_postproc','3-Difficult to rouse'); 
-            $query = $builder->where('cnb_postop.dr_id ',$dr_id);
-			$query = $builder->get();
-			$record = $query->getResult();
+			// $builder = $db->table('cnb_postop');
+			// $query = $builder->select("COUNT(cnb_postop.id) as count");
+			// $query = $builder->where('cnb_postop.procedure_date >=',date('Y-m-d',strtotime($from_date)));
+			// $query = $builder->where('cnb_postop.procedure_date <=',date('Y-m-d',strtotime($to_date)));
+			// $query = $builder->where('cnb_postop.ss_postproc','3-Difficult to rouse'); 
+            // $query = $builder->where('cnb_postop.dr_id ',$dr_id);
+			// $query = $builder->get();
+			// $record = $query->getResult();
 
-			if($record){
-				foreach($record as $row) {
-					$products[] = array(
-						'day'   => 'Difficult to rouse(Score=3)',
-						'sell' => floatval($row->count)
-					);
-					$total_entered += floatval($row->count);
-				}
-			}
-			else{
-				$products[] = array(
-						'day'   => '3-Difficult to rouse',
-						'sell' => 0
-					);
-			}
+			// if($record){
+			// 	foreach($record as $row) {
+			// 		$products[] = array(
+			// 			'day'   => 'Difficult to rouse(Score=3)',
+			// 			'sell' => floatval($row->count)
+			// 		);
+			// 		$total_entered += floatval($row->count);
+			// 	}
+			// }
+			// else{
+			// 	$products[] = array(
+			// 			'day'   => '3-Difficult to rouse',
+			// 			'sell' => 0
+			// 		);
+			// }
 
+			// $data['products'] = ($products); 
+	    	// $data['total'] = $total_entered;
+
+
+
+
+
+
+			$products[] = array(
+				'day'   => '0-Awake',
+				'sell' => 	$a1,
+				'sell1' => $b1, 
+				'sell2' => $c1
+			);
+			$products[] = array(
+				'day'   => '1-Mild, easy to rouse',
+				'sell' => 	$a2,
+				'sell1' => $b2, 
+				'sell2' => $c2
+			);
+			$products[] = array(
+				'day'   => '2-Moderate, easy to rouse, unable to remain',
+				'sell' => $a3,
+				'sell1' => $b3,
+				'sell2' => $c3
+			);
+			$products[] = array(
+				'day'   => '3-Difficult to rouse',
+				'sell' => $a4,
+				'sell1' => $b4,
+				'sell2' => $c4
+			);
+			$products[] = array(
+				'day'   => 'Unable to score',
+				'sell' => $a5,
+				'sell1' => $b5,
+				'sell2' => $c5
+			);
+
+
+			
 			$data['products'] = ($products); 
-	    	$data['total'] = $total_entered;
+	    	$data['total'] = $total;
+	    	$data['total_n'] = $total;
+
 
 			return view('cnb/userReports/user_Sedation_Scores_v', $data); 
 		
@@ -4636,10 +4923,10 @@ if($from_date && $to_date  && $n_type != 'NULL'){
 		$from_date = session()->get('from_date');
 		$to_date = session()->get('to_date');
         $dr_id = session()->get('dr_id');
-		$n = session()->get('n');
-    	$n_type = gettype($n);
+		// $n = session()->get('n');
+    	// $n_type = gettype($n);
 
-		if($from_date && $to_date  && $n_type != 'NULL'){
+		if($from_date && $to_date){
 
 		$builder = $db->table('cnb_postop');
 		$query = $builder->select("COUNT(id) as count, time_spent as s");
@@ -4651,22 +4938,126 @@ if($from_date && $to_date  && $n_type != 'NULL'){
 		$query = $builder->groupBy('time_spent');
 		$query = $builder->get();
 		$record = $query->getResult();
-		$total = 0;
-		$time_spent = [];
+		// $total = 0;
+		// $time_spent = [];
+
+
+		$builder = $db->table('cnb_postop');
+	    $query = $builder->select("COUNT(cnb_postop.id) as count,STDDEV(cnb_postop.time_spent) as std,AVG(cnb_postop.time_spent) as avg");
+	    $builder->join('procedure_csa', 'procedure_csa.patient_id = cnb_postop.patient_id');
+	    $query = $builder->where('procedure_csa.procedure_date >=',date('Y-m-d',strtotime($from_date)));
+	    $query = $builder->where('procedure_csa.procedure_date <=',date('Y-m-d',strtotime($to_date)));
+	    $query = $builder->get();
+	    $record = $query->getResult();
+
+
+		
 		foreach($record as $row) {
-			$time_spent[] = array(
-			'day'   => $row->s,
-			'sell' => floatval($row->count)
-			);
+			// $time_spent[] = array(
+			// 'day'   => $row->s,
+			// 'sell' => floatval($row->count)
+			// );
+			// $total += floatval($row->count);
+
 			$total += floatval($row->count);
+			$csa_total_std = floatval($row->std);
+			$csa_total_avg = floatval($row->avg);
 		}
 
 
-		$data['products'] = ($products);
-		$data['time_spent'] = ($time_spent);
+		$builder = $db->table('cnb_postop');
+	    $query = $builder->select("COUNT(cnb_postop.id) as count,STDDEV(cnb_postop.time_spent) as std,AVG(cnb_postop.time_spent) as avg");
+	    $builder->join('procedure_epidural', 'procedure_epidural.patient_id = cnb_postop.patient_id');
+	    $query = $builder->where('procedure_epidural.procedure_date >=',date('Y-m-d',strtotime($from_date)));
+	    $query = $builder->where('procedure_epidural.procedure_date <=',date('Y-m-d',strtotime($to_date)));
+	    $query = $builder->get();
+	    $record = $query->getResult();
+
+		foreach($record as $row) {
+			$total += floatval($row->count);
+			$epidural_total_std = floatval($row->std);
+			$epidural_total_avg = floatval($row->avg);
+		}
+
+
+		$builder = $db->table('cnb_postop');
+	    $query = $builder->select("COUNT(cnb_postop.id) as count,STDDEV(cnb_postop.time_spent) as std,AVG(cnb_postop.time_spent) as avg");
+	    $builder->join('procedure_spinal', 'procedure_spinal.patient_id = cnb_postop.patient_id');
+	    $query = $builder->where('procedure_spinal.procedure_date >=',date('Y-m-d',strtotime($from_date)));
+	    $query = $builder->where('procedure_spinal.procedure_date <=',date('Y-m-d',strtotime($to_date)));
+	    $query = $builder->get();
+	    $record = $query->getResult();
+
+		foreach($record as $row) {
+			$total += floatval($row->count);
+			$spinal_total_std = floatval($row->std);
+			$spinal_total_avg = floatval($row->avg);
+		}
+
+		$builder = $db->table('cnb_postop');
+	    $query = $builder->select("COUNT(cnb_postop.id) as count,STDDEV(cnb_postop.time_spent) as std,AVG(cnb_postop.time_spent) as avg");
+	    $builder->join('procedure_csa', 'procedure_csa.patient_id = cnb_postop.patient_id');
+	    $query = $builder->where('procedure_csa.procedure_date >=',date('Y-m-d',strtotime($from_date)));
+	    $query = $builder->where('procedure_csa.procedure_date <=',date('Y-m-d',strtotime($to_date)));
+	    $query = $builder->get();
+	    $record = $query->getResult();
+
+		foreach($record as $row) {
+			$total += floatval($row->count);
+			$cse_total_std = floatval($row->std);
+			$cse_total_avg = floatval($row->avg);
+		}
+		// $data['products'] = ($products);
+		// $data['time_spent'] = ($time_spent);
+
+		// $data['total2'] = $time_spent;
+		// $data['total'] = $total;
+		
+		$time_spent = [];
+		
+		$csa_total_std = number_format((float)$csa_total_std, 2, '.', '');
+		$epidural_total_std = number_format((float)$epidural_total_std, 2, '.', '');
+		$spinal_total_std = number_format((float)$spinal_total_std, 2, '.', '');
+		$cse_total_std = number_format((float)$cse_total_std, 2, '.', '');
+
+		$csa_total_avg = number_format((float)$csa_total_avg, 2, '.', '');
+		$epidural_total_avg = number_format((float)$epidural_total_avg, 2, '.', '');
+		$spinal_total_avg = number_format((float)$spinal_total_avg, 2, '.', '');
+		$cse_total_avg = number_format((float)$cse_total_avg, 2, '.', '');
+
+		$t_std = $csa_total_std + $epidural_total_std + $spinal_total_std + $cse_total_std;
+		//$t_std = ($t_std/4);
+
+		$t_avg = $csa_total_avg + $epidural_total_avg + $spinal_total_avg + $cse_total_avg;
+		//$t_avg = ($t_avg/4);
+
+		$time_spent[] = array(
+			'day'   => 'All Procedure',
+			'sell' => "(".$t_std."±".$t_avg.")"
+		);
+
+		$time_spent[] = array(
+			'day'   => 'CSE',
+			'sell' => "(".$csa_total_std."±".$csa_total_avg.")"
+		);
+
+		$time_spent[] = array(
+			'day'   => 'Epidural',
+			'sell' => "(".$epidural_total_std."±".$epidural_total_avg.")"
+		);
+		$time_spent[] = array(
+			'day'   => 'Spinal',
+			'sell' => "(".$spinal_total_std."±".$spinal_total_avg.")"
+		);
+		$time_spent[] = array(
+			'day'   => 'CSE',
+			'sell' => "(".$cse_total_std."±".$cse_total_avg.")"
+		);
 
 		$data['total2'] = $time_spent;
-		$data['total'] = $total;     
+		$data['total'] = $total;   
+
+
 
 		return view('cnb/userReports/user_Recovery_v', $data);    
 		
@@ -4692,7 +5083,7 @@ if($from_date && $to_date  && $n_type != 'NULL'){
 			$products = [];
 			
 
-
+			$none=0;
 			$intravenous_opioids = 0;
 			$oral_opioids = 0;
 			$tramadol = 0;
@@ -4714,6 +5105,10 @@ if($from_date && $to_date  && $n_type != 'NULL'){
 
 			if($record){
 				foreach($record as $row) {
+
+					if($row->intravenous_opioids != 'yes' && $row->oral_opioids != 'yes' && $row->tramadol != 'yes' && $row->nsaid != 'yes' && $row->paracetamol != 'yes' && $row->la_regimen != 'yes' && $row->other != 'yes' && $row->repeat != 'yes'){
+						$none = $none + 1;
+				}
 					if($row->intravenous_opioids == 'Yes'){
 							$intravenous_opioids = $intravenous_opioids + 1;
 					}
@@ -4740,7 +5135,11 @@ if($from_date && $to_date  && $n_type != 'NULL'){
 			}
 
 			
-
+			$products[] = array(
+				'day'   => 'none',
+				'sell' => $none
+			);
+			
 			$products[] = array(
 				'day'   => 'Intravenous Opioids',
 				'sell' => $intravenous_opioids

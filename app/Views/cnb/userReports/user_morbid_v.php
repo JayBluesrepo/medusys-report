@@ -38,6 +38,7 @@
 						</div>
 						<div class="row" id="demo-table">
 							<div class="col-sm-5">
+							<div class="col-sm-6">
 		        		<h4>Total cases = <?php echo $total_n;?></h4>
 		        		<div class="table-responsive">
 		        			<table class="table table-bordered">
@@ -76,7 +77,9 @@
 		        		</div>
 		        	</div>
 
-							
+					<div class="col-sm-6">
+						<div id="GoogleBarChart" style="height: 400px; width: 100%"></div>
+					</div>
 							
 						</div>
 						
@@ -85,9 +88,7 @@
 						<!-- <div class="row">
 							<div id="GoogleLineChart" style="height: 400px; width: 100%"></div>
 						</div> -->
-							<div class="row">
-								<div id="GoogleBarChart" style="height: 400px; width: 100%"></div>
-							</div>
+							
 					<br/>  
        		 </div>
 		</div>
