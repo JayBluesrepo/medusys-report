@@ -14,8 +14,8 @@
         <div class="reports-right pt-4"  >
 		    <input id="save-pdf" type="button" value="Save as PDF"  />
 		    <div id="chart_div"></div>
-		   <div class="col-sm-9" id="reports-pdf">
-                <h3 class="mt-2 pt-2">Patient Characteristics - Patient Demography</h3>
+		   <div class="col-sm-9" id="reports-pdf"><br>
+		   <h3 class="mt-2 pt-2">Patient Characteristics - Patient Demography</h3>
 					
 		   			<br/>
 
