@@ -43,8 +43,9 @@
         				<thead>
         					<tr>
         						<th>Characteristics</th>
-        						<th>n</th>
-        						<th>Percentage</th>
+        						<!-- <th>n</th>
+        						<th>Percentage</th> -->
+								<th>stats</th>
         					</tr>
         				</thead>
         				<tbody>
@@ -58,13 +59,7 @@
 								<td><p>
 									<?php echo $row['sell']; ?></p>
 								</td>
-								<td><p>
-									<?php
-									 $number = (($row['sell']/$total)*100);
-									 
-									echo number_format((float)$number, 1, '.', '')."%";?>
-									
-									</p></td>
+								
 								</tr>
 							<?php
 							}
@@ -75,12 +70,21 @@
         		</div>
 							
 						</div>
-							<div class="col-sm-5">
+							<!-- <div class="col-sm-5">
 								<div id="GoogleLineChart" style="height: 400px; width: 100%"></div>
 							</div>
 							<div class="col-sm-5">
 								<div id="GoogleBarChart" style="height: 400px; width: 100%"></div>
-							</div>	
+							</div>	 -->
+
+							<div class="row">
+								<div class="col-sm-6">
+									<div id="GoogleLineChart" style="height: 400px; width: 100%"></div>
+								</div>
+								<div class="col-sm-6">
+									<div id="GoogleBarChart" style="height: 400px; width: 100%"></div>
+								</div>	
+							</div>
 							
 						
 					<br/>  
