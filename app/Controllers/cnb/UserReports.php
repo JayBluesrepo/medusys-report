@@ -1005,7 +1005,7 @@ public function user_late_complication() {
 			$perst_sensory = 0;
 			$perst_motor = 0;
 
-
+			$none = 0;
 			$asep_meningi = 0;
 			$bacterial_meningi = 0;
 			$epidural_abs = 0;
@@ -1026,6 +1026,9 @@ public function user_late_complication() {
 
 			if($record){
 				foreach($record as $row) {
+					if($row->postdural_puncture != 'Yes' && $row->backache_epidural != 'Yes' && $row->perst_sensory != 'Yes' && $row->perst_motor != 'Yes' && $row->asep_meningi != 'Yes' && $row->bacterial_meningi != 'Yes' && $row->epidural_abs != 'Yes' && $row->perm_neuro_compli != 'Yes' && $row->catheter != 'Yes' && $row->epidural_haema != 'Yes' && $row->others != 'Yes'){
+						$none = $none + 1;
+
 					if($row->postdural_puncture == 'Yes'){
 							$postdural_puncture = $postdural_puncture + 1;
 					}
@@ -1065,6 +1068,10 @@ public function user_late_complication() {
 
 			
 
+			$products[] = array(
+				'day'   => 'none',
+				'sell' => $none
+			);
 			$products[] = array(
 				'day'   => 'Post-Dural Puncture Headachedural',
 				'sell' => $postdural_puncture
@@ -1124,6 +1131,7 @@ public function user_late_complication() {
 			return redirect()->route("user-n-report");
 		}
     }
+}
 
 
 
