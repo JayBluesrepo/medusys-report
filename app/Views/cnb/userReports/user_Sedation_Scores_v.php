@@ -36,14 +36,16 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-5">
-<div class="table-responsive" id="demo-table">
+<div class="table-responsive" id="demo-table" style=" width:150%">
 <h4>Total cases = <?php echo $total;?></h4>
         			<table class="table table-bordered" style="height: 200px; width: 100%" id="mytable">
         				<thead>
         					<tr>
         						<th>Characteristics</th>
-        						<th>n</th>
-        						<th>Percentage</th>
+        						<th>Arrival</th>
+        						<th>30 min</th>
+        						<th>One hour</th>
+
         					</tr>
         				</thead>
         				<tbody>
@@ -53,10 +55,22 @@
 								<tr>
 								<td id="report-td-bg"><p>
 									<?php echo $row['day']; ?></p>
+
+									
 								</td>
 								<td><p>
-									<?php echo $row['sell']; ?></p>
+								<?php 
+									$number1 = (($row['sell1']/$total)*100);
+									echo number_format((float)$number1, 1, '.', '')."%";?>
+									</p>
 								</td>
+
+								<td><p>
+									<?php 
+									$number1 = (($row['sell2']/$total)*100);
+									echo number_format((float)$number1, 1, '.', '')."%";?>
+									</p>
+
 								<td><p>
 									<?php
 									 $number = (($row['sell']/$total)*100);
@@ -75,7 +89,7 @@
 							
 		</div>
 						
-							<div class="col-sm-5">
+							<!-- <div class="col-sm-5">
 								<div id="GoogleLineChart" style="height: 400px; width: 100%"></div>
 							</div>
 							<div class="col-sm-5">
@@ -83,7 +97,7 @@
 							</div>	
 						</div>	
 						
-					<br/>  
+					<br/>   -->
        		 </div>
 
 	    </div>    

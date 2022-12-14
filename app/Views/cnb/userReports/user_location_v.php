@@ -81,20 +81,29 @@
         		</div>
 		
 		</div>
-		<div class="col-sm-6">
+		<!-- <div class="col-sm-6">
 			<div id="GoogleLineChart" style="height: 400px; width: 100%"></div>
-		</div>
+		</div> -->
         	
 		</div><!--row--->
 		
 		<br/>
 		
-			<div class="col-sm-12">
+			<!-- <div class="col-sm-6">
 				
 			</div>
 			<div class="col-sm-12">
 				<div id="GoogleBarChart" style="height: 400px; width: 100%"></div>
-        	</div>
+        	</div> -->
+
+			<div class="row">
+				<div class="col-sm-6">
+					<div id="GoogleLineChart" style="height: 400px; width: 100%"></div>
+				</div>
+				<div class="col-sm-6">
+					<div id="GoogleBarChart" style="height: 400px; width: 100%"></div>
+	        	</div>
+			</div>
 		</div>
 		
 		</div>

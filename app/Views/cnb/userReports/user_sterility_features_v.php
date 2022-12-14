@@ -138,8 +138,15 @@
 		        		</div>
 		        	</div>
 		        	<div class="col-sm-6">
-		        		<div id="GoogleBarChart1" style="height: 400px; width: 100%"></div>
+		        		<!-- <div id="GoogleBarChart1" style="height: 400px; width: 100%"></div> -->
 		        	</div>
+
+					<div class="row">
+						 <div class="col-sm-8">
+							<div id="GoogleBarChart1" style="height: 400px; width: 100%"></div>
+						</div>
+						<div class="col-sm-4"></div>
+					</div>
 					</div>
 						
 						
