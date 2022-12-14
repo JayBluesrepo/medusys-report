@@ -42,8 +42,10 @@
         				<thead>
         					<tr>
         						<th>Followup Procedure</th>
-        						<th>n</th>
-        						<th>Percentage</th>
+        						<th>Arrival</th>
+        						<th>30 Min</th>
+        						<th>One Hour</th>
+
         					</tr>
         				</thead>
         				<tbody>
@@ -51,12 +53,26 @@
 							<?php foreach($products as $row){
 							?>
 								<tr>
+
 								<td id="report-td-bg"><p>
 									<?php echo $row['day']; ?></p>
 								</td>
 								<td><p>
-									<?php echo $row['sell']; ?></p>
+									<?php 
+									$number1 = (($row['sell1']/$total_n)*100);
+									echo number_format((float)$number1, 1, '.', '')."%";?>
+									</p>
 								</td>
+								
+								
+								<td><p>
+									<?php 
+									$number1 = (($row['sell2']/$total_n)*100);
+									echo number_format((float)$number1, 1, '.', '')."%";?>
+									</p>
+								</td>
+
+								
 								<td><p>
 									<?php
 									$number = (($row['sell']/$total_n)*100);
@@ -72,126 +88,14 @@
 					
 						</div></div>
 							
-							<div class="col-sm-12">
+							<!-- <div class="col-sm-12">
 								<div id="GoogleBarChart" style="height: 400px; width: 100%"></div>
-							</div>
+							</div> -->
 						
 					<br/>  
        		 </div>
 
-       		<div class="col-sm-9"  id="reports-pdf">
-       
-
-	         <div class="reports-right pt-4">
-				
-				<div id="chart_div"></div>
-                	<h3 class="mt-4">PACU Outcomes - Nausea and Vomiting Scores(After 30min)</h3>
-		
-						<br/>
-					<div class="row" id="demo-table">
-						<div class="col-sm-5">
-						<h4>Total cases = <?php echo $total_n;?></h4>
-					<div class="table-responsive">
-        				<table class="table table-bordered">
-        				<thead>
-        					<tr>
-        						<th>Followup Procedure</th>
-        						<th>n</th>
-        						<th>Percentage</th>
-        					</tr>
-        				</thead>
-        				<tbody>
-        					
-							<?php foreach($products1 as $row){
-							?>
-								<tr>
-								<td id="report-td-bg"><p>
-									<?php echo $row['day']; ?></p>
-								</td>
-								<td><p>
-									<?php echo $row['sell']; ?></p>
-								</td>
-								<td><p>
-									<?php
-									$number = (($row['sell']/$total_n)*100);
-									echo number_format((float)$number, 1, '.', '')."%";?>
-									</p></td>
-								</tr>
-							<?php
-							}
-							?>
-        				</tbody>
-        			</table>
-        		</div>
-					</div>
-						</div>
-						
-							<div class="col-sm-12">
-								<div id="GoogleBarChart1" style="height: 400px; width: 100%"></div>
-							</div>
-						
-					<br/>  
-       		 </div>
-
-       		
-	    </div>    
-		<div class="col-sm-9"  id="reports-pdf">
-       
-
-	         <div class="reports-right pt-4">
-				
-				<div id="chart_div"></div>
-                	<h3 class="mt-4">PACU Outcomes - Nausea and Vomiting Scores(After 1hr)</h3>
-		
-						<br/>
-					<div class="row" id="demo-table">
-						<div class="col-sm-5">
-						<h4>Total cases = <?php echo $total_n;?></h4>
-					<div class="table-responsive">
-        				<table class="table table-bordered">
-        				<thead>
-        					<tr>
-        						<th>Followup Procedure</th>
-        						<th>n</th>
-        						<th>Percentage</th>
-        					</tr>
-        				</thead>
-        				<tbody>
-        					
-							<?php foreach($products2 as $row){
-							?>
-								<tr>
-								<td id="report-td-bg"><p>
-									<?php echo $row['day']; ?></p>
-								</td>
-								<td><p>
-									<?php echo $row['sell']; ?></p>
-								</td>
-								<td><p>
-									<?php
-									$number = (($row['sell']/$total_n)*100);
-									echo number_format((float)$number, 1, '.', '')."%";?>
-									</p></td>
-								</tr>
-							<?php
-							}
-							?>
-        				</tbody>
-        			</table>
-        		</div>
-					</div>
-					
-						</div>
-						
-							<div class="col-sm-12">
-								<div id="GoogleBarChart2" style="height: 400px; width: 100%"></div>
-							</div>
-						</div>
-					<br/>  
-       		 </div>
-
-       		
-	    </div>    
+       		       
 	    </div>    
 
 
@@ -267,7 +171,7 @@
 				var data = google.visualization.arrayToDataTable([
 					['Characteristics', 'Count'],
 						<?php 
-							foreach ($products1 as $row){
+							foreach ($products as $row){
 							   echo "['".$row['day']."',".$row['sell']."],";
 						} ?>
 				]);
