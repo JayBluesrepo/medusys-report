@@ -598,7 +598,7 @@ $routes->add('user-Sedation-Scores','cnb/UserReports::user_Sedation_Scores');
 $routes->add('user-Recovery','cnb/UserReports::user_Recovery');
 $routes->add('user-Analgesia','cnb/UserReports::user_Analgesia');
 //user follow up
-$routes->add('user-stay-duration','cnb/UserReports::user_stay_duration');
+$routes->add('labor-stay-duration','cnb/UserReports::user_stay_duration');
 $routes->add('user-late-complication','cnb/UserReports::user_late_complication');
 
 
@@ -615,6 +615,105 @@ $routes->add('user-report3','cnb/UserReports::user_n_report3');
 
 $routes->add('user-bar','cnb/UserReports::user_bar');
 // $routes->get('/report', 'cnb/UserReports::user_initChart');
+
+
+
+//----------------  labour report  ---------------
+
+
+$routes->add('labour-reports-analytics','cnb/labour_Reports');
+$routes->add('labour-cnb-reports','cnb/labourReports::labour_reports_home');
+$routes->post('labour-z','cnb/labourReports::labour_z');
+//labour audit result
+$routes->add('labour-n-report','cnb/labourReports::labour_n_report');
+// patient characteristics
+$routes->add('labour-demography','cnb/labourReports::labour_demography');
+$routes->add('labour-asa','cnb/labourReports::labour_asa');
+$routes->add('labour-morbid','cnb/labourReports::labour_Co_Morbid');
+//labour procedure
+$routes->add('labour-surgery','cnb/labourReports::labour_surgery');
+$routes->add('labour-surgical','cnb/labourReports::labour_surgical');
+$routes->add('labour-safety','cnb/labourReports::labour_safety');
+$routes->add('labour-speciality','cnb/labourReports::labour_speciality');
+$routes->add('labour-location','cnb/labourReports::labour_location');
+$routes->add('labour-purpose','cnb/labourReports::labour_purpose'); 
+$routes->add('labour-anasthetic','cnb/labourReports::labour_Anasthetic');
+$routes->add('labour-supervision','cnb/labourReports::labour_Supervision');
+$routes->add('labour-patient_status','cnb/labourReports::labour_patient_status');
+$routes->add('labour-sedation','cnb/labourReports::labour_Sedation');
+$routes->add('labour-Patientpositon','cnb/labourReports::labour_PatientPositon');
+//labour techniques
+$routes->add('labour-cse-technique','cnb/labourReports::labour_cse_technique');
+$routes->add('labour-csa-technique','cnb/labourReports::labour_csa_technique');
+//labour Other Procedure Characteristics
+$routes->add('labour-sterility_features','cnb/labourReports::labour_sterility_features');
+$routes->add('labour-ultra_sound','cnb/labourReports::labour_ultra_sound');
+$routes->add('labour-vertibral-intraspace','cnb/labourReports::labour_vertibral_intraspace');
+$routes->add('labour-anatomical','cnb/labourReports::labour_anatomical');
+$routes->add('labour-approach','cnb/labourReports::labour_Approach');
+$routes->add('labour-no-attempts','cnb/labourReports::labour_no_attempts');
+//labour epidural tech
+$routes->add('labour-technique','cnb/labourReports::labour_Technique');
+//labour needle details
+$routes->add('labour-epidural-needle','cnb/labourReports::labour_epidural_needle');
+$routes->add('labour-spinal-needle','cnb/labourReports::labour_spinal_needle');
+$routes->add('labour-csa-needle','cnb/labourReports::labour_csa_needle');
+$routes->add('labour-needle_brand','cnb/labourReports::labour_needle_brand');
+//labour la utilization
+$routes->add('labour-epiduralLA','cnb/labourReports::labour_Epidural_LA');
+$routes->add('labour-csaLA','cnb/labourReports::labour_CSA_LA');
+//labour component
+$routes->add('labour-epidural-component-single-dose','cnb/labourReports::labour_Epidural_Component_Single_Dose');
+$routes->add('labour-epidural-component-sala-dose','cnb/labourReports::labour_Epidural_Component_Sala_Dose');
+$routes->add('labour-spinal-component-single-dose','cnb/labourReports::labour_Spinal_Component_Single_Dose');
+$routes->add('labour-spinal-component-combo-dose','cnb/labourReports::labour_Spinal_Component_Combo_Dose');
+$routes->add('labour-epidural-single-dose','cnb/labourReports::labour_Epidural_Single_Dose');
+$routes->add('labour-epidural-sala-combo-dose','cnb/labourReports::labour_Epidural_Sala_Combo_Dose');
+$routes->add('labour-spinal-dose','cnb/labourReports::labour_Spinal_Dose');
+$routes->add('labour-spinal-combo-dose','cnb/labourReports::labour_Spinal_Combo_Dose');
+$routes->add('labour-csa-component-single-dose','cnb/labourReports::labour_csa_Component_single_Dose');
+//labour adjuvant usage
+$routes->add('labour-epidural-adjuvant','cnb/labourReports::labour_epidural_adjuvant');
+$routes->add('labour-spinal-adjuvant','cnb/labourReports::labour_spinal_adjuvant');
+$routes->add('labour-csa-adjuvant','cnb/labourReports::labour_csa_adjuvant');
+//labour $routes->add('component-adjuvant','cnb/labourReports::component_adjuvant');
+$routes->add('labour-spinal-component-adjuvant','cnb/labourReports::labour_spinal_component_adjuvant');
+$routes->add('labour-component-adjuvant','cnb/labourReports::labour_component_adjuvant');
+//labour sensory & motor block
+$routes->add('labour-median-sensory','cnb/labourReports::labour_median_sensory');
+$routes->add('labour-motor-block','cnb/labourReports::labour_motor_block');
+//labour procedure outcomes
+$routes->add('labour-Procedure-Outcomes','cnb/labourReports::labour_Procedure_Outcomes');
+$routes->add('labour-procedure-success','cnb/labourReports::labour_procedure_success');
+$routes->add('labour-technical-problems','cnb/labourReports::labour_technical_problems');
+$routes->add('labour-acute-problems','cnb/labourReports::labour_acute_problems');
+$routes->add('labour-OP-Analgesia','cnb/labourReports::labour_OP_Analgesia');
+$routes->add('labour-IV-Supplements','cnb/labourReports::labour_IV_Supplements');
+$routes->add('labour-Outcome-characteristics','cnb/labourReports::labour_Outcome_characteristics');
+//labour pacu outcomes
+$routes->add('labour-Pain-Score','cnb/labourReports::labour_Pain_Score');
+$routes->add('labour-Nausea','cnb/labourReports::labour_Nausea');
+$routes->add('labour-Sedation-Scores','cnb/labourReports::labour_Sedation_Scores');
+$routes->add('labour-Recovery','cnb/labourReports::labour_Recovery');
+$routes->add('labour-Analgesia','cnb/labourReports::labour_Analgesia');
+//labour follow up
+$routes->add('labor-stay-duration','cnb/labourReports::labour_stay_duration');
+$routes->add('labour-late-complication','cnb/labourReports::labour_late_complication');
+
+
+
+
+//labour intra operative
+$routes->add('labour-epidural-singledose','cnb/labourReports::epidural_singledose');
+
+
+
+$routes->add('labour-consultant','cnb/labourReports::labour_consultant');
+$routes->add('labour-report2','cnb/labourReports::labour_n_report2');
+$routes->add('labour-report3','cnb/labourReports::labour_n_report3');
+
+$routes->add('labour-bar','cnb/labourReports::labour_bar');
+// $routes->get('/report', 'cnb/labourReports::labour_initChart');
 
 
 

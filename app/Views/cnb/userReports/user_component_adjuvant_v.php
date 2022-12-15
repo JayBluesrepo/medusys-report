@@ -72,10 +72,12 @@
 					</div>
 
 				        <div class="row">
-								<div id="GoogleLineChart" style="height: 400px; width: 100%"></div>
-							</div>
-							<div class="row">
-								<div id="GoogleBarChart" style="height: 400px; width: 100%"></div>
+							<div class="col-sm-6">
+								<div id="GoogleLineChart" style="height: 400px; width: 100%"></div></div>
+							<!-- </div>
+							<div class="row"> -->
+								<div class="col-sm-6">
+								<div id="GoogleBarChart" style="height: 400px; width: 100%"></div></div>
 							</div>	
 						</br>
 	    </div>
