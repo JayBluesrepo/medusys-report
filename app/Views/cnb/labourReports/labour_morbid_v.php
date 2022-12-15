@@ -1,5 +1,5 @@
 <?php
-    echo view('includes/user-reports-header');    
+    echo view('includes/labour-reports-header');    
 ?>
 
 
@@ -15,12 +15,12 @@
 	         <div class="reports-right pt-4">
 				<input id="save-pdf" type="button" value="Save as PDF"  />
 				<div id="chart_div"></div>
-<div class="col-sm-9" id="reports-pdf">
-                	<h3 class="mt-2 pt-2">Needle Details - Needle Brand</h3>
+			<div class="col-sm-9" id="reports-pdf">
+                	<h3 class="mt-2 pt-2">Patient Characteristics - Co-morbid Conditions</h3>
 		
 						<br/>
 						<div class="row">
-       							<div class="col-sm-5">
+       							<div class="col-sm-6">
         						<div class="report-detail-tag">
           						<h4 class="mb-4">Report Details</h4>
 
@@ -34,16 +34,16 @@
 							} ?></span></h5>
         						</div>
       							</div>
-      						    <div class="col-sm-7"></div>
+      						    <div class="col-sm-6"></div>
 						</div>
 						<div class="row" id="demo-table">
-							<div class="col-sm-5">
-		        	<h4>Total cases = <?php echo $total_n;?></h4>
+							<div class="col-sm-6">
+		        		<h4>Total cases = <?php echo $total_n;?></h4>
 		        		<div class="table-responsive">
 		        			<table class="table table-bordered">
 		        				<thead>
 		        					<tr>
-		        						<th>CNB Needle Brand</th>
+		        						<th>Co-morbid Conditions</th>
 		        						<th>n</th>
 		        						<th>Percentage</th>
 		        					</tr>
@@ -76,21 +76,21 @@
 		        		</div>
 		        	</div>
 
-							
+					<div class="col-sm-6">
+						<div id="GoogleBarChart" style="height: 400px; width: 100%"></div>
+					</div>
 							
 						</div>
-							
-							<div class="col-sm-5">
-								<div id="GoogleBarChart" style="height: 400px; width: 100%"></div>
-							</div>	
-							<div class="col-sm-5">
-								<div id="GoogleLineChart" style="height: 400px; width: 100%"></div>
-							</div>
-							
 						
+								
+						
+						<!-- <div class="row">
+							<div id="GoogleLineChart" style="height: 400px; width: 100%"></div>
+						</div> -->
+							
 					<br/>  
        		 </div>
-</div>
+		</div>
        		 
 	    </div>    
 
@@ -130,7 +130,7 @@
 						} ?>
 				]);
 				var options = {
-					title: 'CNB Needle Brand Classification',
+					title: 'Co-Morbid Classification',
 					curveType: 'function',
 					legend: {
 						position: 'top'
@@ -139,12 +139,12 @@
 
 		
 
-				var pie_chart = new google.visualization.PieChart(document.getElementById('GoogleLineChart'));
-				pie_chart.draw(data, options);
-
+				// var pie_chart = new google.visualization.PieChart(document.getElementById('GoogleLineChart'));
+				// pie_chart.draw(data, options);
 				var column_chart = new google.visualization.ColumnChart(document.getElementById('GoogleBarChart'));
 				column_chart.draw(data, options);
-			
+
+				
 
 				var btnSave = document.getElementById('save-pdf');
 				
@@ -160,7 +160,7 @@
 						format: [canvas.width, canvas.height]
 						});
 						pdfDoc.addImage(canvas.toDataURL('image/png'), 0, 0);
-						pdfDoc.save('CNBneedlebrand.pdf');
+						pdfDoc.save('morbid.pdf');
 					});
     					//doc.addImage(pie_chart.getImageURI(),0,0);
 						//doc.addImage(column_chart.getImageURI(),0,0);
@@ -175,5 +175,5 @@
 
 
 <?php
-    echo view('includes/user-reports-footer');    
+    echo view('includes/labour-reports-footer');    
 ?>
