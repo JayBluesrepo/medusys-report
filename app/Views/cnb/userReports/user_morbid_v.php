@@ -37,7 +37,6 @@
       						    <div class="col-sm-6"></div>
 						</div>
 						<div class="row" id="demo-table">
-							<div class="col-sm-5">
 							<div class="col-sm-6">
 		        		<h4>Total cases = <?php echo $total_n;?></h4>
 		        		<div class="table-responsive">

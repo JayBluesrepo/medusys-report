@@ -46,7 +46,7 @@
 							<tr>
 							<th>Location</th>
 							<th>n</th>
-							<th>(%)</th>
+							<th>Percentage</th>
 							</tr>
 						</thead>
 						<tbody>

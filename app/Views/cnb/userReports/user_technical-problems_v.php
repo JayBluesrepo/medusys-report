@@ -43,7 +43,7 @@
 							<tr>
 								<th>Technical Problems</th>
 								<th>n</th>
-								<th>(%)</th>
+								<th>Percentage</th>
 							</tr>
 							</thead>
 							<tbody>

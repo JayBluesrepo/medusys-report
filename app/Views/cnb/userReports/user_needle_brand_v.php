@@ -38,7 +38,7 @@
 						</div>
 						<div class="row" id="demo-table">
 							<div class="col-sm-5">
-		        	<h4>Total cases recorded = <?php echo $total_n;?></h4>
+		        	<h4>Total cases = <?php echo $total_n;?></h4>
 		        		<div class="table-responsive">
 		        			<table class="table table-bordered">
 		        				<thead>
