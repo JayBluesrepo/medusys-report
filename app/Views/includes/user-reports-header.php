@@ -117,8 +117,8 @@
 						</ul>
 						<li><a >LA Utilisation</a></li>
 						<ul>
-							<li><a href="<?php echo base_url('user-epiduralLA');?>">Epidural LA</a></li>
-							<li><a href="<?php echo base_url('user-csaLA');?>">CSA LA</a></li>
+							<li><a href="<?php echo base_url('user-epiduralLA');?>">Epidural Space LA</a></li>
+							<li><a href="<?php echo base_url('user-csaLA');?>">Spinal Space LA</a></li>
 						</ul>
 						<li><a >Total Intra Operative LA Dosage</a></li>
 						<ul>

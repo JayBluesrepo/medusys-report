@@ -43,9 +43,10 @@
         			<table class="table table-bordered" style="height: 200px; width: 100%" id="mytable">
         				<thead>
         					<tr>
-        						<th>Characteristics</th>
-        						<th>n</th>
-        						<th>Percentage</th>
+								<th></th>
+        						<th>time spent in recovery (in mins)</th>
+        						
+        			
         					</tr>
         				</thead>
         				<tbody>
@@ -59,13 +60,7 @@
 								<td><p>
 									<?php echo $row['sell']; ?></p>
 								</td>
-								<td><p>
-								<?php
-									 $number = (($row['sell']/$total)*100);
-									 
-									echo number_format((float)$number, 1, '.', '')."%";?>
-									
-									</p></td>
+								
 								</tr>
 							<?php
 							}

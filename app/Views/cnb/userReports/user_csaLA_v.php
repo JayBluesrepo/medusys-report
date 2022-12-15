@@ -14,7 +14,7 @@
 	         <div class="reports-right pt-4">
 				<input id="save-pdf" type="button" value="Save as PDF"  />
 				<div id="chart_div"></div>
-<div class="col-sm-9" id="reports-pdf">
+         <div class="col-sm-9" id="reports-pdf">
                 	<h3 class="mt-2 pt-2">LA Utilisation - CSA LA </h3>
 		
 						<br/>
@@ -36,13 +36,13 @@
       						    <div class="col-sm-7"></div>
 						</div>
 						<div class="row" id="demo-table">
-							<div class="col-sm-5">
+							<div class="col-sm-6">
 								<div class="table-responsive">
 								<h4>Total cases = <?php echo $total_n;?></h4>
 								        			<table class="table table-bordered" id="mytable">
         				<thead>
         					<tr>
-        						<th>Heavy Local Anaesthetic Solution
+        						<th>Pain Local Anaesthetic Solution
 								</th>
         						<th>n</th>
         						<th>Percentage</th>
@@ -72,27 +72,27 @@
         					
         				</tbody>
         			</table>
+							
 							</div>
-							</div>
+
+						</div>
+						<div class="col-sm-6">
+							<div id="GoogleBarChart" style="height: 400px; width: 100%"></div>
+						</div>
 						</div>
 							
-							<div class="col-sm-5">
-								<div id="GoogleBarChart" style="height: 400px; width: 100%"></div>
-							</div>	
-							<div class="col-sm-5">
+								
+							<!-- <div class="col-sm-4">
 								<div id="GoogleLineChart" style="height: 400px; width: 100%"></div>
 							</div>
-							
+							 -->
 						
 					<br/>  
        		 </div>
        		 <div class="col-sm-9">
-       
-
-	         <div class="reports-right pt-4">
-				
+       <div class="reports-right pt-4">
 				<div id="chart_div"></div>
-                	<h3 class="mt-4">LA Utilisation - CSA LA With Adrenaline </h3>
+                	<h3 class="mt-4">LA Utilisation - Epidural LA </h3>
 		
 						<br/>
 						<div class="row" id="demo-table">
@@ -102,7 +102,7 @@
 								        			<table class="table table-bordered" id="mytable">
         				<thead>
         					<tr>
-        						<th>Iso / Hypobaric Local Anaesthetic Solution
+        						<th> Local Anaesthetic Solution with Adrenaline
 								</th>
         						<th>n</th>
         						<th>Percentage</th>
@@ -133,13 +133,18 @@
         				</tbody>
         			</table>
 							</div>
-							
+
+							<!-- <div class="col-sm-4">
+								<div id="GoogleLineChart" style="height: 400px; width: 100%"></div>
+							</div>
+							 -->
+							 
 						</div>
 
 						<div class="col-sm-5">
 								<div id="GoogleBarChart1" style="height: 400px; width: 100%"></div>
-							</div>	
-							<div class="col-sm-5">
+							</div>	 -->
+							 <div class="col-sm-5">
 								<div id="GoogleLineChart1" style="height: 400px; width: 100%"></div>
 							</div>
 						
@@ -149,7 +154,20 @@
        		 </div>   
        		</div>
 	    </div>    
+		<div class="reports-right pt-4">
 
+<div id="chart_div"></div>
+	<br/>
+	<div class="row" id="demo-table">
+	<div class="col-sm-5">
+	<div class="table-responsive">
+	<h4>Total Combo = <?php echo $combo_count;?></h4>
+	<br/>  
+	</div>   
+	</div>
+	</div>
+</div>
+</div>  
 
 
          

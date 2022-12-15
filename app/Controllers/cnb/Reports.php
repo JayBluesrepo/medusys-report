@@ -704,6 +704,7 @@ public function late_complication() {
 			$perst_motor = 0;
 
 
+			$none = 0;
 			$asep_meningi = 0;
 			$bacterial_meningi = 0;
 			$epidural_abs = 0;
@@ -6096,7 +6097,7 @@ public function n_report() {
 
         public function Epidural_LA() {  
          
-        
+         
     	$db = \Config\Database::connect();
 
   
