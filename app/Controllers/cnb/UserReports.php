@@ -1005,7 +1005,7 @@ public function user_late_complication() {
 			$perst_sensory = 0;
 			$perst_motor = 0;
 
-
+			$none = 0;
 			$asep_meningi = 0;
 			$bacterial_meningi = 0;
 			$epidural_abs = 0;
@@ -1026,6 +1026,9 @@ public function user_late_complication() {
 
 			if($record){
 				foreach($record as $row) {
+					if($row->postdural_puncture != 'Yes' && $row->backache_epidural != 'Yes' && $row->perst_sensory != 'Yes' && $row->perst_motor != 'Yes' && $row->asep_meningi != 'Yes' && $row->bacterial_meningi != 'Yes' && $row->epidural_abs != 'Yes' && $row->perm_neuro_compli != 'Yes' && $row->catheter != 'Yes' && $row->epidural_haema != 'Yes' && $row->others != 'Yes'){
+						$none = $none + 1;
+
 					if($row->postdural_puncture == 'Yes'){
 							$postdural_puncture = $postdural_puncture + 1;
 					}
@@ -1065,6 +1068,10 @@ public function user_late_complication() {
 
 			
 
+			$products[] = array(
+				'day'   => 'none',
+				'sell' => $none
+			);
 			$products[] = array(
 				'day'   => 'Post-Dural Puncture Headachedural',
 				'sell' => $postdural_puncture
@@ -1124,6 +1131,7 @@ public function user_late_complication() {
 			return redirect()->route("user-n-report");
 		}
     }
+}
 
 
 
@@ -2058,7 +2066,7 @@ public function user_late_complication() {
 			$products = [];
 			$other = [];
 
-
+            $complete_aspesis = 0;	
 			$wearing_mask = 0;
 			$hand_washing = 0;
 
@@ -2084,6 +2092,9 @@ public function user_late_complication() {
 
 			if($record){
 				foreach($record as $row) {
+					if($row->wearing_mask == 'Yes'&&$row->hand_washing == 'Yes' && $row->sterile_gown == 'Yes'&& $row->sterile_draping == 'Yes'){
+						$complete_aspesis = $complete_aspesis + 1;
+				}
 					if($row->wearing_mask == 'Yes'){
 							$wearing_mask = $wearing_mask + 1;
 					}
@@ -2126,6 +2137,9 @@ public function user_late_complication() {
 
 			if($record){
 				foreach($record as $row) {
+					if($row->wearing_mask == 'Yes'&&$row->hand_washing == 'Yes' && $row->sterile_gown == 'Yes'&& $row->sterile_draping == 'Yes'){
+						$complete_aspesis = $complete_aspesis + 1;
+				}
 					if($row->wearing_mask == 'Yes'){
 							$wearing_mask = $wearing_mask + 1;
 					}
@@ -2157,7 +2171,10 @@ public function user_late_complication() {
 				}
 			}
 
-
+			$products[] = array(
+				'day'   => 'Complete Aspesis',
+				'sell' => $complete_aspesis
+			);
 			$products[] = array(
 				'day'   => 'Wearing Cap & Mask',
 				'sell' => $wearing_mask
@@ -6238,8 +6255,19 @@ if($from_date && $to_date){
 				$avg_spianl = 0;
 				$avg_epidural = 0;
 
+				$std_csa = 0;
+				$std_cse = 0;
+				$std_spinal = 0;
+				$std_epidural = 0;
+
+				$total_csa = 0;
+				$total_cse = 0;
+				$total_spinal = 0;
+				$total_epidural = 0;
+
 				$builder = $db->table('cnb_postop');
-			    $query = $builder->select("cnb_postop.id as count, procedure_csa.anatomical_landmark,procedure_csa.approach,procedure_csa.no_attempts");
+				$query = $builder->select(" AVG(procedure_csa.no_attempts) as csaaverage, STDDEV(procedure_csa.no_attempts) as csastd ,cnb_postop.id as count, procedure_csa.anatomical_landmark,procedure_csa.approach,procedure_csa.no_attempts");
+
 			    $builder->join('procedure_csa', 'procedure_csa.patient_id = cnb_postop.patient_id');
 			    $query = $builder->where('cnb_postop.procedure_date >=',date('Y-m-d',strtotime($from_date)));
 			    $query = $builder->where('cnb_postop.procedure_date <=',date('Y-m-d',strtotime($to_date)));
@@ -6266,13 +6294,18 @@ if($from_date && $to_date){
 							$approach2 = $approach2 + 1;
 						}
 
-						$avg_csa +=  $row->no_attempts;
+						// $avg_csa +=  $row->no_attempts;
+						$total_csa +=  $row->no_attempts;
+						$avg_csa +=  $row->csaaverage;
+						$std_csa +=  $row->csastd;
 
 					}
 				}
 
 				$builder = $db->table('cnb_postop');
-			    $query = $builder->select("cnb_postop.id as count, procedure_cse.anatomical_landmark,procedure_cse.approach,procedure_cse.no_attempts");
+				$query = $builder->select("AVG(procedure_cse.no_attempts) as cseaverage, STDDEV(procedure_cse.no_attempts) as csestd,cnb_postop.id as count, procedure_cse.anatomical_landmark,procedure_cse.approach,procedure_cse.no_attempts");
+			    
+				// $query = $builder->select("cnb_postop.id as count, procedure_cse.anatomical_landmark,procedure_cse.approach,procedure_cse.no_attempts");
 			    $builder->join('procedure_cse', 'procedure_cse.patient_id = cnb_postop.patient_id');
 			    $query = $builder->where('cnb_postop.procedure_date >=',date('Y-m-d',strtotime($from_date)));
 			    $query = $builder->where('cnb_postop.procedure_date <=',date('Y-m-d',strtotime($to_date)));
@@ -6299,12 +6332,17 @@ if($from_date && $to_date){
 							$approach2 = $approach2 + 1;
 						}
 
-						$avg_cse +=  $row->no_attempts;
+						// $avg_cse +=  $row->no_attempts;
+						$total_cse +=  $row->no_attempts;
+						$avg_cse +=  $row->cseaverage;
+						$std_cse +=  $row->csestd;
 					}
 				}
 
 				$builder = $db->table('cnb_postop');
-			    $query = $builder->select("cnb_postop.id as count, procedure_spinal.anatomical_landmark,procedure_spinal.approach,procedure_spinal.no_attempts");
+				$query = $builder->select("AVG(procedure_spinal.no_attempts) as spinalaverage, STDDEV(procedure_spinal.no_attempts) as spinalstd,cnb_postop.id as count, procedure_spinal.anatomical_landmark,procedure_spinal.approach,procedure_spinal.no_attempts");
+
+				// $query = $builder->select("cnb_postop.id as count, procedure_spinal.anatomical_landmark,procedure_spinal.approach,procedure_spinal.no_attempts");
 			    $builder->join('procedure_spinal', 'procedure_spinal.patient_id = cnb_postop.patient_id');
 			    $query = $builder->where('cnb_postop.procedure_date >=',date('Y-m-d',strtotime($from_date)));
 			    $query = $builder->where('cnb_postop.procedure_date <=',date('Y-m-d',strtotime($to_date)));
@@ -6331,7 +6369,10 @@ if($from_date && $to_date){
 							$approach2 = $approach2 + 1;
 						}
 
-						$avg_spinal +=  $row->no_attempts;
+						// $avg_spinal +=  $row->no_attempts;
+						$total_spinal +=  $row->no_attempts;
+						$avg_spinal +=  $row->spinalaverage;
+						$std_spinal +=  $row->spinalstd;
 					}
 				}
 
@@ -6344,7 +6385,9 @@ if($from_date && $to_date){
 
 
 				$builder = $db->table('cnb_postop');
-			    $query = $builder->select("cnb_postop.id as count, procedure_epidural.anatomical_landmark,procedure_epidural.approach,procedure_epidural.no_attempts");
+				$query = $builder->select("AVG(procedure_epidural.no_attempts) as epiduralaverage, STDDEV(procedure_epidural.no_attempts) as epiduralstd, cnb_postop.id as count, procedure_epidural.anatomical_landmark,procedure_epidural.approach,procedure_epidural.no_attempts");
+			    
+				// $query = $builder->select("cnb_postop.id as count, procedure_epidural.anatomical_landmark,procedure_epidural.approach,procedure_epidural.no_attempts");
 			    $builder->join('procedure_epidural', 'procedure_epidural.patient_id = cnb_postop.patient_id');
 			    $query = $builder->where('cnb_postop.procedure_date >=',date('Y-m-d',strtotime($from_date)));
 			    $query = $builder->where('cnb_postop.procedure_date <=',date('Y-m-d',strtotime($to_date)));
@@ -6370,7 +6413,10 @@ if($from_date && $to_date){
 						else if($row->approach == 'Paramedian'){
 							$approach2 = $approach2 + 1;
 						}
-						$avg_epidural +=  $row->no_attempts;
+						// $avg_epidural +=  $row->no_attempts;
+						$total_epidural +=  $row->no_attempts;
+						$avg_epidural +=  $row->epiduralaverage;
+						$std_epidural +=  $row->epiduralstd;
 					}
 				}
 
@@ -6396,21 +6442,39 @@ if($from_date && $to_date){
 				'sell' => $approach2
 			);
 
+			// $attempts[] = array(
+			// 	'day'   => 'Combined Spinal Epidural',
+			// 	'sell' => $avg_cse
+			// );
+			// $attempts[] = array(
+			// 	'day'   => 'Epidural alone',
+			// 	'sell' => $avg_epidural
+			// );
+			// $attempts[] = array(
+			// 	'day'   => 'Spinal alone',
+			// 	'sell' => $avg_spinal
+			// );
+			// $attempts[] = array(
+			// 	'day'   => 'CSA - Continuous SpinalAnaesthesia',
+			// 	'sell' => $avg_csa
+			// );
+
+
 			$attempts[] = array(
 				'day'   => 'Combined Spinal Epidural',
-				'sell' => $avg_cse
+				'sell' => number_format((float)$avg_cse, 2, '.','')."/".number_format((float)$std_cse, 2, '.','')
 			);
 			$attempts[] = array(
 				'day'   => 'Epidural alone',
-				'sell' => $avg_epidural
+				'sell' => number_format((float)$avg_epidural, 2, '.','')."/".number_format((float)$std_epidural, 2, '.','')
 			);
 			$attempts[] = array(
 				'day'   => 'Spinal alone',
-				'sell' => $avg_spinal
+				'sell' =>number_format((float)$avg_spinal, 2, '.','')."/".number_format((float)$std_spinal, 2, '.','')
 			);
 			$attempts[] = array(
 				'day'   => 'CSA - Continuous SpinalAnaesthesia',
-				'sell' => $avg_csa
+				'sell' => number_format((float)$avg_csa, 2, '.','')."/".number_format((float)$std_csa, 2, '.','')
 			);
 
 
@@ -6423,8 +6487,11 @@ if($from_date && $to_date){
 		$data['approach'] = ($approach);
 		$data['no_attempts'] = ($attempts);
 
-		$data['total'] = $total; 
-		$data['total_n'] = $total;       
+		// $data['total'] = $total; 
+		// $data['total_n'] = $total;   
+		
+		$data['total'] = $total_cse + $total_csa + $total_spinal + $total_csa; 
+		$data['total_n'] = $avg_cse + $avg_csa + $avg_spinal + $avg_csa;    
 			return view('cnb/userReports/user_noattempts_v', $data);      
 			
 		}else{
@@ -6522,15 +6589,15 @@ if($from_date && $to_date){
       $products = [];
       $products1 = [];
       
-      $la_ropivacaine = 0;
-      $la_bupivacaine = 0;
-      $la_levobupivacaine = 0;
-      $la_lignocaine = 0;
+      $ropivacaine = 0;
+      $bupivacaine = 0;
+      $levobupivacaine = 0;
+      $lignocaine = 0;
 
-      $la_ropivacaine1 = 0;
-      $la_bupivacaine1 = 0;
-      $la_levobupivacaine1 = 0;
-      $la_lignocaine1 = 0;
+      $ropivacaine = 0;
+      $bupivacaine = 0;
+      $levobupivacaine = 0;
+      $lignocaine = 0;
 
      
         $builder = $db->table('cnb_postop');
@@ -6545,33 +6612,33 @@ if($from_date && $to_date){
     
       if($record){
         foreach($record as $row) {
-			if(strpos($row->la_ropivacaine, 'Without') == true){
-				$la_ropivacaine = $la_ropivacaine + 1;
+			if(strpos($row->ropivacaine, 'Without') == true){
+				$la_ropivacaine = $ropivacaine + 1;
 				}
-			if(strpos($row->la_bupivacaine, 'Without') == true){
-				$la_bupivacaine = $la_bupivacaine + 1;
+			if(strpos($row->bupivacaine, 'Without') == true){
+				$bupivacaine = $bupivacaine + 1;
 					}
-			if(strpos($row->la_levobupivacaine, 'Without') == true){
-				$la_levobupivacaine = $la_levobupivacaine + 1;
+			if(strpos($row->levobupivacaine, 'Without') == true){
+				$levobupivacaine = $levobupivacaine + 1;
 			}
-			if(strpos($row->la_lignocaine, 'Without') == true){
-				$la_lignocaine = $la_lignocaine + 1;
+			if(strpos($row->lignocaine, 'Without') == true){
+				$lignocaine = $lignocaine + 1;
 			}
 
-			if(strpos($row->la_ropivacaine, 'With') == true){
-				$la_ropivacaine1 = $la_ropivacaine1 + 1;
+			if(strpos($row->ropivacaine, 'With') == true){
+				$ropivacaine1 = $ropivacaine1+ 1;
 			}
 			
-			if(strpos($row->la_bupivacaine, 'With') == true){
-				$la_bupivacaine1 = $la_bupivacaine1 + 1;
+			if(strpos($row->bupivacaine, 'With') == true){
+				$bupivacaine = $bupivacaine + 1;
 				}
 			
-			if(strpos($row->la_levobupivacaine, 'With') == true){
-				$la_levobupivacaine1 = $la_levobupivacaine1 + 1;
+			if(strpos($row->levobupivacaine, 'With') == true){
+				$levobupivacain1 = $levobupivacaine + 1;
 				}
             
-			if(strpos($row->la_lignocaine, 'With') == true){
-				$la_lignocaine1 = $la_lignocaine1 + 1;
+			if(strpos($row->lignocaine, 'With') == true){
+				$lignocaine = $lignocaine1+ 1;
 				}
             
         }
@@ -6589,33 +6656,33 @@ if($from_date && $to_date){
     
       if($record){
         foreach($record as $row) {
-			if(strpos($row->la_ropivacaine, 'Without') == true){
-				$la_ropivacaine = $la_ropivacaine + 1;
+			if(strpos($row->ropivacaine, 'Without') == true){
+				$ropivacaine = $ropivacaine + 1;
 				}
-			if(strpos($row->la_levobupivacaine, 'Without') == true){
-				$la_bupivacaine = $la_bupivacaine + 1;
+			if(strpos($row->levobupivacaine, 'Without') == true){
+				$bupivacaine = $bupivacaine + 1;
 					}
-			if(strpos($row->la_bupivacaine, 'Without') == true){
-				$la_levobupivacaine = $la_levobupivacaine + 1;
+			if(strpos($row->bupivacaine, 'Without') == true){
+				$levobupivacaine = $levobupivacaine + 1;
 			}
-			if(strpos($row->la_lignocaine, 'Without') == true){
-				$la_lignocaine = $la_lignocaine + 1;
+			if(strpos($row->lignocaine, 'Without') == true){
+				$lignocaine = $lignocaine + 1;
 			}
 
-			if(strpos($row->la_ropivacaine, 'With') == true){
-				$la_ropivacaine1 = $la_ropivacaine1 + 1;
+			if(strpos($row->ropivacaine, 'With') == true){
+				$ropivacaine = $ropivacain + 1;
 			}
 			
-			if(strpos($row->la_bupivacaine, 'With') == true){
-				$la_bupivacaine1 = $la_bupivacaine1 + 1;
+			if(strpos($row->bupivacaine, 'With') == true){
+				$bupivacaine = $bupivacaine + 1;
 				}
 			
-			if(strpos($row->la_levobupivacaine, 'With') == true){
-				$la_levobupivacaine1 = $la_levobupivacaine1 + 1;
+			if(strpos($row->levobupivacaine, 'With') == true){
+				$levobupivacaine1 = $levobupivacaine1 + 1;
 				}
             
-			if(strpos($row->la_lignocaine, 'With') == true){
-				$la_lignocaine1 = $la_lignocaine1 + 1;
+			if(strpos($row->lignocaine, 'With') == true){
+				$lignocaine = $lignocaine + 1;
 				}
             
         }
@@ -6624,37 +6691,37 @@ if($from_date && $to_date){
 
       
       $products[] = array(
-        'day'   => 'la_ropivacaine',
-        'sell' => $la_ropivacaine
+        'day'   => 'ropivacaine',
+        'sell' => $ropivacaine
       );
       $products[] = array(
-        'day'   => 'la_bupivacaine',
-        'sell' => $la_bupivacaine
+        'day'   => 'bupivacaine',
+        'sell' => $bupivacaine
       );
       $products[] = array(
-        'day'   => 'la_levobupivacaine',
-        'sell' => $la_levobupivacaine
+        'day'   => 'levobupivacaine',
+        'sell' => $levobupivacaine
       );
       $products[] = array(
-        'day'   => 'la_lignocaine',
-        'sell' => $la_lignocaine
+        'day'   => 'lignocaine',
+        'sell' => $lignocaine
       );  
 
       $products1[] = array(
-        'day'   => 'la_ropivacaine1',
-        'sell' => $la_ropivacaine1
+        'day'   => 'ropivacaine',
+        'sell' => $ropivacaine
       );
       $products1[] = array(
-        'day'   => 'la_bupivacaine1',
-        'sell' => $la_bupivacaine1
+        'day'   => 'bupivacaine',
+        'sell' => $bupivacaine
       );
       $products1[] = array(
-        'day'   => 'la_levobupivacaine1',
-        'sell' => $la_levobupivacaine1
+        'day'   => 'levobupivacaine',
+        'sell' => $levobupivacaine
       );
       $products1[] = array(
-        'day'   => 'la_lignocaine1',
-        'sell' => $la_lignocaine1
+        'day'   => 'lignocaine',
+        'sell' => $lignocaine
       );
       
     
@@ -6691,19 +6758,19 @@ if($from_date && $to_date){
       $products = [];
  
       
-      $la_ropivacaine = 0;
-      $la_bupivacaine = 0;
-      $la_prilocaine = 0;
-      $la_lignocaine = 0;
-      $la_2_chloroprocaine = 0;
-      $la_otheraine = 0;
+      $ropivacaine = 0;
+      $bupivacaine = 0;
+      $prilocaine = 0;
+      $lignocaine = 0;
+      $chloroprocaine = 0;
+      $other = 0;
 
-      $la_ropivacaine1 = 0;
-      $la_bupivacaine1 = 0;
-      $la_prilocaine1 = 0;
-      $la_lignocaine1 = 0;
-      $la_2_chloroprocaine1 = 0;
-      $la_otheraine1 = 0;
+	  $ropivacaine1 = 0;
+      $bupivacaine1 = 0;
+      $prilocaine1 = 0;
+      $lignocaine1 = 0;
+      $chloroprocaine1 = 0;
+      $other1 = 0;
 
      
         $builder = $db->table('cnb_postop');
@@ -6717,39 +6784,56 @@ if($from_date && $to_date){
 
       if($record){
         foreach($record as $row) {
-			if(strpos($row->la_ropivacaine, 'Heavy') == true){
-				$la_ropivacaine = $la_ropivacaine + 1;
+			if(strpos($row->ropivacaine, 'Heavy') == true){
+				$ropivacaine = $ropivacaine + 1;
 				}
-			if(strpos($row->la_bupivacaine , 'Heavy') == true){
-				$la_bupivacaine = $la_bupivacaine + 1;
+				if(strpos($row->la_ropivacaine1, 'Heavy') == true){
+					$la_ropivacaine1 = $la_ropivacaine1 + 1;
 					}
-			if(strpos($row->la_prilocaine, 'Heavy') == true){
-				$la_prilocaine = $la_prilocaine + 1;
-			}
-			if(strpos($row->la_lignocaine, 'Heavy') == true){
-				$la_lignocaine = $la_lignocaine + 1;
-			}
-			
-			if(strpos($row->la_otheraine, 'Heavy') == true){
-				$la_otheraine = $la_otheraine + 1;
-			}
+			if(strpos($row->bupivacaine , 'Heavy') == true){
+				$bupivacaine = $bupivacaine + 1;
+					}
 
-			if(strpos($row->la_ropivacaine, 'Iso/Hypobaric') == true){
-				$la_ropivacaine1 = $la_ropivacaine1 + 1;
+			if(strpos($row->la_bupivacaine1 , 'Heavy') == true){
+						$la_bupivacaine1 = $la_bupivacaine1 + 1;
+							}		
+			if(strpos($row->prilocaine, 'Heavy') == true){
+				$prilocaine = $prilocaine + 1;
+			}
+			if(strpos($row->la_prilocaine1, 'Heavy') == true){
+				$la_prilocaine1 = $la_prilocaine1 + 1;
+			}
+			if(strpos($row->lignocaine, 'Heavy') == true){
+				$lignocaine = $lignocaine + 1;
+			}
+			if(strpos($row->la_lignocaine1, 'Heavy') == true){
+				$la_lignocaine1 = $la_lignocaine1 + 1;
+			}
+			if(strpos($row->otheraine, 'Heavy') == true){
+				$otheraine = $otheraine + 1;
+			}
+			if(strpos($row->la_otheraine1, 'Heavy') == true){
+				$la_otheraine1 = $la_otheraine1 + 1;
+			}
+			if(strpos($row->la_2_choloroprocine1, 'with Hypobaric') == true){
+				$la_2_choloroprocine1 = $la_2_choloroprocine1+ 1;
+			}
+			if(strpos($row->ropivacaine, 'Iso/Hypobaric') == true){
+				$ropivacaine1 = $ropivacaine1 + 1;
 			}
 			
-			if(strpos($row->la_bupivacaine, 'Iso/Hypobaric') == true){
-				$la_bupivacaine1 = $la_bupivacaine1 + 1;
+			if(strpos($row->bupivacaine, 'Iso/Hypobaric') == true){
+				$bupivacaine1 = $bupivacaine1 + 1;
 				} 
-			if(strpos($row->la_prilocaine, 'Iso/Hypobaric') == true){
-				$la_prilocaine1 = $la_prilocaine1 + 1;
+			if(strpos($row->prilocaine, 'Iso/Hypobaric') == true){
+				$prilocaine1 = $prilocaine1 + 1;
 			}         
-			if(strpos($row->la_lignocaine, 'Iso/Hypobaric') == true){
-				$la_lignocaine1 = $la_lignocaine1 + 1;
+			if(strpos($row->lignocaine, 'Iso/Hypobaric') == true){
+				$lignocaine1 = $lignocaine1 + 1;
 				}
            
-			if(strpos($row->la_otheraine, 'with Hypobaric') == true){
-				$la_otheraine1 = $la_otheraine1 + 1;
+			if(strpos($row->other, 'with Hypobaric') == true){
+				$other1 = $other1 + 1;
 			}
         }
       }
@@ -6765,35 +6849,43 @@ if($from_date && $to_date){
 
       if($record){
         foreach($record as $row) {
-			if(strpos($row->la_ropivacaine, 'Heavy') == true){
-				$la_ropivacaine = $la_ropivacaine + 1;
+			if(strpos($row->ropivacaine, 'Heavy') == true){
+				$ropivacaine = $ropivacaine + 1;
 				}
-			if(strpos($row->la_bupivacaine , 'Heavy') == true){
-				$la_bupivacaine = $la_bupivacaine + 1;
+			if(strpos($row->bupivacaine , 'Heavy') == true){
+				$bupivacaine = $bupivacaine + 1;
 					}
-			if(strpos($row->la_levobupivacaine , 'Heavy') == true){
-				$la_levobupivacaine = $la_levobupivacaine + 1;
+			if(strpos($row->levobupivacaine , 'Heavy') == true){
+				$levobupivacaine = $levobupivacaine + 1;
 					}
-			if(strpos($row->la_lignocaine, 'Heavy') == true){
-				$la_lignocaine = $la_lignocaine + 1;
+			if(strpos($row->lignocaine, 'Heavy') == true){
+				$lignocaine = $lignocaine + 1;
 			}
 			
 			
 
-			if(strpos($row->la_ropivacaine, 'Iso/Hypobaric') == true){
-				$la_ropivacaine1 = $la_ropivacaine1 + 1;
+			if(strpos($row->ropivacaine, 'Iso/Hypobaric') == true){
+				$ropivacaine1 = $ropivacaine1 + 1;
 			}
 			
-			if(strpos($row->la_bupivacaine, 'Iso/Hypobaric') == true){
-				$la_bupivacaine1 = $la_bupivacaine1 + 1;
+			if(strpos($row->bupivacaine, 'Iso/Hypobaric') == true){
+				$bupivacaine1 = $bupivacaine1 + 1;
 				}   
-			 if(strpos($row->la_levobupivacaine , 'Heavy') == true){
-				$la_levobupivacaine1 = $la_levobupivacaine1 + 1;
+				if(strpos($row->la_prilocaine1 , 'Heavy') == true){
+					$la_prilocaine1 = $la_prilocaine1 + 1;
+						} 
+			 if(strpos($row->levobupivacaine , 'Heavy') == true){
+				$levobupivacaine1 = $levobupivacaine1 + 1;
 					}     
-			if(strpos($row->la_lignocaine, 'Iso/Hypobaric') == true){
-				$la_lignocaine1 = $la_lignocaine1 + 1;
+			if(strpos($row->lignocaine, 'Iso/Hypobaric') == true){
+				$lignocaine1 = $lignocaine1 + 1;
 				}
-           
+				if(strpos($row->la_otheraine1, 'Iso/Hypobaric') == true){
+					$la_otheraine1= $la_otheraine1 + 1;
+					}
+					if(strpos($row->la_2_choloroprocine1, 'Iso/Hypobaric') == true){
+						$la_2_choloroprocine1= $la_2_choloroprocine1 + 1;
+						}
         }
       }
 
@@ -6840,7 +6932,10 @@ $builder = $db->table('cnb_postop');
 				}
            
 			if(strpos($row->chloroprocaine, 'with Hypobaric') == true){
-				$la_2_chloroprocaine1 = $la_2_chloroprocaine1 + 1;
+				$chloroprocaine = $chloroprocaine + 1;
+			}
+			if(strpos($row->other, 'with Hypobaric') == true){
+				$other = $other + 1;
 			}
         }
       }
@@ -6848,29 +6943,29 @@ $builder = $db->table('cnb_postop');
       
 
       $products[] = array(
-        'day'   => 'la_ropivacaine',
-        'sell' => $la_ropivacaine
+        'day'   => 'ropivacaine',
+        'sell' => $ropivacaine
       );
       $products[] = array(
-        'day'   => 'la_bupivacaine',
-        'sell' => $la_bupivacaine
+        'day'   => 'bupivacaine',
+        'sell' => $bupivacaine
       );
       $products[] = array(
-        'day'   => 'la_prilocaine',
-        'sell' => $la_prilocaine
+        'day'   => 'prilocaine',
+        'sell' => $prilocaine
       ); 
       $products[] = array(
-        'day'   => 'la_lignocaine',
-        'sell' => $la_lignocaine
+        'day'   => 'lignocaine',
+        'sell' => $lignocaine
       ); 
     
       $products[] = array(
-        'day'   => 'la_otheraine',
-        'sell' => $la_otheraine
+        'day'   => 'chloroprocaine',
+        'sell' => $chloroprocaine
       ); 
       $products[] = array(
-        'day'   => 'la_2_chloroprocaine1',
-        'sell' => $la_2_chloroprocaine
+        'day'   => 'other',
+        'sell' => $other
       );
       $products1[] = array(
         'day'   => 'la_ropivacaine1',
@@ -6889,15 +6984,15 @@ $builder = $db->table('cnb_postop');
         'sell' => $la_lignocaine1
       );
   
+     
       $products1[] = array(
         'day'   => 'la_otheraine1',
         'sell' => $la_otheraine1
-      ); 
-      $products1[] = array(
-        'day'   => 'la_2_chloroprocaine1',
-        'sell' => $la_2_chloroprocaine1
       );
- 
+	  $products1[] = array(
+        'day'   => 'la_2_choloroprocine1',
+        'sell' => $la_2_choloroprocine1
+      ); 
  
       $data['products'] = ($products); 
       $data['products1'] = ($products1);

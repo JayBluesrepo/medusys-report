@@ -120,7 +120,7 @@
 									return;
 								}
 							?>
-								        			<table class="table table-bordered" id="mytable">
+				<table class="table table-bordered" id="mytable">
         				<thead>
         					<tr>
         						<th>Local Anasthesia Solution with Adrenaline</th>

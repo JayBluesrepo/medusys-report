@@ -9,9 +9,7 @@
 
 	 
 		<div class="col-sm-9">
-       
-
-	         <div class="reports-right pt-4">
+       <div class="reports-right pt-4">
 				<input id="save-pdf" type="button" value="Save as PDF"  />
 				<div id="chart_div"></div>
 <div class="col-sm-9" id="reports-pdf">
@@ -75,22 +73,15 @@
 							
 						</div>
 					</div>
-					<div class="col-sm-5">
+					<!-- <div class="col-sm-6">
 								<div id="GoogleBarChart" style="height: 400px; width: 100%"></div>
-							</div>	
-							<div class="col-sm-5">
+							</div>	 -->
+							<!-- <div class="col-sm-4">
 								<div id="GoogleLineChart" style="height: 400px; width: 100%"></div>
-							</div>
-							
-							
-						
-					<br/>  </div>
+							</div><br/>   -->
+						</div>
        		
-       		 <div class="col-sm-9">
-       
-
-	         <div class="reports-right pt-4">
-				
+       		 <div class="col-sm-9"><div class="reports-right pt-4">
 				<div id="chart_div"></div>
                 	<h3 class="mt-4">LA Utilisation - Epidural LA </h3>
 		
@@ -135,20 +126,36 @@
 							</div>
 						
 							
-							<div class="col-sm-5">
+							<!-- <div class="col-sm-5">
 								<div id="GoogleBarChart1" style="height: 400px; width: 100%"></div>
 							</div>	
 							<div class="col-sm-5">
 								<div id="GoogleLineChart1" style="height: 400px; width: 100%"></div>
-							</div>
+							</div> -->
 							
 						
-					<br/>  
+					 
        		 </div>   
        		</div>
 	    </div>    
 
+		<div class="col-sm-9">
 
+
+<div class="reports-right pt-4">
+
+<div id="chart_div"></div>
+	<br/>
+	<div class="row" id="demo-table">
+	<div class="col-sm-5">
+	<div class="table-responsive">
+	<h4>Total Combo = <?php echo $combo_count;?></h4>
+	<br/>  
+	</div>   
+	</div>
+	</div>
+</div>
+</div>  
 
          
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>

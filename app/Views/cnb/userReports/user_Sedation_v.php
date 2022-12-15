@@ -37,7 +37,7 @@
 						<div class="row">
 							<div class="col-sm-6">
 							<div class="table-responsive" id="demo-table">
-							<h4>Total cases = <?php echo $total;?></h4>
+							<h4>Total cases under sedation = <?php echo $total;?></h4>
         			<table class="table table-bordered" style="height: 200px; width: 100%" id="mytable">
         				<thead>
         					<tr>
