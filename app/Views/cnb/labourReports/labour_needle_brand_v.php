@@ -1,5 +1,5 @@
 <?php
-    echo view('includes/user-reports-header');    
+    echo view('includes/labour-reports-header');    
 ?>
 
 
@@ -175,5 +175,5 @@
 
 
 <?php
-    echo view('includes/user-reports-footer');    
+    echo view('includes/labour-reports-footer');    
 ?>

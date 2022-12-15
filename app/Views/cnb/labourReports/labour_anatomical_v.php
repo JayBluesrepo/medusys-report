@@ -1,26 +1,24 @@
-<?php
-    echo view('includes/user-reports-header');    
+ <?php
+    echo view('includes/labour-reports-header');    
 ?>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">  
 
 
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+         <div class="col-sm-9" >
 
-	 
-		<div class="col-sm-9">
-       
-
-
-	         <div class="reports-right pt-4">
-				<input id="save-pdf" type="button" value="Save as PDF"  />
-				<div id="chart_div"></div>
+            <div class="reports-right  pt-4">
+		<input id="save-pdf" type="button" value="Save as PDF"  />
+		<div id="chart_div"></div>
 <div class="col-sm-9" id="reports-pdf">
-                	<h3 class="mt-2 pt-2">Needle Details - Needle Brand</h3>
-		
-						<br/>
+                <h3 class="mt-2 pt-2" >Other Procedure Characteristics - Anatomical Landmark</h3>
+
+
+			
+		<br/>
 						<div class="row">
-       							<div class="col-sm-5">
+       							<div class="col-sm-6">
         						<div class="report-detail-tag">
           						<h4 class="mb-4">Report Details</h4>
 
@@ -34,16 +32,18 @@
 							} ?></span></h5>
         						</div>
       							</div>
-      						    <div class="col-sm-7"></div>
+      						    <div class="col-sm-6"></div>
 						</div>
-						<div class="row" id="demo-table">
-							<div class="col-sm-5">
-		        	<h4>Total cases = <?php echo $total_n;?></h4>
-		        		<div class="table-responsive">
+	
+		<div class="row" id="demo-table">
+		        	<div class="col-sm-6">
+		        		<!--  -->
+		        		<div class="table-responsive" id="demo-table">
+<h4>Total cases = <?php echo $total_n;?></h4>
 		        			<table class="table table-bordered">
 		        				<thead>
 		        					<tr>
-		        						<th>CNB Needle Brand</th>
+		        						<th>Anatomical Landmark</th>
 		        						<th>n</th>
 		        						<th>Percentage</th>
 		        					</tr>
@@ -75,32 +75,51 @@
 		        			</table>
 		        		</div>
 		        	</div>
-
-							
-							
-						</div>
-							
-							<div class="col-sm-5">
-								<div id="GoogleBarChart" style="height: 400px; width: 100%"></div>
-							</div>	
-							<div class="col-sm-5">
-								<div id="GoogleLineChart" style="height: 400px; width: 100%"></div>
-							</div>
-							
-						
-					<br/>  
-       		 </div>
 </div>
-       		 
-	    </div>    
+					
+					<div class="row">
+						<div class="col-sm-6">
+		    				<div id="GoogleLineChart" style="height: 400px; width: 100%"></div>
+		        		</div>
+						<div class="col-sm-6">
+							<div id="GoogleBarChart" style="height: 400px; width: 100%"></div>
+						</div>
+					</div>
+		        	
+		        	
+		        </div><!--row--->
+
+		        
+		       
+
+		    
+		<br/>
+		<!-------------------------------------------------------------------->
+				
+		        <!-------------------------------------------------------------------->
+		         <!-------------------------------------------------------------------->
+		</div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
-
-         
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script  src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
-		
+<!---------------- Menu Drodown --------------------->
+<script type = "text/javascript">
+</script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $('.mobimenu li.dropdown').hover(function() {
+              $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+            }, function() {
+              $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+            });         
+        });
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script  src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 		
 		<script>
 
@@ -112,40 +131,35 @@
 			google.charts.setOnLoadCallback(drawChart);
             // Line Chart
 			function drawChart() {
-
-				var data1 = google.visualization.arrayToDataTable([
-					['Characteristics', 'Stats'],
-						<?php 
-							
-							   echo "['Total number of cases recorded with minimum data set','N’'],";
-							   echo "['Total number of cases with complete entry','Nc'],";
-							   
-						 ?>
-				]);
 				var data = google.visualization.arrayToDataTable([
-					['Characteristics', 'Count'],
+					['ASA', 'Count'],
 						<?php 
 							foreach ($products as $row){
 							   echo "['".$row['day']."',".$row['sell']."],";
 						} ?>
 				]);
 				var options = {
-					title: 'CNB Needle Brand Classification',
+					title: 'Anatomical Landmark Classification',
 					curveType: 'function',
 					legend: {
 						position: 'top'
 					}
-				}; 
-
-		
-
+				};
 				var pie_chart = new google.visualization.PieChart(document.getElementById('GoogleLineChart'));
 				pie_chart.draw(data, options);
-
+				
 				var column_chart = new google.visualization.ColumnChart(document.getElementById('GoogleBarChart'));
 				column_chart.draw(data, options);
-			
 
+				
+
+
+
+					
+
+				var btnSave = document.getElementById('save-pdf');
+				
+    				 
 				var btnSave = document.getElementById('save-pdf');
 				
     				btnSave.disabled = false;
@@ -160,20 +174,24 @@
 						format: [canvas.width, canvas.height]
 						});
 						pdfDoc.addImage(canvas.toDataURL('image/png'), 0, 0);
-						pdfDoc.save('CNBneedlebrand.pdf');
+						pdfDoc.save('anatomical.pdf');
 					});
     					//doc.addImage(pie_chart.getImageURI(),0,0);
 						//doc.addImage(column_chart.getImageURI(),0,0);
-    					//doc.save('Surgical_location.pdf');
+    					//doc.save('anatomical.pdf');
   				}, false);
 
+
 			}
-						
+			
+			
+			
 		</script>
 
-		
+
+<!---------------- Menu Drodown --------------------->
 
 
 <?php
-    echo view('includes/user-reports-footer');    
+    echo view('includes/labour-reports-footer');    
 ?>
