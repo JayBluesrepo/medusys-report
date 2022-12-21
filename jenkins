@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Deploy Medusys application') {
             steps {
-                echo 'git branch: 'main', credentialsId: 'ajay@jayblues.com', url: 'https://github.com/JayBluesrepo/medusys-report.git''
+                echo 'git branch: 'main', credentialsId: '85e81608-6670-4483-a25e-02820f53dcd5', url: 'https://github.com/JayBluesrepo/medusys-report.git'''
             }
         }
     }
