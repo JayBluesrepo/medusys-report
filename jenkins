@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Deploy Medusys application') {
             steps {
-                echo checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JayBluesrepo/medusys-report.git']]])
+                echo 'git branch: 'main', credentialsId: '85e81608-6670-4483-a25e-02820f53dcd5', url: 'https://github.com/JayBluesrepo/medusys-report.git'''
             }
         }
     }
